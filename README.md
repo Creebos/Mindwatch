@@ -6,10 +6,10 @@ This project involves developing a web-based tool designed to assess the mental 
 
 ## Team
 
-| Name                | Organization                      | Email                     |
-| ------------------- | --------------------------------- | ------------------------- |
-| **Dennis Riccardo** | ZHAW School of Management and Law | riccaden@students.zhaw.ch |
-| **Yunjie Wu**       |                                   | 19855420423@163.com       |
-| **Leandro Pereira** | ZHAW School of Management and Law |                           |
-| **Daniel Brody**    | ZHAW School of Management and Law | daniel.brody00@gmail.com  |
-| **Yves Meyer**      | ZHAW School of Management and Law | meyeryve@students.zhaw.ch |
+| Name                | Organization                         | Email                     |
+| ------------------- | ---------------------------------    | ------------------------- |
+| **Dennis Riccardo** | ZHAW School of Management and Law    | riccaden@students.zhaw.ch |
+| **Yunjie Wu**       | SCUEC South Central Minzu University | 19855420423@163.com       |
+| **Leandro Pereira** | ZHAW School of Management and Law    |                           |
+| **Daniel Brody**    | ZHAW School of Management and Law    | daniel.brody00@gmail.com  |
+| **Yves Meyer**      | ZHAW School of Management and Law    | meyeryve@students.zhaw.ch |
