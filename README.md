@@ -8,7 +8,7 @@ TBD
 
 | Name                | Organization                      | Email                     |
 | ------------------- | --------------------------------- | ------------------------- |
-| **Dennis Riccardo** | ZHAW School of Management and Law |                           |
+| **Dennis Riccardo** | ZHAW School of Management and Law |riccaden@students.zhaw.ch  |
 | **Yunjie Wu**       |                                   |                           |
 | **Leandro Pereira** | ZHAW School of Management and Law |                           |
 | **Daniel Brody**    | ZHAW School of Management and Law |                           |
