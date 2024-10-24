@@ -69,5 +69,11 @@ This method allows for a more natural and nuanced expression of how participants
 
 By utilizing these well-researched tools, we aim to provide an efficient, accurate, and privacy-preserving approach to mental health detection in the workplace.
 
+### References
+1. Levis, B., Benedetti, A., & Thombs, B. D. (2023). Accuracy of the Patient Health Questionnaire-9 for screening to detect major depression: Updated systematic review and individual participant data meta-analysis. *The BMJ*. https://doi.org/10.1136/bmj.l1476
+2. Spitzer, R. L., Kroenke, K., Williams, J. B. W., & Löwe, B. (2023). A brief measure for assessing generalized anxiety disorder: The GAD-7. *JAMA Psychiatry*. https://doi.org/10.1001/jamapsychiatry.2023.0209
+3. Maslach, C., Jackson, S. E., & Leiter, M. P. (2023). The Maslach Burnout Inventory manual (4th ed.). *Mind Garden*. https://www.mindgarden.com/117-maslach-burnout-inventory
+4. Fliege, H., Rose, M., Arck, P., Levenstein, S., & Klapp, B. F. (2024). The Perceived Stress Questionnaire (PSQ) reconsidered: Validation and psychometric properties. *Journal of Psychosomatic Research*. https://doi.org/10.1016/j.jpsychores.2024.01.007
+
 
 ## Week 08
