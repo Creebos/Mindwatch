@@ -73,7 +73,7 @@ By utilizing these well-researched tools, we aim to provide an efficient, accura
 1. Thombs, B. D., Benedetti, A., Kloda, L. A., Levis, B., Nicolau, I., Cuijpers, P., Gilbody, S., Ioannidis, J. P. A., McMillan, D., Patten, S. B., Shrier, I., Steele, R. J., & Ziegelstein, R. C. (2014). The diagnostic accuracy of the Patient Health Questionnaire-2 (PHQ-2), Patient Health Questionnaire-8 (PHQ-8), and Patient Health Questionnaire-9 (PHQ-9) for detecting major depression: protocol for a systematic review and individual patient data meta-analyses. Systematic Reviews, 3(1), 124–124. https://doi.org/10.1186/2046-4053-3-124
 2. WILLIAMS, N. (2014). The GAD-7 questionnaire. Occupational Medicine (Oxford), 64(3), 224–224. https://doi.org/10.1093/occmed/kqt161
 3. De Beer, L. T., van der Vaart, L., Escaffi-Schwarz, M., De Witte, H., & Schaufeli, W. B. (2024). Maslach Burnout Inventory - General Survey: A Systematic Review and Meta-Analysis of Measurement Properties. European Journal of Psychological Assessment : Official Organ of the European Association of Psychological Assessment, 40(5), 360–375. https://doi.org/10.1027/1015-5759/a000797
-4. Fliege, H., Rose, M., Arck, P., Walter, O. B., Kocalevent, R. D., Weber, C., et al. (2005). ThePerceived Stress Questionnaire (PSQ) reconsidered: validation and reference valuesfrom different clinical and healthy adult samples. Psychosom. Med. 67, 78–88. doi: 10.1097/01.psy.0000151491.80178.78
+4. Fliege, H., Rose, M., Arck, P., Walter, O. B., Kocalevent, R. D., Weber, C., et al. (2005). ThePerceived Stress Questionnaire (PSQ) reconsidered: validation and reference valuesfrom different clinical and healthy adult samples. Psychosom. Med. 67, 78–88. https://doi.org/10.1097/01.psy.0000151491.80178.78
 
 
 ## Week 08
