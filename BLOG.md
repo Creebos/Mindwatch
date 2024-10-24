@@ -1,7 +1,7 @@
 # Project Blog
 
 ## Week 07
-** 1. PHQ-9 (Patient Health Questionnaire)
+** 1. PHQ-9 (Patient Health Questionnaire) **
 
 The PHQ-9 is a standard tool for diagnosing depression. It consists of nine items that measure how frequently a person has experienced symptoms such as lack of interest, fatigue, or feelings of worthlessness over the past two weeks. Responses are scored on a scale from 0 to 3:
 
@@ -18,7 +18,7 @@ A total score of 0–27 is calculated, with higher scores indicating more severe
 	•	15-19: Moderately severe depression
 	•	20-27: Severe depression
 
-** 2. GAD-7 (Generalized Anxiety Disorder Scale)
+* 2. GAD-7 (Generalized Anxiety Disorder Scale) *
 
 The GAD-7 is used to screen for generalized anxiety disorder (GAD) through seven questions focusing on feelings of nervousness, worry, and irritability over the past two weeks. Responses are scored similarly to the PHQ-9, from 0 (not at all) to 3 (nearly every day), with a total score ranging from 0 to 21:
 
