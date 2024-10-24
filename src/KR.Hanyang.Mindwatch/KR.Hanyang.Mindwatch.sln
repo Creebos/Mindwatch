@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KR.Hanyang.Mindwatch.Api", "KR.Hanyang.Mindwatch.Api\KR.Hanyang.Mindwatch.Api.csproj", "{DE48B0E3-C67A-40A8-B40E-0164F3D0723F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FF03D7BB-0AC8-406C-9DC7-E71D11AFB4E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE48B0E3-C67A-40A8-B40E-0164F3D0723F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE48B0E3-C67A-40A8-B40E-0164F3D0723F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE48B0E3-C67A-40A8-B40E-0164F3D0723F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE48B0E3-C67A-40A8-B40E-0164F3D0723F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF03D7BB-0AC8-406C-9DC7-E71D11AFB4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF03D7BB-0AC8-406C-9DC7-E71D11AFB4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF03D7BB-0AC8-406C-9DC7-E71D11AFB4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF03D7BB-0AC8-406C-9DC7-E71D11AFB4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D3B8B9B-F113-4751-A6EC-90A35E6F1EB3}
+	EndGlobalSection
+EndGlobal
