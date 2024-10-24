@@ -70,10 +70,10 @@ This method allows for a more natural and nuanced expression of how participants
 By utilizing these well-researched tools, we aim to provide an efficient, accurate, and privacy-preserving approach to mental health detection in the workplace.
 
 ### References
-1. Levis, B., Benedetti, A., & Thombs, B. D. (2023). Accuracy of the Patient Health Questionnaire-9 for screening to detect major depression: Updated systematic review and individual participant data meta-analysis. *The BMJ*. https://doi.org/10.1136/bmj.l1476
-2. Spitzer, R. L., Kroenke, K., Williams, J. B. W., & Löwe, B. (2023). A brief measure for assessing generalized anxiety disorder: The GAD-7. *JAMA Psychiatry*. https://doi.org/10.1001/jamapsychiatry.2023.0209
-3. Maslach, C., Jackson, S. E., & Leiter, M. P. (2023). The Maslach Burnout Inventory manual (4th ed.). *Mind Garden*. https://www.mindgarden.com/117-maslach-burnout-inventory
-4. Fliege, H., Rose, M., Arck, P., Levenstein, S., & Klapp, B. F. (2024). The Perceived Stress Questionnaire (PSQ) reconsidered: Validation and psychometric properties. *Journal of Psychosomatic Research*. https://doi.org/10.1016/j.jpsychores.2024.01.007
+1. Thombs, B. D., Benedetti, A., Kloda, L. A., Levis, B., Nicolau, I., Cuijpers, P., Gilbody, S., Ioannidis, J. P. A., McMillan, D., Patten, S. B., Shrier, I., Steele, R. J., & Ziegelstein, R. C. (2014). The diagnostic accuracy of the Patient Health Questionnaire-2 (PHQ-2), Patient Health Questionnaire-8 (PHQ-8), and Patient Health Questionnaire-9 (PHQ-9) for detecting major depression: protocol for a systematic review and individual patient data meta-analyses. Systematic Reviews, 3(1), 124–124. https://doi.org/10.1186/2046-4053-3-124
+2. WILLIAMS, N. (2014). The GAD-7 questionnaire. Occupational Medicine (Oxford), 64(3), 224–224. https://doi.org/10.1093/occmed/kqt161
+3. De Beer, L. T., van der Vaart, L., Escaffi-Schwarz, M., De Witte, H., & Schaufeli, W. B. (2024). Maslach Burnout Inventory - General Survey: A Systematic Review and Meta-Analysis of Measurement Properties. European Journal of Psychological Assessment : Official Organ of the European Association of Psychological Assessment, 40(5), 360–375. https://doi.org/10.1027/1015-5759/a000797
+4. Fliege, H., Rose, M., Arck, P., Walter, O. B., Kocalevent, R. D., Weber, C., et al. (2005). ThePerceived Stress Questionnaire (PSQ) reconsidered: validation and reference valuesfrom different clinical and healthy adult samples. Psychosom. Med. 67, 78–88. doi: 10.1097/01.psy.0000151491.80178.78
 
 
 ## Week 08
