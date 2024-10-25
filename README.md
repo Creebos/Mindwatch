@@ -13,3 +13,9 @@ This project involves developing a web-based tool designed to assess the mental 
 | **Leandro Pereira** | ZHAW School of Management and Law    | pereilea@students.zhaw.ch |
 | **Daniel Brody**    | ZHAW School of Management and Law    | daniel.brody00@gmail.com  |
 | **Yves Meyer**      | ZHAW School of Management and Law    | meyeryve@students.zhaw.ch |
+
+
+
+
+## Jira-Board
+https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
