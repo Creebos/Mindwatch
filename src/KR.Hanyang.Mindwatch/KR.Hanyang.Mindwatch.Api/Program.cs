@@ -27,6 +27,11 @@ namespace KR.Hanyang.Mindwatch.Api
 
             app.UseAuthorization();
 
+            // Temporary CORS Configuration
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.MapControllers();
 

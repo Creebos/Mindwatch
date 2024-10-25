@@ -1,7 +1,7 @@
 name: Mindwatch Project
 
 services:
-# Web Backend API
+  # Web Backend API
   kr.hanyang.mindwatch.api:
     container_name: Mindwatch-API
     image: ${DOCKER_REGISTRY-}krhanyangmindwatchapi
@@ -13,7 +13,7 @@ services:
     networks:
       - database
 
-# SQL Server 2022
+  # SQL Server 2022
   database:
     container_name: Mindwatch-Database
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -28,8 +28,19 @@ services:
     networks:
       - database
 
-# Web Frontend 
-# TODO
+  # Web Frontend
+  kr.hanyang.mindwatch.frontend:
+    container_name: Mindwatch-Frontend
+    build:
+      context: Kr.Hanyang.Mindwatch.Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./KR.Hanyang.Mindwatch.Frontend:/app
+      - /app/node_modules
+    depends_on:
+      - kr.hanyang.mindwatch.api
 
 networks:
   database:
