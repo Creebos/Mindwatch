@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "kr.hanyang.mindwatch.api",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
+      "serviceActions": {
+        "kr.hanyang.mindwatch.api": "StartDebugging",
+        "database": "StartWithoutDebugging",
+        "kr.hanyang.mindwatch.frontend": "StartWithoutDebugging"
+      }
+    }
+  }
+}

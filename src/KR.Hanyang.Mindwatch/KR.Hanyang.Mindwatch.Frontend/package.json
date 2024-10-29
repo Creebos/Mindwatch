@@ -1,0 +1,22 @@
+{
+  "name": "kr-hanyang-mindwatch-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "kr-hanyang-mindwatch-frontend": "file:",
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.9",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.9",
+    "vue-tsc": "^2.1.6"
+  }
+}
