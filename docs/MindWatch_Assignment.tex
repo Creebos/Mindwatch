@@ -14,7 +14,7 @@
 \begin{document}
 
 \title{MindWatch: Keeping Tech Minds in Balance\\
-{\footnotesize \textsuperscript{}}
+{\footnotesize \textsuperscript{}\href{https://github.com/Creebos/Mindwatch.git}{https://github.com/Creebos/Mindwatch.git}}
 }
 
 \author{\IEEEauthorblockN{Riccardo Dennis William}
@@ -251,17 +251,15 @@ minimalistic, emphasizing simplicity to ensure that employees
 can easily complete surveys without unnecessary distractions.
 On the other hand, the HR dashboard will provide rich data
 visualizations, including graphs, charts, and filters, allowing
-HR professionals to explore the insights in detail. It will also
-offer export options for reporting and analysis, making it a
-powerful tool for understanding and managing employee
-mental health.
+HR professionals to explore the insights in detail.
 \newline
 
 \section{IMPLEMENTATION AND INTEGRATION}
 
 \subsection {ASP.NET Core (Backend)}
 
-    The project’s backend is implemented using ASP.NET Core, 
+
+The project’s backend is implemented using ASP.NET Core, 
     a versatile and cross-platform framework ideal for building 
     robust, scalable RESTful APIs. Known for its high performance, 
     ASP.NET Core is compatible with both cloud and container-based 
@@ -273,87 +271,93 @@ mental health.
     .NET Core 8.0 for our backend application. The most common and 
     essential Libraries we are going to use, should already have 
     released new versions to support 8.0.
-    \newline
+\newline
+
 
 \subsection {Python (AI Component)}
 
-    Python is selected for implementing the AI algorithms 
-    responsible for processing survey responses and 
-    identifying mental health risks. Its extensive machine 
-    learning and natural language processing libraries, 
-    such as Scikit-learn, TensorFlow, and NLTK, make Python 
-    well-suited for tasks that require sophisticated data 
-    analysis. Python’s simplicity and readability are added 
-    advantages, enabling the development of complex AI 
-    models in a more manageable way, particularly for tasks 
-    involving text analysis and sentiment detection within 
-    survey responses.
-    \newline
+Python is selected for implementing the AI algorithms 
+responsible for processing survey responses and 
+identifying mental health risks. Its extensive machine 
+learning and natural language processing libraries, 
+such as Scikit-learn, TensorFlow, and NLTK, make Python 
+well-suited for tasks that require sophisticated data 
+analysis. Python’s simplicity and readability are added 
+advantages, enabling the development of complex AI 
+models in a more manageable way, particularly for tasks 
+involving text analysis and sentiment detection within 
+survey responses.
+\newline
 
 
 \subsection {JavaScript/TypeScript (Frontend)}
 
-    To ensure cross-platform compatibility on Windows, Linux, 
-    and macOS, the application's frontend will run in a web 
-    browser. It will be built with JavaScript and TypeScript, 
-    using the Vue.js framework alongside Bootstrap. TypeScript 
-    is our primary language choice due to its strong typing 
-    capabilities, which improve code quality, maintainability, 
-    and scalability by reducing errors. This approach supports 
-    a smooth experience for employees completing surveys and 
-    for HR professionals analyzing data on the dashboard.
-    \newline
+To ensure cross-platform compatibility on Windows, Linux, 
+and macOS, the application's frontend will run in a web 
+browser. It will be built with JavaScript and TypeScript, 
+using the Vue.js framework alongside Bootstrap. 
+\newline
 
-\subsection {Docker Containerization}
+TypeScript is our primary language choice due to its strong typing 
+capabilities, which improve code quality, maintainability, 
+and scalability by reducing errors. This approach supports 
+a smooth experience for employees completing surveys and 
+for HR professionals analyzing data on the dashboard.
+\newline
+
+    \subsection {Docker Containerization}
+
     Our development team operates on multiple operating systems, 
     currently using both Windows and macOS. To streamline our 
     work across platforms and avoid common compatibility issues, 
     we decided to use Docker for our entire application, both in 
     deployment and development. Docker enables us to set up on 
     any development machine easily, without requiring installations 
-    for .NET, Node/NPM, or SQL Server software. Using Docker is 
-    especially beneficial for managing SQL databases, as it simplifies 
+    for .NET, Node/NPM, or SQL Server software. \newline
+    
+    Using Docker is especially beneficial for managing SQL databases, as it simplifies 
     handling ports and local connections that can otherwise be 
     problematic. Additionally, Docker provides us with flexible 
     deployment options for various server environments, allowing 
     us freedom in choosing a server provider. Most modern cloud 
     providers offer native support for Docker, and larger corporations 
     often provide their own managed Kubernetes clusters, allowing 
-    us to run our Docker images seamlessly.
+    us to run our Docker images seamlessly.\newline
 
     Our Docker images will be Linux-based for speed and reliability, 
     and there are many prebuilt Docker images available that fit our 
     needs perfectly. We can use ready-made images for SQL Server and 
-    deploy images that run our TypeScript or C# code with ease.
+    deploy images that run our TypeScript or C-Sharp code with ease.
     \newline
 
-\subsection {Cost estimation}
-    
+    \subsection {Cost estimation}
     Since this project is purely for educational purposes, we’ll stick 
     to software that is free for non-commercial use, avoiding the need 
     for licenses. To run our application and support a small number of 
     test users, we won’t require much computing power. For cloud hosting, 
     we estimate a budget of around \$5-20 per month.
-
-\subsection {Software in use}
-
-    We'll be using Docker to build and run our containers, installing the 
-    Docker Desktop app on our development machines. To help complete the 
-    project within our time limit, we’ll rely on several libraries.
-
-    For the .NET Core backend API, we’ll use Entity Framework with the 
-    code-first approach to simplify data storage integration. Additionally, 
-    we’ll use OpenAPI Swagger, which provides an API standard and makes it 
-    easier to test individual endpoints. For integrating our AI model, we’ll 
-    need an additional library, though we haven’t chosen one yet.
-
-    Our frontend will be built on the Vue.js framework, which includes several 
-    built-in libraries. During development, we’ll use Vite to enable real-time 
-    updates, allowing our changes to instantly reflect in the running application. 
-    Naturally, we’ll also use TypeScript, which is technically external 
-    software as well.
-
     \newline
+
+    \subsection {Software in use}
+
+We'll be using Docker to build and run our containers, installing the 
+Docker Desktop app on our development machines. To help complete the 
+project within our time limit, we’ll rely on several libraries.
+\newline
+
+For the .NET Core backend API, we’ll use Entity Framework with the 
+code-first approach to simplify data storage integration. Additionally, 
+we’ll use OpenAPI Swagger, which provides an API standard and makes it 
+easier to test individual endpoints. For integrating our AI model, we’ll 
+need an additional library, though we haven’t chosen one yet.
+\newline
+
+Our frontend will be built on the Vue.js framework, which includes several 
+built-in libraries. During development, we’ll use Vite to enable real-time 
+updates, allowing our changes to instantly reflect in the running application. 
+Naturally, we’ll also use TypeScript, which is technically external 
+software as well.
+\newline
 
     \subsection {Task distribution}
 
@@ -383,14 +387,18 @@ mental health.
     tailored to specific departments or job roles. This feature 
     supports customization in frequency and target audience, 
     allowing surveys to be set up according to the needs of 
-    different teams or positions within the organization. The 
-    backend API in ASP.NET Core provides an endpoint for HR to 
+    different teams or positions within the organization. 
+    \newline
+
+    The backend API in ASP.NET Core provides an endpoint for HR to 
     specify parameters such as survey frequency and targeted 
     departments. The backend also manages survey scheduling 
     logic by storing these configurations in the database, where 
     they are referenced to initiate automatic survey reminders. 
     Through a dedicated dashboard, HR Managers can define and 
     modify survey timing, frequency, and recipients as needed. 
+    \newline
+
     All survey schedules are documented in a schedules table 
     within the database, storing parameters like department IDs, 
     job roles, and frequency settings to keep track of survey 
@@ -404,12 +412,16 @@ mental health.
     The Fill Out Survey function allows employees to complete 
     assigned mental health surveys securely and anonymously. 
     Employees receive surveys through the platform and can complete 
-    them using a web-based, user-friendly interface. The frontend 
-    form, developed in JavaScript or TypeScript, is designed for 
+    them using a web-based, user-friendly interface. 
+    \newline
+    
+    The frontend form, developed in JavaScript or TypeScript, is designed for 
     ease of use and does not retain any personal information on 
     the client side, prioritizing data privacy. Upon submission, 
     responses are encrypted and processed by the ASP.NET Core 
-    backend, ensuring that data is anonymized and securely stored. 
+    backend, ensuring that data is anonymized and securely stored.
+    \newline
+
     The backend saves all survey responses in a responses table in 
     the database, which records each entry while maintaining 
     anonymity by linking responses only to anonymized identifiers.
@@ -429,7 +441,9 @@ mental health.
      level. Additionally, the platform uses natural language 
      processing (NLP) with libraries like NLTK or SpaCy to preprocess 
      text-based answers, performing sentiment analysis for deeper 
-     insight into employee sentiment. The Python models are 
+     insight into employee sentiment. \newline
+     
+     The Python models are 
      accessible via a dedicated API, where the ASP.NET Core 
      backend calls these models after survey completion. Risk 
      assessments are stored in an evaluations table, providing a 
@@ -444,9 +458,10 @@ mental health.
     For high-risk cases, the Escalate to Psychologist feature 
     provides a pathway for further professional review, allowing 
     HR or the system itself to flag responses for psychologist 
-    intervention. When a survey response is identified as high-risk, 
-    this feature can escalate the case to an on-staff psychologist,
-    ensuring prompt follow-up. The backend includes an API endpoint 
+    intervention.
+    \newline
+    
+    The backend includes an API endpoint 
     for escalation requests, which triggers an automatic 
     notification to the psychologist through email or in-app 
     alerts. Details of each escalated case, including the response
@@ -468,7 +483,9 @@ mental health.
      with insights into overall well-being within their teams. 
      Developed with tools like Chart.js or D3.js, the dashboard 
      allows HR to explore trends over time and filter data based 
-     on department or risk level. The backend aggregates survey 
+     on department or risk level. \newline
+     
+     The backend aggregates survey 
      data to produce these insights in real-time, with queries on 
      the responses and evaluations tables to generate trends that 
      are accessible and actionable for HR analysis.
@@ -483,7 +500,9 @@ mental health.
     completed their surveys within a specified timeframe. The 
     backend includes a scheduled job that periodically checks 
     for incomplete survey entries and automatically sends 
-    reminders. Notifications are dispatched via email or in-app 
+    reminders. \newline
+    
+    Notifications are dispatched via email or in-app 
     alerts to encourage timely survey completion, helping HR gather 
     accurate, comprehensive data. In the database, completed surveys 
     are flagged in the responses table, while any incomplete entries
@@ -501,13 +520,16 @@ mental health.
     issues, specifying details like incident description, employee ID, 
     and severity level. The backend routes these reports based on their 
     severity to either HR or a psychologist, ensuring each issue is 
-    addressed promptly. Incident details are stored in an incidents
+    addressed promptly. \newline
+    
+    Incident details are stored in an incidents
     table in the database, providing a structured record of all 
     reported issues. This system ensures that employee concerns are 
     tracked, documented, and addressed according to severity and 
     relevance
     \newline    
-
+    \newline  
+    
     \subsection {Non-Functional Requirements}
    
     \begin{itemize}
@@ -519,6 +541,8 @@ mental health.
     survey process. The platform uses advanced encryption methods like 
     AES or RSA to secure data-at-rest and TLS for data-in-transit, 
     ensuring confidentiality and data protection at all stages. 
+    \newline
+
     Role-based access control further secures sensitive information, 
     permitting only authorized personnel, such as HR managers and 
     psychologists, to view or manage confidential data. Compliance with
@@ -533,8 +557,10 @@ mental health.
     Scalability is achieved through a three-tier architecture, where the 
     frontend, backend, and database layers work independently but in 
     unison. This architecture enables the system to scale efficiently 
-    and accommodate growing numbers of users or data loads. To manage 
-    higher concurrent usage, the platform also supports cloud 
+    and accommodate growing numbers of users or data loads. 
+    \newline
+
+    To manage higher concurrent usage, the platform also supports cloud 
     infrastructure options on services like AWS or GCP and can be 
     deployed in Docker containers for modular expansion. These 
     load-balancing and scaling capabilities ensure that the platform 
@@ -556,7 +582,6 @@ mental health.
     facilitating smooth participation in surveys and effective 
     engagement with the HR dashboard
     \newline  \newline  \newline  
-    
-    \href{https://github.com/Creebos/Mindwatch.git}{https://github.com/Creebos/Mindwatch.git}.
+
 
 \end{document}
