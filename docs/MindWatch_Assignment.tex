@@ -1,0 +1,283 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{MindWatch: Keeping Tech Minds in Balance\\
+{\footnotesize \textsuperscript{}}
+}
+
+\author{\IEEEauthorblockN{Riccardo Dennis William}
+\IEEEauthorblockA{\textit{Department of Information System} \\
+\textit{Hanyang University}\\
+Seoul, South Korea \\
+riccaden@students.zhaw.ch}
+\and
+\IEEEauthorblockN{Meyer Yves}
+\IEEEauthorblockA{\textit{Department of Information System} \\
+\textit{Hanyang University}\\
+Seoul, South Korea \\
+meyeryve@students.zhaw.ch}
+\and
+\IEEEauthorblockN{Wu Yunjie}
+\IEEEauthorblockA{\textit{Department of Information System} \\
+\textit{Hanyang University}\\
+Seoul, South Korea \\
+19855420423@163.com}
+\and
+\IEEEauthorblockN{Pereira Leandro}
+\IEEEauthorblockA{\textit{Department of Information System} \\
+\textit{Hanyang University}\\
+Seoul, South Korea \\
+pereilea@students.zhaw.ch}
+}
+
+\maketitle
+
+\begin{abstract}
+    This project aims to develop a comprehensive web-based
+    platform designed to assess the mental health of employees in
+    the tech industry through AI-driven analysis of survey
+    responses and performance data. The platform will provide
+    valuable insights into employee well-being, functioning as an
+    early warning system to detect potential mental health concerns
+    before they escalate. By offering a dashboard tailored for HR
+    professionals, the system enables data-driven decision-making,
+    allowing organizations to proactively support employee mental
+    health. A key aspect of the platform is the secure handling of
+    survey data, ensuring anonymity and confidentiality, which
+    fosters trust and encourages widespread adoption among
+    employees.
+\end{abstract}
+
+\begin{IEEEkeywords}
+    mental health, AI-driven analysis, employee well-being, tech industry, HR dashboard, data security, survey automation, burnout detection, stress management, predictive analytics, human resources, data-driven decision-making.
+\end{IEEEkeywords}
+
+
+\begin{table}[htbp]
+    \caption{Role Assignments (First half of Project)}
+    \centering
+    \begin{tabular}{|p{1.8cm}|p{0.9cm}|p{4.8cm}|}
+        \hline
+        \textbf{Roles} & \textbf{Name} & \textbf{Tasks} \\ \hline
+        User & Yunjie & Explaining use-cases and testing demo \\ \hline
+        Customer & Leandro & Change use-cases during development \\ \hline
+        Software Developer & Leandro, Yunjie, Yves, Dennis & Implementing software and creating model \\ \hline
+        Development Manager & Yves, Dennis & Prioritize tasks and organize teams \\ \hline
+    \end{tabular}
+    \label{tab:role_assignments}
+\end{table}
+
+
+\section{Introduction}
+The tech industry is known for its high-pressure work environment, 
+often leading to mental health challenges among employees. 
+Early identification of potential mental health risks and timely 
+support can significantly improve employee well-being and overall 
+productivity. However, many organizations lack consistent, 
+confidential tools to monitor and assess mental health across their 
+workforce. This project seeks to address this gap by developing a 
+scalable, AI-powered solution for continuous mental health monitoring.
+
+Tech professionals frequently face long hours, tight
+deadlines, and high-stakes projects, all of which can
+contribute to stress, burnout, and other mental health issues.
+Without proper monitoring tools, organizations risk higher
+turnover rates, decreased productivity, and rising healthcare
+costs. The client, LG, requires a system that will enable HR
+departments to identify early signs of mental health challenges
+before they escalate into more severe problems.\newline
+
+While there are existing platforms such as Headspace and
+Calm, which focus on mental well-being, few solutions offer
+continuous mental health monitoring specifically tailored to
+the tech industry. Furthermore, many available tools lack
+integration with company data or actionable insights for HR
+professionals to drive meaningful interventions. Our platform
+aims to fill this gap by providing continuous, anonymous
+assessments and delivering actionable insights to the HR.
+
+\section{REQUIREMENTS}
+
+\subsection{Functional Requirements}
+
+\begin{itemize}
+\item Schedule Survey
+\end{itemize}
+
+HR managers can schedule periodic mental health surveys
+for employees via the platform. These surveys can be
+customized based on different departments or roles. The
+system ensures that surveys are sent automatically at pre-set
+intervals, allowing organizations to consistently assess
+employee well-being.
+\newline
+\begin{itemize}
+    \item Fill Out Survey
+    \end{itemize}
+    
+Employees will receive and complete mental health
+surveys through the platform. These surveys are designed to
+measure stress, burnout, and other mental health indicators.
+The responses are processed securely to guarantee
+confidentiality, ensuring employees feel comfortable
+providing honest feedback.%
+\newline
+
+\par
+\begin{itemize}
+    \item Evaluate Mental Health Risk
+    \end{itemize}
+    
+    The system will analyze survey responses using AI
+    algorithms to assess mental health risks. Based on the data
+    collected, the system will flag potential issues, such as burnout
+    or high stress, and assign a risk level that HR professionals can
+    review.
+    \newline
+
+\begin{itemize}
+        \item Escalate to Psychologist
+        \end{itemize}
+        
+        If the system identifies a high mental health risk, or if an
+        HR manager requests further investigation, the case can be
+        escalated to a psychologist. The psychologist will receive
+        relevant reports from the system and can schedule follow-up
+        appointments to offer individualized support.
+        \newline
+
+ \begin{itemize}
+     \item Request Report
+     \end{itemize}
+            
+     HR managers can generate detailed reports that highlight
+     employee mental health trends. These reports provide
+     aggregated data and insights into the overall well-being of the
+     workforce, helping HR teams identify patterns and implement
+     proactive measures.
+\newline
+
+\begin{itemize}
+    \item Send Survey Completion Reminder
+    \end{itemize}
+           
+    If employees fail to complete the survey within a set
+timeframe, the HR managers can send reminders to encourage
+participation. This ensures a higher completion rate and more
+comprehensive data for mental health assessments.
+\newline
+
+\begin{itemize}
+    \item Create Incident/Issue
+    \end{itemize}
+           
+    Employees and their supervisors can report well-being-
+related incidents or issues directly through the platform. This
+feature allows them to highlight specific concerns or seek
+help, which is then routed to HR or a psychologist based on
+the severity of the issue.
+
+
+
+\subsection{Non-functional Requirements}\label{AA}
+The platform will prioritize the secure handling of
+employee data by implementing encryption protocols to
+ensure that all survey responses are stored and processed
+securely. A key focus will be on maintaining anonymity and
+confidentiality, allowing employees to trust that their personal
+information is protected from unauthorized access. This
+emphasis on data security will foster an environment of
+openness, encouraging employees to participate honestly in
+mental health assessments.\newline
+
+Accessibility is also a critical feature of the platform. It
+will be fully accessible on desktop devices, making it easy for
+employees to participate in surveys and for HR teams to
+review insights. The user interface will be intuitive and user-
+friendly, reducing any friction in the user experience and
+encouraging regular use by employees and HR professionals
+alike. This approach ensures that the platform meets the needs
+of a diverse workforce, fostering widespread adoption and
+regular engagement.
+
+\section{Technical Design}
+The platform will be designed using a three-tier
+architecture to ensure both scalability and efficiency. This
+architecture is composed of three primary components: the
+frontend, backend, and database.\newline
+
+The frontend will consist of a web-based interface that
+employees can use to complete mental health surveys, while
+HR professionals will use the same interface to view insights
+into overall employee well-being. The employee-facing
+section of the interface will be minimalistic and simple,
+emphasizing ease of use to encourage participation. In
+contrast, the HR dashboard will offer rich data visualizations,
+including charts, graphs, and filters, enabling HR teams to
+explore mental health trends in depth and identify potential
+areas of concern.\newline
+
+The backend will contain the core application logic as well
+as the AI engine responsible for analyzing survey data. This
+AI engine will employ sophisticated algorithms to detect
+patterns and trends, such as stress, burnout, and other mental
+health risks. By processing data in real-time, the backend will
+ensure the system operates smoothly and provides timely,
+actionable insights.\newline
+
+The database will securely store both raw survey responses
+and the insights generated by the AI engine. A strong focus
+will be placed on data security, with measures in place to
+ensure confidentiality and protect sensitive information from
+unauthorized access.\newline
+
+For the User Interface, the employee-facing side will be
+minimalistic, emphasizing simplicity to ensure that employees
+can easily complete surveys without unnecessary distractions.
+On the other hand, the HR dashboard will provide rich data
+visualizations, including graphs, charts, and filters, allowing
+HR professionals to explore the insights in detail. It will also
+offer export options for reporting and analysis, making it a
+powerful tool for understanding and managing employee
+mental health.
+
+
+\section{IMPLEMENTATION AND INTEGRATION}
+For AI-driven analysis, the platform will leverage
+Python, a highly versatile and powerful programming
+language known for its extensive libraries and frameworks
+dedicated to machine learning and data analysis. Python’s AI
+libraries will be instrumental in building the machine
+learning models that will analyze survey responses, detect
+mental health trends, and provide predictive insights.
+\newline
+
+For the backend and the creation of the RESTful web
+API, ASP.NET Core will be used. ASP.NET Core is a cross-
+platform, high-performance framework known for building
+robust, scalable, and secure web applications. 
+\newline
+
+For the frontend, JavaScript and TypeScript will be
+employed. JavaScript, the most widely used programming
+language for web development, will ensure a dynamic,
+responsive user experience. TypeScript, a superset of
+JavaScript, adds static types, enabling better code quality,
+scalability, and easier debugging during development
+
+
+
+
+
+
+\end{document}
