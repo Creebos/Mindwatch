@@ -261,18 +261,19 @@ mental health.
 
 \subsection {ASP.NET Core (Backend)}
 
-
-The project’s backend is implemented using ASP.NET Core, 
-a versatile and cross-platform framework ideal for building 
-robust, scalable RESTful APIs. Known for its high performance, 
-ASP.NET Core is compatible with both cloud and container-based 
-deployments, making it an excellent choice for handling the 
-demands of this mental health assessment platform. Its modular 
-architecture also allows for efficient maintenance and 
-integration of new features, which is beneficial as the 
-platform evolves.
-\newline
-
+    The project’s backend is implemented using ASP.NET Core, 
+    a versatile and cross-platform framework ideal for building 
+    robust, scalable RESTful APIs. Known for its high performance, 
+    ASP.NET Core is compatible with both cloud and container-based 
+    deployments, making it an excellent choice for handling the 
+    demands of our mental health assessment platform. Its modular 
+    architecture also allows for efficient maintenance and 
+    integration of new features, which is beneficial as the 
+    platform evolves. We will be using the newest LTR version, 
+    .NET Core 8.0 for our backend application. The most common and 
+    essential Libraries we are going to use, should already have 
+    released new versions to support 8.0.
+    \newline
 
 \subsection {Python (AI Component)}
 
@@ -287,39 +288,71 @@ platform evolves.
     models in a more manageable way, particularly for tasks 
     involving text analysis and sentiment detection within 
     survey responses.
-\newline
+    \newline
 
 
 \subsection {JavaScript/TypeScript (Frontend)}
 
-    The frontend of the application will be developed in 
-    JavaScript or TypeScript, using a responsive framework 
-    that allows for a user-friendly, web-based interface. 
-    JavaScript’s compatibility with various browsers makes 
-    it ideal for reaching a broad audience. TypeScript, 
-    in particular, enhances code quality and maintainability 
-    by offering static typing, which reduces errors and 
-    improves scalability. This choice supports a smooth 
-    experience for employees completing surveys and HR 
-    professionals reviewing data on the dashboard.
+    To ensure cross-platform compatibility on Windows, Linux, 
+    and macOS, the application's frontend will run in a web 
+    browser. It will be built with JavaScript and TypeScript, 
+    using the Vue.js framework alongside Bootstrap. TypeScript 
+    is our primary language choice due to its strong typing 
+    capabilities, which improve code quality, maintainability, 
+    and scalability by reducing errors. This approach supports 
+    a smooth experience for employees completing surveys and 
+    for HR professionals analyzing data on the dashboard.
     \newline
 
-    \subsection {Operating System}
+\subsection {Docker Containerization}
+    Our development team operates on multiple operating systems, 
+    currently using both Windows and macOS. To streamline our 
+    work across platforms and avoid common compatibility issues, 
+    we decided to use Docker for our entire application, both in 
+    deployment and development. Docker enables us to set up on 
+    any development machine easily, without requiring installations 
+    for .NET, Node/NPM, or SQL Server software. Using Docker is 
+    especially beneficial for managing SQL databases, as it simplifies 
+    handling ports and local connections that can otherwise be 
+    problematic. Additionally, Docker provides us with flexible 
+    deployment options for various server environments, allowing 
+    us freedom in choosing a server provider. Most modern cloud 
+    providers offer native support for Docker, and larger corporations 
+    often provide their own managed Kubernetes clusters, allowing 
+    us to run our Docker images seamlessly.
 
-    The development setup is designed to operate across multiple 
-    operating systems, including Windows, Linux, and macOS. 
-    By using Docker for containerization, we ensure that the 
-    application runs consistently on different platforms, 
-    allowing team members to work within their preferred 
-    environments. Cross-platform support is particularly beneficial 
-    as it accommodates diverse developer preferences and simplifies 
-    deployment on various cloud environments.
+    Our Docker images will be Linux-based for speed and reliability, 
+    and there are many prebuilt Docker images available that fit our 
+    needs perfectly. We can use ready-made images for SQL Server and 
+    deploy images that run our TypeScript or C# code with ease.
     \newline
 
+\subsection {Cost estimation}
+    
+    Since this project is purely for educational purposes, we’ll stick 
+    to software that is free for non-commercial use, avoiding the need 
+    for licenses. To run our application and support a small number of 
+    test users, we won’t require much computing power. For cloud hosting, 
+    we estimate a budget of around \$5-20 per month.
 
-    \subsection {Software in use}
+\subsection {Software in use}
 
-...
+    We'll be using Docker to build and run our containers, installing the 
+    Docker Desktop app on our development machines. To help complete the 
+    project within our time limit, we’ll rely on several libraries.
+
+    For the .NET Core backend API, we’ll use Entity Framework with the 
+    code-first approach to simplify data storage integration. Additionally, 
+    we’ll use OpenAPI Swagger, which provides an API standard and makes it 
+    easier to test individual endpoints. For integrating our AI model, we’ll 
+    need an additional library, though we haven’t chosen one yet.
+
+    Our frontend will be built on the Vue.js framework, which includes several 
+    built-in libraries. During development, we’ll use Vite to enable real-time 
+    updates, allowing our changes to instantly reflect in the running application. 
+    Naturally, we’ll also use TypeScript, which is technically external 
+    software as well.
+
     \newline
 
     \subsection {Task distribution}
