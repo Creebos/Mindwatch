@@ -79,14 +79,13 @@ By utilizing these well-researched tools, we aim to provide an efficient, accura
 
 ## Week 08 / Week 09
 
-Introduction
+**Introduction**
 
-In this post, we’ll explore how to create a simple yet powerful web application that uses sentiment analysis to evaluate mental health responses. This project utilizes HTML, CSS, JavaScript, and Python’s Flask framework. The web app not only analyzes responses but displays personalized feedback through an animated progress bar and shows a department-wide summary for cumulative results.
-
+>In this post, we’ll explore how to create a simple yet powerful web application that uses sentiment analysis to evaluate mental health responses. This project utilizes HTML, CSS, JavaScript, and Python’s Flask framework. The web app not only analyzes responses but displays personalized feedback through an animated progress bar and shows a department-wide summary for cumulative results.
 Here’s a breakdown of how we built this engaging web app, along with the steps we followed.
 
 
-1. Setting Up the Backend with Flask and Sentiment Analysis
+**1. Setting Up the Backend with Flask and Sentiment Analysis**
 
 Our application is powered by a Python backend, using Flask to create an API that interacts with the frontend. For sentiment analysis, we used the Hugging Face Transformers library. Specifically, we deployed the distilbert-base-uncased-finetuned-sst-2-english model, which is designed to classify text as positive or negative. Here’s how this backend works:
 	•	API Route: We created an endpoint /analyze that takes a text response, processes it through the model, and returns a sentiment (either “positive” or “negative”) along with a risk score.
@@ -94,7 +93,7 @@ Our application is powered by a Python backend, using Flask to create an API tha
 
 After setting up the backend, we had a working API that could analyze text and provide sentiment-based feedback.
 
-2. Designing the Frontend Layout with HTML and CSS
+**2. Designing the Frontend Layout with HTML and CSS**
 
 To make our application intuitive and visually appealing, we organized the frontend into several sections:
 	1.	Navbar: A fixed navigation bar lets users switch between the home, results, and contact pages.
@@ -108,27 +107,27 @@ Each section of our layout was styled with CSS to provide a consistent, clean, a
 	•	Containers and Buttons: Using shadows, rounded corners, and subtle color transitions, we created a modern feel for the main containers and buttons.
 	•	Responsive Design: We included media queries to ensure the app looks great on smaller screens, adjusting padding and font sizes for readability.
 
- 3. Creating an Animated Progress Bar
+**3. Creating an Animated Progress Bar**
 
 To add some interactive visual feedback, we implemented a progress bar that fills up when the assessment result is displayed. This progress bar dynamically changes color based on the analysis result—green for positive feedback and red for negative.
 	•	CSS Transition: The progress bar uses a CSS transition on the width property, which animates its filling effect over 2 seconds.
 	•	JavaScript Logic: When the result is generated, JavaScript sets the progress bar’s width to 100% with a slight delay, triggering the filling animation. We also adjust the color based on whether the assessment is positive or negative, giving users instant visual feedback.
 
- 4. Displaying a Department Results Summary
+ **4. Displaying a Department Results Summary**
 
 The app also includes a department-wide results summary that visually represents the total positive and negative responses per department. Here’s how it works:
 	•	JavaScript Data Collection: For each test, the app logs the department and the result (positive or negative). This data is stored in an object where each department has a count of positive and negative responses.
 	•	Result Bars: Each department’s result is displayed as a colored bar, with green indicating positive responses and red for negative. These bars are dynamically generated in JavaScript, adjusting their width based on the department’s overall positive-to-negative ratio.
 	•	CSS Styling: The .positive and .negative classes style each result bar, and we apply the widths dynamically via JavaScript.
 
- 5. Enhancing User Experience with JavaScript
+ **5. Enhancing User Experience with JavaScript**
 
 JavaScript plays a crucial role in this project, as it enables smooth page transitions, animations, and interactivity. Some key functionalities implemented in JavaScript include:
 	•	Page Transitions: We use JavaScript to hide and show different sections, ensuring a seamless user flow as they move from the landing page to the questionnaire, then to the results.
 	•	Error Handling: Alerts notify users if they try to proceed without selecting a department or providing an answer.
 	•	Asynchronous API Calls: JavaScript sends each response to the Flask API, receives the sentiment analysis, and updates the department results based on this feedback.
 
- Final Thoughts
+ **Final Thoughts**
 
 By combining Flask, sentiment analysis, and frontend development techniques, we built a web app that offers personalized feedback and provides an aggregated view of department-wide results. This project demonstrates how we can create an engaging user experience by incorporating animated feedback, cumulative analytics, and interactive elements.
 
