@@ -17,3 +17,11 @@ This project involves developing a web-based tool designed to assess the mental 
 ## Jira-Board
 
 https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
+
+## Blog
+
+Our blog can be found in a seperate file: ./BLOG.md
+
+## Documentation
+
+Any documents, diagrams and other files can be found in /docs
