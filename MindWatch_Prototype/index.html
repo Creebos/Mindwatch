@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWatch - Sentiment Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navbar styling */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            vertical-align: middle;
+        }
+
+        .navbar nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar nav ul li {
+            margin-left: 20px;
+        }
+
+        .navbar nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        .user {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        /* Main Content Containers */
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Intro, Selection, and Start Button styling */
+        .intro-text, .department-selection, .start-test {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Progress Bar Container */
+        #progressContainer {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 25px;
+            margin-top: 20px;
+        }
+
+        /* Progress Bar */
+        #progressBar {
+            width: 0;  /* Start with 0% width, so it "fills" when animated */
+            height: 100%;
+            background-color: #4CAF50; /* Default color for positive result */
+            transition: width 2s ease; /* Smooth filling animation */
+            text-align: center;
+            color: #fff;
+            line-height: 25px; /* Centers text vertically in the progress bar */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="navbar">
+            <h1 class="logo">MindWatch</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home" onclick="showLandingPage()">Home</a></li>
+                    <li><a href="#about">About MindWatch</a></li>
+                    <li><a href="#result" onclick="showResultsPage()">Results</a></li>
+                    <li><a href="#contact" onclick="showContactPage()">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user">
+                <span>Life's Good</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Landing Page -->
+    <div class="main-content" id="landingPage">
+        <div class="container">
+            <div class="intro-text">
+                <h1>Welcome to MindWatch</h1>
+                <p>Using advanced MindWatch technology, we assess mental well-being by analyzing responses to key questions about mental health.</p>
+                <p>This test can help you gain insights into your mental health. Start the test to see an evaluation based on your responses.</p>
+            </div>
+
+            <div class="department-selection">
+                <label for="department"> </label>
+                <select id="department" required>
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="Software Development">Software Development</option>
+                    <option value="Technical Support">Technical Support</option>
+                    <option value="Network Administration">Network Administration</option>
+                    <option value="Cybersecurity">Cybersecurity</option>
+                    <option value="Data Analysis">Data Analysis</option>
+                    <option value="IT Management">IT Management</option>
+                    <option value="Quality Assurance">Quality Assurance</option>
+                </select>
+            </div>
+
+            <div class="start-test">
+                <button onclick="startTest()">Start Test</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Questionnaire Page -->
+    <div class="main-content" id="questionnairePage" style="display: none;">
+        <div class="container">
+            <h1 id="questionTitle">Question 1</h1>
+            <p id="questionText">How motivated have you felt at work or with personal projects recently?</p>
+            <input type="text" id="answerInput" placeholder="Type your answer here...">
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+
+    <!-- Result Display for Individual User -->
+    <div class="main-content" id="resultPage" style="display: none;">
+        <div class="container">
+            <h1>Assessment Result</h1>
+            <p><strong>Conclusion:</strong> <span id="finalResult"></span></p>
+            <div id="progressContainer">
+                <div id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aggregated Results Page -->
+    <div class="main-content" id="aggregatedResultsPage" style="display: none;">
+        <div class="container">
+            <h1>Department Results Summary</h1>
+            <div id="resultsSummary"></div>
+        </div>
+    </div>
+
+    <!-- Contact Page Template -->
+    <div class="main-content" id="contactPage" style="display: none;">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>If you would like to get in touch, please use the contact form below or upload an image for inquiries.</p>
+            <div class="image-upload">
+                <label for="fileUpload">Upload Image:</label>
+                <input type="file" id="fileUpload" accept="image/*">
+            </div>
+            <p>We look forward to connecting with you!</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Inline -->
+    <script>
+        function showLandingPage() {
+            hideAllPages();
+            document.getElementById("landingPage").style.display = "flex";
+        }
+
+        function showResultsPage() {
+            hideAllPages();
+            document.getElementById("aggregatedResultsPage").style.display = "flex";
+            displayDepartmentResults();
+        }
+
+        function showContactPage() {
+            hideAllPages();
+            document.getElementById("contactPage").style.display = "flex";
+        }
+
+        function hideAllPages() {
+            document.getElementById("landingPage").style.display = "none";
+            document.getElementById("questionnairePage").style.display = "none";
+            document.getElementById("resultPage").style.display = "none";
+            document.getElementById("aggregatedResultsPage").style.display = "none";
+            document.getElementById("contactPage").style.display = "none";
+        }
+
+        const departmentResults = {};
+
+        const questions = [
+            { title: "Question 1", text: "How motivated have you felt at work or with personal projects recently?" },
+            { title: "Question 2", text: "How often have you found it difficult to maintain a positive outlook or feel hopeful about ongoing tasks?" },
+            { title: "Question 3", text: "Have you noticed any changes in your sleep patterns, such as difficulty falling asleep or feeling unusually tired?" }
+        ];
+
+        let currentQuestion = 0;
+        let positiveCount = 0;
+        let negativeCount = 0;
+        let currentDepartment = "";
+
+        function startTest() {
+            const department = document.getElementById("department").value;
+            if (!department) {
+                alert("Please select a department to start the test.");
+                return;
+            }
+
+            currentDepartment = department;
+            positiveCount = 0;
+            negativeCount = 0;
+            currentQuestion = 0;
+
+            hideAllPages();
+            document.getElementById("questionnairePage").style.display = "flex";
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            document.getElementById("questionTitle").innerText = questions[currentQuestion].title;
+            document.getElementById("questionText").innerText = questions[currentQuestion].text;
+        }
+
+        async function nextQuestion() {
+            const answer = document.getElementById("answerInput").value;
+            if (!answer) {
+                alert("Please answer the question to proceed.");
+                return;
+            }
+
+            document.getElementById("answerInput").value = "";
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/analyze", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ text: answer })
+                });
+
+                if (!response.ok) throw new Error("Network response was not ok");
+
+                const data = await response.json();
+                const sentiment = data.sentiment;
+
+                sentiment === "Positive" ? positiveCount++ : negativeCount++;
+
+                currentQuestion++;
+
+                if (currentQuestion < questions.length) {
+                    displayQuestion();
+                } else {
+                    storeDepartmentResult();
+                    showIndividualResult();
+                }
+            } catch (error) {
+                console.error("There was an error with the API call:", error);
+                alert("There was an error analyzing your response. Please try again.");
+            }
+        }
+
+        function storeDepartmentResult() {
+            if (!departmentResults[currentDepartment]) {
+                departmentResults[currentDepartment] = { positive: 0, negative: 0 };
+            }
+
+            positiveCount > negativeCount
+                ? departmentResults[currentDepartment].positive++
+                : departmentResults[currentDepartment].negative++;
+        }
+
+        function showIndividualResult() {
+            hideAllPages();
+            document.getElementById("resultPage").style.display = "flex";
+
+            const finalResult = document.getElementById("finalResult");
+            const progressBar = document.getElementById("progressBar");
+
+            if (positiveCount > negativeCount) {
+                finalResult.innerText = "You’re doing fine.";
+                progressBar.style.backgroundColor = "#4CAF50";
+            } else {
+                finalResult.innerText = "Consider reaching out for support if needed.";
+                progressBar.style.backgroundColor = "#FF6347";
+            }
+
+            setTimeout(() => {
+                progressBar.style.width = "100%";
+            }, 100);
+        }
+
+        function displayDepartmentResults() {
+            const resultsSummary = document.getElementById("resultsSummary");
+            resultsSummary.innerHTML = "";
+
+            for (const department in departmentResults) {
+                const { positive, negative } = departmentResults[department];
+                const total = positive + negative;
+                const positivePercentage = (positive / total) * 100;
+                const negativePercentage = (negative / total) * 100;
+
+                const departmentResult = document.createElement("div");
+                departmentResult.classList.add("department-result");
+
+                departmentResult.innerHTML = `
+                    <p><strong>${department}</strong> (${total} participant${total > 1 ? 's' : ''})</p>
+                    <div class="result-bar">
+                        <div class="positive" style="width: ${positivePercentage}%;">${positive}</div>
+                        <div class="negative" style="width: ${negativePercentage}%;">${negative}</div>
+                    </div>
+                `;
+
+                resultsSummary.appendChild(departmentResult);
+            }
+        }
+    </script>
+</body>
+</html>
