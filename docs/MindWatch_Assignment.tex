@@ -13,576 +13,533 @@
 
 \begin{document}
 
-\title{MindWatch: Keeping Tech Minds in Balance\\
-{\footnotesize \textsuperscript{}\href{https://github.com/Creebos/Mindwatch.git}{https://github.com/Creebos/Mindwatch.git}}
-}
-
-\author{
-\IEEEauthorblockN{Riccardo Dennis William}
-\IEEEauthorblockA{\textit{Department of Information System} \\
-\textit{Hanyang University}\\
-Seoul, South Korea \\
-riccaden@students.zhaw.ch}
-\\
-\IEEEauthorblockN{Meyer Yves}
-\IEEEauthorblockA{\textit{Department of Information System} \\
-\textit{Hanyang University}\\
-Seoul, South Korea \\
-meyeryve@students.zhaw.ch} 
-\and
-\IEEEauthorblockN{Wu Yunjie}
-\IEEEauthorblockA{\textit{Department of Information System} \\
-\textit{Hanyang University}\\
-Seoul, South Korea \\
-19855420423@163.com}
-\\
-\IEEEauthorblockN{Pereira Leandro}
-\IEEEauthorblockA{\textit{Department of Information System} \\
-\textit{Hanyang University}\\
-Seoul, South Korea \\
-pereilea@students.zhaw.ch}
-}
-
-\maketitle
-
-\begin{abstract}
-    This project aims to develop a comprehensive web-based
-    platform designed to assess the mental health of employees in
-    the tech industry through AI-driven analysis of survey
-    responses and performance data. The platform will provide
-    valuable insights into employee well-being, functioning as an
-    early warning system to detect potential mental health concerns
-    before they escalate. By offering a dashboard tailored for HR
-    professionals, the system enables data-driven decision-making,
-    allowing organizations to proactively support employee mental
-    health. A key aspect of the platform is the secure handling of
-    survey data, ensuring anonymity and confidentiality, which
-    fosters trust and encourages widespread adoption among
-    employees.
-\end{abstract}
-
-\begin{IEEEkeywords}
-    mental health, AI-driven analysis, employee well-being, tech 
-    industry, HR dashboard, data security, survey automation, burnout 
-    detection, stress management, predictive analytics, human resources,
-     data-driven decision-making.
-\end{IEEEkeywords}
-
-
-\begin{table}[htbp]
-    \caption{Role Assignments (First half of Project)}
-    \centering
-    \begin{tabular}{|p{1.8cm}|p{0.9cm}|p{4.8cm}|}
-        \hline
-        \textbf{Roles} & \textbf{Name} & \textbf{Tasks} \\ \hline
-        User & Yunjie & Explaining use-cases and testing demo \\ \hline
-        Customer & Leandro & Change use-cases during development \\ \hline
-        Software Developer & Leandro, Yunjie, Yves, Dennis & Implementing software and creating model \\ \hline
-        Development Manager & Yves, Dennis & Prioritize tasks and organize teams \\ \hline
-    \end{tabular}
-    \label{tab:role_assignments}
-\end{table}
-
-
-\section{Introduction}
-The tech industry is known for its high-pressure work environment, 
-often leading to mental health challenges among employees. 
-Early identification of potential mental health risks and timely 
-support can significantly improve employee well-being and overall 
-productivity. However, many organizations lack consistent, 
-confidential tools to monitor and assess mental health across their 
-workforce. This project seeks to address this gap by developing a 
-scalable, AI-powered solution for continuous mental health monitoring.
-
-Tech professionals frequently face long hours, tight
-deadlines, and high-stakes projects, all of which can
-contribute to stress, burnout, and other mental health issues.
-Without proper monitoring tools, organizations risk higher
-turnover rates, decreased productivity, and rising healthcare
-costs. The client, LG, requires a system that will enable HR
-departments to identify early signs of mental health challenges
-before they escalate into more severe problems.\newline
-
-While there are existing platforms such as Headspace and
-Calm, which focus on mental well-being, few solutions offer
-continuous mental health monitoring specifically tailored to
-the tech industry. Furthermore, many available tools lack
-integration with company data or actionable insights for HR
-professionals to drive meaningful interventions. Our platform
-aims to fill this gap by providing continuous, anonymous
-assessments and delivering actionable insights to the HR.
-\newline
-\section{REQUIREMENTS}
-
-\subsection{Functional Requirements}
-
-\begin{itemize}
-\item Schedule Survey
-\end{itemize}
-
-HR managers can schedule periodic mental health surveys
-for employees via the platform. These surveys can be
-customized based on different departments or roles. The
-system ensures that surveys are sent automatically at pre-set
-intervals, allowing organizations to consistently assess
-employee well-being.
-\newline
-\begin{itemize}
-    \item Fill Out Survey
-    \end{itemize}
+    \title{
+        MindWatch: Keeping Tech Minds in Balance\\
+        {
+            \footnotesize \textsuperscript{} \href{https://github.com/Creebos/Mindwatch.git}{https://github.com/Creebos/Mindwatch.git}
+        }
+    }
     
-Employees will receive and complete mental health
-surveys through the platform. These surveys are designed to
-measure stress, burnout, and other mental health indicators.
-The responses are processed securely to guarantee
-confidentiality, ensuring employees feel comfortable
-providing feedback.%
-\newline
-
-\par
-\begin{itemize}
-    \item Evaluate Mental Health Risk
-    \end{itemize}
-    
-    The system will analyze survey responses using AI
-    algorithms to assess mental health risks. Based on the data
-    collected, the system will flag potential issues, such as burnout
-    or high stress, and assign a risk level that HR professionals can
-    review.
-    \newline
-
-\begin{itemize}
-        \item Escalate to Psychologist
-        \end{itemize}
+    \author {
+        \IEEEauthorblockN{Riccardo Dennis William}
+        \IEEEauthorblockA{\textit{Department of Information System} \\
+        \textit{Hanyang University}\\
+        Seoul, South Korea \\
+        riccaden@students.zhaw.ch}\\
         
-        If the system identifies a high mental health risk, or if an
-        HR manager requests further investigation, the case can be
-        escalated to a psychologist. The psychologist will receive
-        relevant reports from the system and can schedule follow-up
-        appointments to offer individualized support.
+        \IEEEauthorblockN{Meyer Yves}
+        \IEEEauthorblockA{\textit{Department of Information System} \\
+        \textit{Hanyang University}\\
+        Seoul, South Korea \\
+        meyeryve@students.zhaw.ch} 
+        
+        \and
+    
+        \IEEEauthorblockN{Wu Yunjie}
+        \IEEEauthorblockA{\textit{Department of Information System} \\
+        \textit{Hanyang University}\\
+        Seoul, South Korea \\
+        19855420423@163.com}\\
+    
+        \IEEEauthorblockN{Pereira Leandro}
+        \IEEEauthorblockA{\textit{Department of Information System} \\
+        \textit{Hanyang University}\\
+        Seoul, South Korea \\
+        pereilea@students.zhaw.ch}
+    }
+    
+    \maketitle
+    
+    \begin{abstract}
+        This project aims to develop a comprehensive web-based
+        platform designed to assess the mental health of employees in
+        the tech industry through AI-driven analysis of survey
+        responses and performance data. The platform will provide
+        valuable insights into employee well-being, functioning as an
+        early warning system to detect potential mental health concerns
+        before they escalate. By offering a dashboard tailored for HR
+        professionals, the system enables data-driven decision-making,
+        allowing organizations to proactively support employee mental
+        health. A key aspect of the platform is the secure handling of
+        survey data, ensuring anonymity and confidentiality, which
+        fosters trust and encourages widespread adoption among
+        employees.
+    \end{abstract}
+    
+    \begin{IEEEkeywords}
+        mental health, AI-driven analysis, employee well-being, tech 
+        industry, HR dashboard, data security, survey automation, burnout 
+        detection, stress management, predictive analytics, human resources,
+         data-driven decision-making.
+    \end{IEEEkeywords}
+    
+    
+    \begin{table}[htbp]
+        \caption{Role Assignments (First half of Project)}
+        \centering
+        \begin{tabular}{|p{1.8cm}|p{0.9cm}|p{4.8cm}|}
+            \hline
+            \textbf{Roles} & \textbf{Name} & \textbf{Tasks} \\ \hline
+            User & Yunjie & Explaining use-cases and testing demo \\ \hline
+            Customer & Leandro & Change use-cases during development \\ \hline
+            Software Developer & Leandro, Yunjie, Yves, Dennis & Implementing software and creating model \\ \hline
+            Development Manager & Yves, Dennis & Prioritize tasks and organize teams \\ \hline
+        \end{tabular}
+        \label{tab:role_assignments}
+    \end{table}
+    
+    
+    \section{Introduction}
+    
+        The tech industry is known for its high-pressure work environment, 
+        often leading to mental health challenges among employees. 
+        Early identification of potential mental health risks and timely 
+        support can significantly improve employee well-being and overall 
+        productivity. However, many organizations lack consistent, 
+        confidential tools to monitor and assess mental health across their 
+        workforce. This project seeks to address this gap by developing a 
+        scalable, AI-powered solution for continuous mental health monitoring.
+        
+        Tech professionals frequently face long hours, tight
+        deadlines, and high-stakes projects, all of which can
+        contribute to stress, burnout, and other mental health issues.
+        Without proper monitoring tools, organizations risk higher
+        turnover rates, decreased productivity, and rising healthcare
+        costs. The client, LG, requires a system that will enable HR
+        departments to identify early signs of mental health challenges
+        before they escalate into more severe problems.\newline
+        
+        While there are existing platforms such as Headspace and
+        Calm, which focus on mental well-being, few solutions offer
+        continuous mental health monitoring specifically tailored to
+        the tech industry. Furthermore, many available tools lack
+        integration with company data or actionable insights for HR
+        professionals to drive meaningful interventions. Our platform
+        aims to fill this gap by providing continuous, anonymous
+        assessments and delivering actionable insights to the HR.
         \newline
-
- \begin{itemize}
-     \item Request Report
-     \end{itemize}
+    
+    \section{Requirements}
+        
+        \subsection{Functional Requirements}
+        
+            \begin{itemize}
+                \item Schedule Survey
+            \end{itemize}
             
-     HR managers can generate detailed reports that highlight
-     employee mental health trends. These reports provide
-     aggregated data and insights into the overall well-being of the
-     workforce, helping HR teams identify patterns and implement
-     proactive measures.
-\newline
+            HR managers can schedule periodic mental health surveys
+            for employees via the platform. These surveys can be
+            customized based on different departments or roles. The
+            system ensures that surveys are sent automatically at pre-set
+            intervals, allowing organizations to consistently assess
+            employee well-being.
+            \newline
+            
+            \begin{itemize}
+                \item Fill Out Survey
+            \end{itemize}
+                
+            Employees will receive and complete mental health
+            surveys through the platform. These surveys are designed to
+            measure stress, burnout, and other mental health indicators.
+            The responses are processed securely to guarantee
+            confidentiality, ensuring employees feel comfortable
+            providing feedback.%
+            \newline
+            
+            \par
+            
+            \begin{itemize}
+                \item Evaluate Mental Health Risk
+            \end{itemize}
+                
+            The system will analyze survey responses using AI
+            algorithms to assess mental health risks. Based on the data
+            collected, the system will flag potential issues, such as burnout
+            or high stress, and assign a risk level that HR professionals can
+            review.
+            \newline
+            
+            \begin{itemize}
+                \item Escalate to Psychologist
+            \end{itemize}
+                    
+            If the system identifies a high mental health risk, or if an
+            HR manager requests further investigation, the case can be
+            escalated to a psychologist. The psychologist will receive
+            relevant reports from the system and can schedule follow-up
+            appointments to offer individualized support.
+            \newline
+            
+             \begin{itemize}
+                 \item Request Report
+             \end{itemize}
+                        
+             HR managers can generate detailed reports that highlight
+             employee mental health trends. These reports provide
+             aggregated data and insights into the overall well-being of the
+             workforce, helping HR teams identify patterns and implement
+             proactive measures.
+            \newline
+            
+            \begin{itemize}
+                \item Send Survey Completion Reminder
+            \end{itemize}
+                       
+            If employees fail to complete the survey within a set
+            timeframe, the HR managers can send reminders to encourage
+            participation. This ensures a higher completion rate and more
+            comprehensive data for mental health assessments.
+            \newline
+            
+            \begin{itemize}
+                \item Create Incident/Issue
+            \end{itemize}
+                       
+            Employees and their supervisors can report well-being-
+            related incidents or issues directly through the platform. This
+            feature allows them to highlight specific concerns or seek
+            help, which is then routed to HR or a psychologist based on
+            the severity of the issue.
+            
+        \subsection{Non-functional Requirements}
+        
+            The platform will prioritize the secure handling of
+            employee data by implementing encryption protocols to
+            ensure that all survey responses are stored and processed
+            securely. A key focus will be on maintaining anonymity and
+            confidentiality, allowing employees to trust that their personal
+            information is protected from unauthorized access. This
+            emphasis on data security will foster an environment of
+            openness, encouraging employees to participate honestly in
+            mental health assessments.\newline
+        
+            Accessibility is also a critical feature of the platform. It
+            will be fully accessible on desktop devices, making it easy for
+            employees to participate in surveys and for HR teams to
+            review insights. The user interface will be intuitive and user-
+            friendly, reducing any friction in the user experience and
+            encouraging regular use by employees and HR professionals
+            alike. This approach ensures that the platform meets the needs
+            of a diverse workforce, fostering widespread adoption and
+            regular engagement.
+    
+    \section{Development environment}
+    
+        The platform will be designed using a three-tier
+        architecture to ensure both scalability and efficiency. This
+        architecture is composed of three primary components: the
+        frontend, backend, and database.\newline
+        
+        The frontend will consist of a web-based interface that
+        employees can use to complete mental health surveys, while
+        HR professionals will use the same interface to view insights
+        into overall employee well-being. The employee-facing
+        section of the interface will be minimalistic and simple,
+        emphasizing ease of use to encourage participation. In
+        contrast, the HR dashboard will offer rich data visualizations,
+        including charts, graphs, and filters, enabling HR teams to
+        explore mental health trends in depth and identify potential
+        areas of concern.\newline
+        
+        The backend will contain the core application logic as well
+        as the AI engine responsible for analyzing survey data. This
+        AI engine will employ sophisticated algorithms to detect
+        patterns and trends, such as stress, burnout, and other mental
+        health risks. By processing data in real-time, the backend will
+        ensure the system operates smoothly and provides timely,
+        actionable insights.\newline
+        
+        The database will securely store both raw survey responses
+        and the insights generated by the AI engine. A strong focus
+        will be placed on data security, with measures in place to
+        ensure confidentiality and protect sensitive information from
+        unauthorized access.\newline
+        
+        For the User Interface, the employee-facing side will be
+        minimalistic, emphasizing simplicity to ensure that employees
+        can easily complete surveys without unnecessary distractions.
+        On the other hand, the HR dashboard will provide rich data
+        visualizations, including graphs, charts, and filters, allowing
+        HR professionals to explore the insights in detail.
+        \newline
+    
+        \subsection {ASP.NET Core (Backend)}
 
-\begin{itemize}
-    \item Send Survey Completion Reminder
-    \end{itemize}
+
+            The project’s backend is implemented using ASP.NET Core, 
+            a versatile and cross-platform framework ideal for building 
+            robust, scalable RESTful APIs. Known for its high performance, ASP.NET Core is compatible with both cloud and container-based deployments, making it an excellent choice for handling the demands of our mental health assessment platform. Its modular architecture also allows for efficient maintenance and integration of new features, which is beneficial as the platform evolves. We will be using the newest LTR version, .NET Core 8.0 for our backend application. The most common and essential Libraries we are going to use, should already have released new versions to support 8.0.
+            \newline
+
+
+        \subsection {Python (AI Component)}
+
+            Python is selected for implementing the AI algorithms for processing survey responses and identifying mental health risks. Its extensive machine learning and natural language processing libraries, such as Scikit-learn, TensorFlow, and NLTK, make Python well-suited for tasks that require sophisticated data analysis. Python’s simplicity and readability are added advantages, enabling the development of complex AI models in a more manageable way, particularly for tasks involving text analysis and sentiment detection within 
+            survey responses.
+            \newline
+
+
+        \subsection {JavaScript/TypeScript (Frontend)}
+
+            To ensure cross-platform compatibility on Windows, Linux, 
+            and macOS, the application's frontend will run in a web 
+            browser. It will be built with JavaScript and TypeScript, 
+            using the Vue.js framework alongside Bootstrap. 
+            \newline
+            
+            TypeScript is our primary language choice due to its strong typing capabilities, which improve code quality, maintainability, and scalability by reducing errors. This approach supports a smooth experience for employees completing surveys and for HR professionals analyzing data on the dashboard.
+            \newline
+
+        \subsection {Docker Containerization}
+
+            Our development team operates on multiple operating systems, 
+            currently using both Windows and macOS. To streamline our 
+            work across platforms and avoid common compatibility issues, 
+            we decided to use Docker for our entire application, both in 
+            deployment and development. Docker enables us to set up on 
+            any development machine easily, without requiring installations 
+            for .NET, Node/NPM, or SQL Server software. \newline
+            
+            Using Docker is especially beneficial for managing SQL databases, as it simplifies handling ports and local connections that can otherwise be problematic. Additionally, Docker provides us with flexible deployment options for various server environments, allowing 
+            us freedom in choosing a server provider. Most modern cloud 
+            providers offer native support for Docker, and larger corporations often provide their own managed Kubernetes clusters, allowing 
+            us to run our Docker images seamlessly.\newline
+        
+            Our Docker images will be Linux-based for speed and reliability, and there are many prebuilt Docker images available that fit our needs perfectly. We can use ready-made images for SQL Server and deploy images that run our TypeScript or C-Sharp code with ease.
+            \newline
+
+        \subsection {Cost estimation}
+        
+            Since this project is purely for educational purposes, we’ll stick to software that is free for non-commercial use, avoiding the need for licenses. To run our application and support a small number of test users, we won’t require much computing power. For cloud hosting, we estimate a budget of around \$5-20 per month.
+            \newline
+
+        \subsection {Software in use}
+
+            We'll be using Docker to build and run our containers, installing the Docker Desktop app on our development machines. To help complete the project within our time limit, we’ll rely on several libraries.
+            \newline
+
+            For the .NET Core backend API, we’ll use Entity Framework with the code-first approach to simplify data storage integration. Additionally, we’ll use OpenAPI Swagger, which provides an API standard and makes it easier to test individual endpoints. For integrating our AI model, we’ll need an additional library, though we haven’t chosen one yet.
+            \newline
+            
+            Our frontend will be built on the Vue.js framework, which includes several 
+            built-in libraries. During development, we’ll use Vite to enable real-time 
+            updates, allowing our changes to instantly reflect in the running application. 
+            Naturally, we’ll also use TypeScript, which is technically external 
+            software as well.
+            \newline
+
+        \subsection {Task distribution}
+
+            The detailed task distribution for each team member will be 
+            developed in the next project phase. This upcoming section 
+            will allocate specific responsibilities and roles based 
+            on the evolving requirements of the Mental Health Assessment 
+            Tool. Each member’s tasks will align closely with the project 
+            objectives, focusing on key aspects such as AI model 
+            implementation, API development, frontend design, and backend 
+            logic. By carefully distributing tasks according to each team 
+            member’s expertise, we aim to ensure that all aspects of the 
+            project are addressed with clear accountability and focus.
+            \newline
+    
+    \section{Specifications}
+    % Technical view and explaination, on how we can achieve the Requirements from II
+
+        \subsection {Functional Requirements}
+   
+            \begin{itemize}
+                \item Schedule Survey 
+            \end{itemize}
+
+            The Schedule Survey feature enables HR Managers to organize 
+            regular mental health check-ins through scheduled surveys 
+            tailored to specific departments or job roles. This feature 
+            supports customization in frequency and target audience, 
+            allowing surveys to be set up according to the needs of 
+            different teams or positions within the organization. 
+            \newline
+
+            The backend API in ASP.NET Core provides an endpoint for HR to 
+            specify parameters such as survey frequency and targeted 
+            departments. The backend also manages survey scheduling 
+            logic by storing these configurations in the database, where 
+            they are referenced to initiate automatic survey reminders. 
+            Through a dedicated dashboard, HR Managers can define and 
+            modify survey timing, frequency, and recipients as needed. 
+            \newline
+        
+            All survey schedules are documented in a schedules table 
+            within the database, storing parameters like department IDs, 
+            job roles, and frequency settings to keep track of survey 
+            deployments and for audit purposes.
+            \newline
            
-    If employees fail to complete the survey within a set
-timeframe, the HR managers can send reminders to encourage
-participation. This ensures a higher completion rate and more
-comprehensive data for mental health assessments.
-\newline
+            \begin{itemize}
+                \item Fill Out Survey 
+            \end{itemize}
+        
+            The Fill Out Survey function allows employees to complete 
+            assigned mental health surveys securely and anonymously. 
+            Employees receive surveys through the platform and can complete them using a web-based, user-friendly interface. 
+            \newline
+            
+            The frontend form, developed in JavaScript or TypeScript, is designed for ease of use and does not retain any personal information on the client side, prioritizing data privacy. Upon submission, responses are encrypted and processed by the ASP.NET Core backend, ensuring that data is anonymized and securely stored.
+            \newline
+        
+            The backend saves all survey responses in a responses table in 
+            the database, which records each entry while maintaining 
+            anonymity by linking responses only to anonymized identifiers.
+            \newline    
+        
+            \begin{itemize}
+                \item Evaluate Mental Health Risk
+            \end{itemize}
+            
+            The Evaluate Mental Health Risk feature uses AI algorithms to 
+            analyze employee responses, assessing their mental health status and assigning risk levels based on survey answers. This automated analysis allows HR to quickly identify trends and potential issues like stress or burnout. The AI component, implemented in Python, applies machine learning models such as logistic regression or decision trees to categorize responses by risk level. Additionally, the platform uses natural language processing (NLP) with libraries like NLTK or SpaCy to preprocess text-based answers, performing sentiment analysis for deeper insight into employee sentiment. \newline
+             
+            The Python models are accessible via a dedicated API, where the ASP.NET Core backend calls these models after survey completion. Risk assessments are stored in an evaluations table, providing a structured record of mental health evaluations linked to individual survey responses.
+            \newline    
 
-\begin{itemize}
-    \item Create Incident/Issue
-    \end{itemize}
-           
-    Employees and their supervisors can report well-being-
-related incidents or issues directly through the platform. This
-feature allows them to highlight specific concerns or seek
-help, which is then routed to HR or a psychologist based on
-the severity of the issue.
-
-
-
-\subsection{Non-functional Requirements}\label{AA}
-The platform will prioritize the secure handling of
-employee data by implementing encryption protocols to
-ensure that all survey responses are stored and processed
-securely. A key focus will be on maintaining anonymity and
-confidentiality, allowing employees to trust that their personal
-information is protected from unauthorized access. This
-emphasis on data security will foster an environment of
-openness, encouraging employees to participate honestly in
-mental health assessments.\newline
-
-Accessibility is also a critical feature of the platform. It
-will be fully accessible on desktop devices, making it easy for
-employees to participate in surveys and for HR teams to
-review insights. The user interface will be intuitive and user-
-friendly, reducing any friction in the user experience and
-encouraging regular use by employees and HR professionals
-alike. This approach ensures that the platform meets the needs
-of a diverse workforce, fostering widespread adoption and
-regular engagement.
-
-\section{Technical Design}
-The platform will be designed using a three-tier
-architecture to ensure both scalability and efficiency. This
-architecture is composed of three primary components: the
-frontend, backend, and database.\newline
-
-The frontend will consist of a web-based interface that
-employees can use to complete mental health surveys, while
-HR professionals will use the same interface to view insights
-into overall employee well-being. The employee-facing
-section of the interface will be minimalistic and simple,
-emphasizing ease of use to encourage participation. In
-contrast, the HR dashboard will offer rich data visualizations,
-including charts, graphs, and filters, enabling HR teams to
-explore mental health trends in depth and identify potential
-areas of concern.\newline
-
-The backend will contain the core application logic as well
-as the AI engine responsible for analyzing survey data. This
-AI engine will employ sophisticated algorithms to detect
-patterns and trends, such as stress, burnout, and other mental
-health risks. By processing data in real-time, the backend will
-ensure the system operates smoothly and provides timely,
-actionable insights.\newline
-
-The database will securely store both raw survey responses
-and the insights generated by the AI engine. A strong focus
-will be placed on data security, with measures in place to
-ensure confidentiality and protect sensitive information from
-unauthorized access.\newline
-
-For the User Interface, the employee-facing side will be
-minimalistic, emphasizing simplicity to ensure that employees
-can easily complete surveys without unnecessary distractions.
-On the other hand, the HR dashboard will provide rich data
-visualizations, including graphs, charts, and filters, allowing
-HR professionals to explore the insights in detail.
-\newline
-
-\section{IMPLEMENTATION AND INTEGRATION}
-
-\subsection {ASP.NET Core (Backend)}
-
-
-The project’s backend is implemented using ASP.NET Core, 
-    a versatile and cross-platform framework ideal for building 
-    robust, scalable RESTful APIs. Known for its high performance, 
-    ASP.NET Core is compatible with both cloud and container-based 
-    deployments, making it an excellent choice for handling the 
-    demands of our mental health assessment platform. Its modular 
-    architecture also allows for efficient maintenance and 
-    integration of new features, which is beneficial as the 
-    platform evolves. We will be using the newest LTR version, 
-    .NET Core 8.0 for our backend application. The most common and 
-    essential Libraries we are going to use, should already have 
-    released new versions to support 8.0.
-\newline
-
-
-\subsection {Python (AI Component)}
-
-Python is selected for implementing the AI algorithms 
-responsible for processing survey responses and 
-identifying mental health risks. Its extensive machine 
-learning and natural language processing libraries, 
-such as Scikit-learn, TensorFlow, and NLTK, make Python 
-well-suited for tasks that require sophisticated data 
-analysis. Python’s simplicity and readability are added 
-advantages, enabling the development of complex AI 
-models in a more manageable way, particularly for tasks 
-involving text analysis and sentiment detection within 
-survey responses.
-\newline
-
-
-\subsection {JavaScript/TypeScript (Frontend)}
-
-To ensure cross-platform compatibility on Windows, Linux, 
-and macOS, the application's frontend will run in a web 
-browser. It will be built with JavaScript and TypeScript, 
-using the Vue.js framework alongside Bootstrap. 
-\newline
-
-TypeScript is our primary language choice due to its strong typing 
-capabilities, which improve code quality, maintainability, 
-and scalability by reducing errors. This approach supports 
-a smooth experience for employees completing surveys and 
-for HR professionals analyzing data on the dashboard.
-\newline
-
-    \subsection {Docker Containerization}
-
-    Our development team operates on multiple operating systems, 
-    currently using both Windows and macOS. To streamline our 
-    work across platforms and avoid common compatibility issues, 
-    we decided to use Docker for our entire application, both in 
-    deployment and development. Docker enables us to set up on 
-    any development machine easily, without requiring installations 
-    for .NET, Node/NPM, or SQL Server software. \newline
+            \begin{itemize}
+                \item Escalate to Psychologist
+            \end{itemize}
     
-    Using Docker is especially beneficial for managing SQL databases, as it simplifies 
-    handling ports and local connections that can otherwise be 
-    problematic. Additionally, Docker provides us with flexible 
-    deployment options for various server environments, allowing 
-    us freedom in choosing a server provider. Most modern cloud 
-    providers offer native support for Docker, and larger corporations 
-    often provide their own managed Kubernetes clusters, allowing 
-    us to run our Docker images seamlessly.\newline
-
-    Our Docker images will be Linux-based for speed and reliability, 
-    and there are many prebuilt Docker images available that fit our 
-    needs perfectly. We can use ready-made images for SQL Server and 
-    deploy images that run our TypeScript or C-Sharp code with ease.
-    \newline
-
-    \subsection {Cost estimation}
-    Since this project is purely for educational purposes, we’ll stick 
-    to software that is free for non-commercial use, avoiding the need 
-    for licenses. To run our application and support a small number of 
-    test users, we won’t require much computing power. For cloud hosting, 
-    we estimate a budget of around \$5-20 per month.
-    \newline
-
-    \subsection {Software in use}
-
-We'll be using Docker to build and run our containers, installing the 
-Docker Desktop app on our development machines. To help complete the 
-project within our time limit, we’ll rely on several libraries.
-\newline
-
-For the .NET Core backend API, we’ll use Entity Framework with the 
-code-first approach to simplify data storage integration. Additionally, 
-we’ll use OpenAPI Swagger, which provides an API standard and makes it 
-easier to test individual endpoints. For integrating our AI model, we’ll 
-need an additional library, though we haven’t chosen one yet.
-\newline
-
-Our frontend will be built on the Vue.js framework, which includes several 
-built-in libraries. During development, we’ll use Vite to enable real-time 
-updates, allowing our changes to instantly reflect in the running application. 
-Naturally, we’ll also use TypeScript, which is technically external 
-software as well.
-\newline
-
-    \subsection {Task distribution}
-
-    The detailed task distribution for each team member will be 
-    developed in the next project phase. This upcoming section 
-    will allocate specific responsibilities and roles based 
-    on the evolving requirements of the Mental Health Assessment 
-    Tool. Each member’s tasks will align closely with the project 
-    objectives, focusing on key aspects such as AI model 
-    implementation, API development, frontend design, and backend 
-    logic. By carefully distributing tasks according to each team 
-    member’s expertise, we aim to ensure that all aspects of the 
-    project are addressed with clear accountability and focus.
-    \newline
-
-    \section{SPECIFICATIONS}
-
-
-    \subsection {Functional Requirements}
-   
-    \begin{itemize}
-        \item Schedule Survey 
-        \end{itemize}
-
-    The Schedule Survey feature enables HR Managers to organize 
-    regular mental health check-ins through scheduled surveys 
-    tailored to specific departments or job roles. This feature 
-    supports customization in frequency and target audience, 
-    allowing surveys to be set up according to the needs of 
-    different teams or positions within the organization. 
-    \newline
-
-    The backend API in ASP.NET Core provides an endpoint for HR to 
-    specify parameters such as survey frequency and targeted 
-    departments. The backend also manages survey scheduling 
-    logic by storing these configurations in the database, where 
-    they are referenced to initiate automatic survey reminders. 
-    Through a dedicated dashboard, HR Managers can define and 
-    modify survey timing, frequency, and recipients as needed. 
-    \newline
-
-    All survey schedules are documented in a schedules table 
-    within the database, storing parameters like department IDs, 
-    job roles, and frequency settings to keep track of survey 
-    deployments and for audit purposes.
-    \newline
-   
-    \begin{itemize}
-        \item Fill Out Survey 
-    \end{itemize}
-
-    The Fill Out Survey function allows employees to complete 
-    assigned mental health surveys securely and anonymously. 
-    Employees receive surveys through the platform and can complete 
-    them using a web-based, user-friendly interface. 
-    \newline
+            For high-risk cases, the Escalate to Psychologist feature 
+            provides a pathway for further professional review, allowing 
+            HR or the system itself to flag responses for psychologist 
+            intervention.
+            \newline
     
-    The frontend form, developed in JavaScript or TypeScript, is designed for 
-    ease of use and does not retain any personal information on 
-    the client side, prioritizing data privacy. Upon submission, 
-    responses are encrypted and processed by the ASP.NET Core 
-    backend, ensuring that data is anonymized and securely stored.
-    \newline
+            The backend includes an API endpoint 
+            for escalation requests, which triggers an automatic 
+            notification to the psychologist through email or in-app 
+            alerts. Details of each escalated case, including the response
+            ID, psychologist ID, and relevant timestamps, are stored in an
+            escalations table within the database. This feature ensures 
+            timely intervention and follow-up on mental health concerns
+            flagged by the system.
+            \newline    
 
-    The backend saves all survey responses in a responses table in 
-    the database, which records each entry while maintaining 
-    anonymity by linking responses only to anonymized identifiers.
-    \newline    
-
-    \begin{itemize}
-        \item Evaluate Mental Health Risk
-    \end{itemize}
+            \begin{itemize}
+                \item Request Report
+            \end{itemize}
     
-    The Evaluate Mental Health Risk feature uses AI algorithms to 
-    analyze employee responses, assessing their mental health status 
-    and assigning risk levels based on survey answers. This automated
-     analysis allows HR to quickly identify trends and potential 
-     issues like stress or burnout. The AI component, implemented 
-     in Python, applies machine learning models such as logistic 
-     regression or decision trees to categorize responses by risk 
-     level. Additionally, the platform uses natural language 
-     processing (NLP) with libraries like NLTK or SpaCy to preprocess 
-     text-based answers, performing sentiment analysis for deeper 
-     insight into employee sentiment. \newline
+            The Request Report feature provides HR Managers with a 
+            comprehensive view of employee mental health trends. The 
+            reporting dashboard offers visual summaries through charts, 
+            graphs, and other graphical data presentations, providing HR
+            with insights into overall well-being within their teams. 
+            Developed with tools like Chart.js or D3.js, the dashboard 
+            allows HR to explore trends over time and filter data based 
+            on department or risk level. \newline
      
-     The Python models are 
-     accessible via a dedicated API, where the ASP.NET Core 
-     backend calls these models after survey completion. Risk 
-     assessments are stored in an evaluations table, providing a 
-     structured record of mental health evaluations linked to 
-     individual survey responses.
-     \newline    
+            The backend aggregates survey 
+            data to produce these insights in real-time, with queries on 
+            the responses and evaluations tables to generate trends that 
+            are accessible and actionable for HR analysis.
+            \newline    
 
-     \begin{itemize}
-        \item Escalate to Psychologist
-    \end{itemize}
+            \begin{itemize}
+                \item Send Survey Completion Reminder
+            \end{itemize}
     
-    For high-risk cases, the Escalate to Psychologist feature 
-    provides a pathway for further professional review, allowing 
-    HR or the system itself to flag responses for psychologist 
-    intervention.
-    \newline
+            The Send Survey Completion Reminder feature improves 
+            participation rates by notifying employees who have not 
+            completed their surveys within a specified timeframe. The 
+            backend includes a scheduled job that periodically checks 
+            for incomplete survey entries and automatically sends 
+            reminders. \newline
     
-    The backend includes an API endpoint 
-    for escalation requests, which triggers an automatic 
-    notification to the psychologist through email or in-app 
-    alerts. Details of each escalated case, including the response
-    ID, psychologist ID, and relevant timestamps, are stored in an
-    escalations table within the database. This feature ensures 
-    timely intervention and follow-up on mental health concerns
-    flagged by the system.
-    \newline    
+            Notifications are dispatched via email or in-app 
+            alerts to encourage timely survey completion, helping HR gather 
+            accurate, comprehensive data. In the database, completed surveys 
+            are flagged in the responses table, while any incomplete entries
+            trigger reminders, thus maintaining high response rates and 
+            supporting data reliability.
+            \newline    
 
-     \begin{itemize}
-        \item Request Report
-    \end{itemize}
+            \begin{itemize}
+                \item Create Incident/Issue
+            \end{itemize}
     
-
-    The Request Report feature provides HR Managers with a 
-    comprehensive view of employee mental health trends. The 
-    reporting dashboard offers visual summaries through charts, 
-    graphs, and other graphical data presentations, providing HR
-     with insights into overall well-being within their teams. 
-     Developed with tools like Chart.js or D3.js, the dashboard 
-     allows HR to explore trends over time and filter data based 
-     on department or risk level. \newline
-     
-     The backend aggregates survey 
-     data to produce these insights in real-time, with queries on 
-     the responses and evaluations tables to generate trends that 
-     are accessible and actionable for HR analysis.
-     \newline    
-
-     \begin{itemize}
-        \item Send Survey Completion Reminder
-    \end{itemize}
+            The Create Incident/Issue feature enables employees or supervisors 
+            to report well-being-related concerns directly on the platform. 
+            Through a straightforward form on the frontend, users can report 
+            issues, specifying details like incident description, employee ID, 
+            and severity level. The backend routes these reports based on their 
+            severity to either HR or a psychologist, ensuring each issue is 
+            addressed promptly. \newline
+            
+            Incident details are stored in an incidents
+            table in the database, providing a structured record of all 
+            reported issues. This system ensures that employee concerns are 
+            tracked, documented, and addressed according to severity and 
+            relevance
+            \newline  
     
-    The Send Survey Completion Reminder feature improves 
-    participation rates by notifying employees who have not 
-    completed their surveys within a specified timeframe. The 
-    backend includes a scheduled job that periodically checks 
-    for incomplete survey entries and automatically sends 
-    reminders. \newline
-    
-    Notifications are dispatched via email or in-app 
-    alerts to encourage timely survey completion, helping HR gather 
-    accurate, comprehensive data. In the database, completed surveys 
-    are flagged in the responses table, while any incomplete entries
-    trigger reminders, thus maintaining high response rates and 
-    supporting data reliability.
-    \newline    
-
-     \begin{itemize}
-        \item Create Incident/Issue
-    \end{itemize}
-    
-    The Create Incident/Issue feature enables employees or supervisors 
-    to report well-being-related concerns directly on the platform. 
-    Through a straightforward form on the frontend, users can report 
-    issues, specifying details like incident description, employee ID, 
-    and severity level. The backend routes these reports based on their 
-    severity to either HR or a psychologist, ensuring each issue is 
-    addressed promptly. \newline
-    
-    Incident details are stored in an incidents
-    table in the database, providing a structured record of all 
-    reported issues. This system ensures that employee concerns are 
-    tracked, documented, and addressed according to severity and 
-    relevance
-    \newline    
-    \newline  
-    
-    \subsection {Non-Functional Requirements}
+        \subsection {Non-Functional Requirements}
    
-    \begin{itemize}
-        \item Data Security and Privacy
+        \begin{itemize}
+            \item Data Security and Privacy
         \end{itemize}
     
-    Data Security and Privacy are critical components of the platform, 
-    ensuring that all sensitive information is protected throughout the 
-    survey process. The platform uses advanced encryption methods like 
-    AES or RSA to secure data-at-rest and TLS for data-in-transit, 
-    ensuring confidentiality and data protection at all stages. 
-    \newline
+        Data Security and Privacy are critical components of the platform, 
+        ensuring that all sensitive information is protected throughout the 
+        survey process. The platform uses advanced encryption methods like 
+        AES or RSA to secure data-at-rest and TLS for data-in-transit, 
+        ensuring confidentiality and data protection at all stages. 
+        \newline
+    
+        Role-based access control further secures sensitive information, 
+        permitting only authorized personnel, such as HR managers and 
+        psychologists, to view or manage confidential data. Compliance with
+        standards like GDPR protects employee anonymity, promoting trust 
+        and encouraging participation in surveys.
+        \newline    
 
-    Role-based access control further secures sensitive information, 
-    permitting only authorized personnel, such as HR managers and 
-    psychologists, to view or manage confidential data. Compliance with
-    standards like GDPR protects employee anonymity, promoting trust 
-    and encouraging participation in surveys.
-    \newline    
-
-    \begin{itemize}
-        \item Scalability
+        \begin{itemize}
+            \item Scalability
         \end{itemize}
     
-    Scalability is achieved through a three-tier architecture, where the 
-    frontend, backend, and database layers work independently but in 
-    unison. This architecture enables the system to scale efficiently 
-    and accommodate growing numbers of users or data loads. 
-    \newline
+        Scalability is achieved through a three-tier architecture, where the 
+        frontend, backend, and database layers work independently but in 
+        unison. This architecture enables the system to scale efficiently 
+        and accommodate growing numbers of users or data loads. 
+        \newline
+    
+        To manage higher concurrent usage, the platform also supports cloud 
+        infrastructure options on services like AWS or GCP and can be 
+        deployed in Docker containers for modular expansion. These 
+        load-balancing and scaling capabilities ensure that the platform 
+        remains responsive and effective as the organization expands or as 
+        usage increases.
+        \newline    
 
-    To manage higher concurrent usage, the platform also supports cloud 
-    infrastructure options on services like AWS or GCP and can be 
-    deployed in Docker containers for modular expansion. These 
-    load-balancing and scaling capabilities ensure that the platform 
-    remains responsive and effective as the organization expands or as 
-    usage increases.
-    \newline    
-
-    \begin{itemize}
-        \item Accessibility
+        \begin{itemize}
+            \item Accessibility
         \end{itemize}
 
-    The Accessibility of the platform is designed with a responsive, 
-    cross-platform interface that supports a range of devices, from 
-    Desktops to tablets and mobile phones. The user interface is built 
-    to be user-friendly, accommodating employees of all technical 
-    backgrounds to maximize engagement and ease of use. By supporting 
-    multiple device types and offering a simplified, intuitive user 
-    experience, the platform ensures high levels of accessibility, 
-    facilitating smooth participation in surveys and effective 
-    engagement with the HR dashboard
-    \newline  \newline  \newline  
+        The Accessibility of the platform is designed with a responsive, 
+        cross-platform interface that supports a range of devices, from 
+        Desktops to tablets and mobile phones. The user interface is built 
+        to be user-friendly, accommodating employees of all technical 
+        backgrounds to maximize engagement and ease of use. By supporting 
+        multiple device types and offering a simplified, intuitive user 
+        experience, the platform ensures high levels of accessibility, 
+        facilitating smooth participation in surveys and effective 
+        engagement with the HR dashboard. 
+        \newline 
 
+    \section{Architecture Design \& Use Cases}
+
+        \subsection{Overall Architecture}
+
+        \subsection{Directory Organization}
+
+        \subsection{...}
+            
+    \section{Use Cases}
 
 \end{document}
