@@ -54,7 +54,9 @@ The dataset consists of statements tagged with one of the following seven mental
 - Stress
 - Bi-Polar
 - Personality Disorder
-- Data Collection:
+
+
+**Data Collection**
 
 The data is sourced from diverse platforms. Each entry is tagged with a specific mental health status, making it an invaluable asset for:
 
