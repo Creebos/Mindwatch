@@ -254,8 +254,8 @@
                 For identity management, the company will use GitHub Identity as its Identity Provider. GitHub Repositories will serve as the company's source control system, and we will use repository data as part of our model. The company will also have two internal services:
                 
                 \begin{itemize}
-                    \item An Organization Data Service that provides hierarchical information about the company's employee structure. This data will be transmitted to our service via a Kafka Broker.
-                    \item An Attendance Service that tracks employee work hours. This service will expose data through an API, which we will access by pulling the required information.
+                    \item An Organization Data Service that provides hierarchical information about the company's employee structure.
+                    \item An Attendance Service that tracks employee work hours. The services will expose data through an API, which we will access by pulling the required information.
                 \end{itemize}
                 
                 The company’s infrastructure includes its own Kubernetes cluster for running Docker containers. However, for this project's demonstration, we will use a free platform capable of hosting Docker containers, as the load for this demo will be minimal, and a free-tier solution should suffice.
