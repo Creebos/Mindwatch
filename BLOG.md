@@ -123,9 +123,12 @@ The app also includes a department-wide results summary that visually represents
  **5. Enhancing User Experience with JavaScript**
 
 JavaScript plays a crucial role in this project, as it enables smooth page transitions, animations, and interactivity. Some key functionalities implemented in JavaScript include:
-	•	Page Transitions: We use JavaScript to hide and show different sections, ensuring a seamless user flow as they move from the landing page to the questionnaire, then to the results.
-	•	Error Handling: Alerts notify users if they try to proceed without selecting a department or providing an answer.
-	•	Asynchronous API Calls: JavaScript sends each response to the Flask API, receives the sentiment analysis, and updates the department results based on this feedback.
+	Page Transitions:
+ We use JavaScript to hide and show different sections, ensuring a seamless user flow as they move from the landing page to the questionnaire, then to the results.
+	Error Handling:
+Alerts notify users if they try to proceed without selecting a department or providing an answer.
+	Asynchronous API Calls:
+JavaScript sends each response to the Flask API, receives the sentiment analysis, and updates the department results based on this feedback.
 
  **Final Thoughts**
 
@@ -134,3 +137,71 @@ By combining Flask, sentiment analysis, and frontend development techniques, we 
 Whether you’re a developer interested in building sentiment analysis tools or just curious about combining Python and JavaScript, this app offers a practical guide for using these tools together. Feel free to expand this project further with additional features, like saving historical data or refining the sentiment analysis with custom-trained models.
 
 ## Week 10
+
+**Building Our Own Custom Sentiment Analysis Model**
+
+>In previous weeks, we explored pre-trained models like distilbert-base-uncased-finetuned-sst-2-english for sentiment analysis. While these models are powerful, they may not fully capture the unique nuances of mental health-related text responses. This week, we took a significant step forward by building a custom sentiment analysis model tailored specifically to our dataset.
+
+By doing this, we aim to:
+
+	•	Improve accuracy for specific mental health categories.
+	•	Reduce the bias present in generalized pre-trained models.
+	•	Gain better insights into how the model interprets mental health-related language.
+ 
+
+**Why Create a Custom Model?**
+
+Pre-trained models are excellent for generic tasks like determining sentiment polarity (positive/negative). However, mental health analysis often requires more **nuance**:
+
+	Complex Categories: 		Responses may fall into categories like Anxiety, Depression, Stress, or Burnout.
+	Domain-Specific Vocabulary: 	Phrases and expressions in mental health contexts can differ significantly from those in social media or movie reviews.
+
+A custom model allows us to train specifically on our dataset, ensuring better alignment with our goals.
+
+**Steps to Build the Model**
+
+1. Data Preparation
+
+We started with a cleaned and processed dataset, which included:
+
+	Text Responses: User-provided answers to mental health questions.
+	Labels: Categories like Anxiety, Depression, Normal, and more.
+
+We split the data into:
+
+	Training Set (80%): 	For training the model.
+	Test Set (20%):		For evaluation.
+
+ 2. Feature Extraction with TF-IDF
+
+To convert text into numerical data, we used TF-IDF (Term Frequency-Inverse Document Frequency). This technique highlights important words in each response relative to the entire dataset.
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+vectorizer = TfidfVectorizer(max_features=5000)
+X_train_tfidf = vectorizer.fit_transform(X_train)
+X_test_tfidf = vectorizer.transform(X_test)
+```
+
+**Challenges and Future Plans**
+
+Challenges:
+
+	1.	Class Imbalance: Some categories, like Stress and Personality Disorder, had fewer examples, leading to weaker performance.
+	2.	Overlapping Categories: Responses often contained language relevant to multiple emotions, making classification harder.
+
+Future Improvements:
+
+	•	Handle Class Imbalance: Use techniques like oversampling (e.g., SMOTE) or collect more data for underrepresented classes.
+	•	Use Word Embeddings: Replace TF-IDF with advanced techniques like Word2Vec or GloVe.
+	•	Fine-Tune Transformers: Train pre-trained models like BERT on our dataset to improve contextual understanding.
+	•	Hybrid Approach: Combine machine learning with rule-based NLP techniques for better interpretability.
+
+**Conclusion**
+
+Creating a custom sentiment analysis model was an exciting milestone in our project. While we achieved a **67% accuracy**, this is just the beginning. By addressing class imbalances, incorporating more sophisticated NLP techniques, and fine-tuning transformer models, we aim to significantly improve performance in the coming weeks.
+
+Next, we’ll **deploy this custom model into our web application** and gather real-world feedback. Stay tuned as we continue advancing mental health analysis with AI!
+
+ 
