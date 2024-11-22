@@ -22,6 +22,48 @@ https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
 
 Our blog can be found in a seperate file: ./BLOG.md
 
+## Dataset
+
+https://www.kaggle.com/datasets/suchintikasarkar/sentiment-analysis-for-mental-health?resource=download
+
+**About Dataset**
+This comprehensive dataset is a meticulously curated collection of mental health statuses tagged from various statements. The dataset amalgamates raw data from multiple sources, cleaned and compiled to create a robust resource for developing chatbots and performing sentiment analysis.
+
+**Data Source**
+
+The dataset integrates information from the following Kaggle datasets:
+
+- [3k Conversations Dataset for Chatbot](https://www.kaggle.com/datasets/kreeshrajani/3k-conversations-dataset-for-chatbot)
+- [Depression Reddit Cleaned](https://www.kaggle.com/datasets/infamouscoder/depression-reddit-cleaned)
+- [Human Stress Prediction](https://www.kaggle.com/datasets/kreeshrajani/human-stress-prediction)
+- [Predicting Anxiety in Mental Health Data](https://www.kaggle.com/datasets/michellevp/predicting-anxiety-in-mental-health-data)
+- [Mental Health Dataset Bipolar](https://www.kaggle.com/datasets/michellevp/mental-health-dataset-bipolar)
+- [Reddit Mental Health Data](https://www.kaggle.com/datasets/neelghoshal/reddit-mental-health-data)
+- [Students Anxiety and Depression Dataset](https://www.kaggle.com/datasets/sahasourav17/students-anxiety-and-depression-dataset)
+- [Suicidal Mental Health Dataset](https://www.kaggle.com/datasets/aradhakkandhari/suicidal-mental-health-dataset)
+- [Suicidal Tweet Detection Dataset](https://www.kaggle.com/datasets/aunanya875/suicidal-tweet-detection-dataset)
+
+**Data Overview**
+
+The dataset consists of statements tagged with one of the following seven mental health statuses:
+
+- Normal
+- Depression
+- Suicidal
+- Anxiety
+- Stress
+- Bi-Polar
+- Personality Disorder
+
+
+**Data Collection**
+
+The data is sourced from diverse platforms. Each entry is tagged with a specific mental health status, making it an invaluable asset for:
+
+- Developing intelligent mental health chatbots.
+- Performing in-depth sentiment analysis.
+- Research and studies related to mental health trends.
+
 ## Documentation
 
 Any documents, diagrams and other files can be found in /docs
