@@ -204,4 +204,33 @@ Creating a custom sentiment analysis model was an exciting milestone in our proj
 
 Next, we’ll **deploy this custom model into our web application** and gather real-world feedback. Stay tuned as we continue advancing mental health analysis with AI!
 
+## UPDATE: Week 10
+
+**What We Improved:**
+
+**Efficient Training**
+	•	Before: The model was trained in a for loop across 1000 iterations, restarting the training process every time.
+	•	After: The loop was removed, and we now train the model once with a clear stopping condition using max_iter=1000 in the solver configuration. The built-in verbose=1 parameter provides progress updates directly.
+Why it matters: This change reduced computational overhead significantly, making training faster and cleaner.
+
+**Optimized Scaling for Sparse Data**
+
+	Before: We used StandardScaler, which expects dense matrices and isn’t suitable for the sparse data produced by TF-IDF vectorization.
+	After: We replaced it with MaxAbsScaler, a scaler designed specifically for sparse data. It ensures feature scaling without unnecessary memory overhead.
+ 
+Why it matters: This adjustment made the pipeline more efficient and better aligned with the data structure.
+
+ **Streamlined Preprocessing**
+ 
+	Before: 	The preprocessing function worked but didn’t handle leading/trailing spaces consistently after cleaning.
+	After: 		We introduced a simple .strip() to remove unnecessary spaces at the beginning and end of strings after transformations.
+ 
+Why it matters:	Cleaner input ensures more consistent results and avoids subtle issues that could arise from irregular spacing.
+
+**Simplified Progress Tracking**
+
+	Before: A custom progress tracking solution using tqdm was implemented in an unnecessary loop around the training process.
+	After: Progress updates are now handled by the verbose=1 option in the Logistic Regression solver (saga), eliminating the need for additional custom logic.
+Why it matters: This change reduces code complexity and leverages built-in library features, making the code easier to maintain and extend.
+
  
