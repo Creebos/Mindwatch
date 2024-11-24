@@ -124,6 +124,35 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
             };
 
             InsertOrUpdateEntities(context, context.Answers, answers, a => a.Id);
+
+            var attendances = new[]
+            {
+                // Leandro Perreira (EmployeeId: 1)
+                new Attendance { Id = 1, EmployeeId = 1, DurationStart = new DateTime(2024, 11, 20, 9, 0, 23), DurationEnd = new DateTime(2024, 11, 20, 11, 59, 47) },
+                new Attendance { Id = 2, EmployeeId = 1, DurationStart = new DateTime(2024, 11, 20, 13, 0, 12), DurationEnd = new DateTime(2024, 11, 20, 16, 58, 41) },
+                new Attendance { Id = 3, EmployeeId = 1, DurationStart = new DateTime(2024, 11, 21, 9, 2, 34), DurationEnd = new DateTime(2024, 11, 21, 11, 56, 18) },
+                new Attendance { Id = 4, EmployeeId = 1, DurationStart = new DateTime(2024, 11, 21, 13, 4, 5), DurationEnd = new DateTime(2024, 11, 21, 17, 0, 9) },
+                new Attendance { Id = 5, EmployeeId = 1, DurationStart = new DateTime(2024, 11, 22, 9, 1, 43), DurationEnd = new DateTime(2024, 11, 22, 12, 3, 20) },
+                new Attendance { Id = 6, EmployeeId = 1, DurationStart = new DateTime(2024, 11, 22, 13, 5, 10), DurationEnd = new DateTime(2024, 11, 22, 16, 59, 50) },
+
+                // Yves Meyer (EmployeeId: 2)
+                new Attendance { Id = 7, EmployeeId = 2, DurationStart = new DateTime(2024, 11, 20, 9, 3, 15), DurationEnd = new DateTime(2024, 11, 20, 12, 1, 28) },
+                new Attendance { Id = 8, EmployeeId = 2, DurationStart = new DateTime(2024, 11, 20, 13, 1, 50), DurationEnd = new DateTime(2024, 11, 20, 16, 57, 35) },
+                new Attendance { Id = 9, EmployeeId = 2, DurationStart = new DateTime(2024, 11, 21, 8, 59, 48), DurationEnd = new DateTime(2024, 11, 21, 12, 4, 9) },
+                new Attendance { Id = 10, EmployeeId = 2, DurationStart = new DateTime(2024, 11, 21, 13, 3, 5), DurationEnd = new DateTime(2024, 11, 21, 16, 59, 55) },
+                new Attendance { Id = 11, EmployeeId = 2, DurationStart = new DateTime(2024, 11, 22, 9, 0, 37), DurationEnd = new DateTime(2024, 11, 22, 11, 58, 22) },
+                new Attendance { Id = 12, EmployeeId = 2, DurationStart = new DateTime(2024, 11, 22, 13, 2, 13), DurationEnd = new DateTime(2024, 11, 22, 16, 58, 17) },
+
+                // Brody (EmployeeId: 3)
+                new Attendance { Id = 13, EmployeeId = 3, DurationStart = new DateTime(2024, 11, 20, 9, 1, 5), DurationEnd = new DateTime(2024, 11, 20, 12, 0, 45) },
+                new Attendance { Id = 14, EmployeeId = 3, DurationStart = new DateTime(2024, 11, 20, 13, 0, 30), DurationEnd = new DateTime(2024, 11, 20, 16, 59, 18) },
+                new Attendance { Id = 15, EmployeeId = 3, DurationStart = new DateTime(2024, 11, 21, 9, 3, 12), DurationEnd = new DateTime(2024, 11, 21, 11, 55, 39) },
+                new Attendance { Id = 16, EmployeeId = 3, DurationStart = new DateTime(2024, 11, 21, 13, 2, 50), DurationEnd = new DateTime(2024, 11, 21, 16, 57, 44) },
+                new Attendance { Id = 17, EmployeeId = 3, DurationStart = new DateTime(2024, 11, 22, 9, 0, 10), DurationEnd = new DateTime(2024, 11, 22, 12, 1, 37) },
+                new Attendance { Id = 18, EmployeeId = 3, DurationStart = new DateTime(2024, 11, 22, 13, 3, 28), DurationEnd = new DateTime(2024, 11, 22, 16, 59, 59) }
+            };
+
+            InsertOrUpdateEntities(context, context.Attendances, attendances, a => a.Id);
         }
 
         private static void InsertOrUpdateEntities<T>(

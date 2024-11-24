@@ -14,6 +14,7 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
         public DbSet<QuestionnaireRun> QuestionnaireRuns { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -64,6 +65,13 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
                 .HasOne(q => q.InitiatedByEmployee)
                 .WithMany(qn => qn.InitiatedQuestionnaireRuns)
                 .HasForeignKey(q => q.InitiatedByEmployeeId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Attendance
+            modelBuilder.Entity<Attendance>()
+                .HasOne(q => q.Employee)
+                .WithMany(qn => qn.Attendances)
+                .HasForeignKey(q => q.EmployeeId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

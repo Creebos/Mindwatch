@@ -16,5 +16,6 @@ namespace KR.Hanyang.Mindwatch.Domain.Entities
         public string PhoneNumber { get; set; }
         public ICollection<Questionnaire> CreatedQuestionnaires { get; set; }
         public ICollection<QuestionnaireRun> InitiatedQuestionnaireRuns { get; set; }
+        public ICollection<Attendance> Attendances { get; set; }
     }
 }

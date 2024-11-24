@@ -23,5 +23,5 @@ Notice: Switching between running manually by docker-compose and running over Vi
 dotnet ef migrations add MIGRATIONNAME --output-dir Migrations --startup-project ../KR.Hanyang.Mindwatch.API
 
 **Apply all pending Migrations**
-
+NOTE: This is not necessary since Migrations are applied on startup
 dotnet ef database update --startup-project ../KR.Hanyang.Mindwatch.API

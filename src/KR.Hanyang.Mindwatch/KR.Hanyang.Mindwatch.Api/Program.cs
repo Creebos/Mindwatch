@@ -25,6 +25,11 @@ namespace KR.Hanyang.Mindwatch.Api
 
             var app = builder.Build();
 
+            // Apply migrations on startup
+            using var scope = app.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<MindwatchDbContext>();
+            context.Database.Migrate();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -32,8 +37,6 @@ namespace KR.Hanyang.Mindwatch.Api
                 app.UseSwaggerUI();
 
                 // Seed example data
-                using var scope = app.Services.CreateScope();
-                var context = scope.ServiceProvider.GetRequiredService<MindwatchDbContext>();
                 DatabaseSeeder.Seed(context);
             }
 
