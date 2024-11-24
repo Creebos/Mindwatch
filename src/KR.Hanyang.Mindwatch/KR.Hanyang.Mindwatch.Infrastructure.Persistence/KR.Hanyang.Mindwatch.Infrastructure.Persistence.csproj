@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KR.Hanyang.Mindwatch.Application\KR.Hanyang.Mindwatch.Application.csproj" />
     <ProjectReference Include="..\KR.Hanyang.Mindwatch.Domain\KR.Hanyang.Mindwatch.Domain.csproj" />
   </ItemGroup>
 

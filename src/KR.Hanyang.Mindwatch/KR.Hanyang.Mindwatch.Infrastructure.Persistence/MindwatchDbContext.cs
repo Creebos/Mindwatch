@@ -1,5 +1,6 @@
 ﻿using KR.Hanyang.Mindwatch.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
 {
@@ -12,8 +13,6 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Optional: Fluent API configurations here
         }
     }
 }

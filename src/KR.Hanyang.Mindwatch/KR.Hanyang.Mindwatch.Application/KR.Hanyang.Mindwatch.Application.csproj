@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KR.Hanyang.Mindwatch.Infrastructure.Persistence\KR.Hanyang.Mindwatch.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\KR.Hanyang.Mindwatch.Domain\KR.Hanyang.Mindwatch.Domain.csproj" />
   </ItemGroup>
 
 </Project>

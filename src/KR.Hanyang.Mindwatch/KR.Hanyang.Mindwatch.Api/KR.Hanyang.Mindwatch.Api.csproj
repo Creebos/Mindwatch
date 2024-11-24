@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KR.Hanyang.Mindwatch.Application\KR.Hanyang.Mindwatch.Application.csproj" />
     <ProjectReference Include="..\KR.Hanyang.Mindwatch.Infrastructure.Persistence\KR.Hanyang.Mindwatch.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 

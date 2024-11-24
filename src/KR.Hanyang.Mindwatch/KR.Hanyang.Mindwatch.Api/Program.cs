@@ -11,16 +11,15 @@ namespace KR.Hanyang.Mindwatch.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
 
-            // Add DbContext
-            builder.Services.AddDbContext<MindwatchDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            // My own Services
+            // Coming...
 
+            // Infrastructure stuff
+            builder.Services.AddPersistanceServices(builder.Configuration);
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Swagger
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -31,6 +30,11 @@ namespace KR.Hanyang.Mindwatch.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+
+                // Seed example data
+                using var scope = app.Services.CreateScope();
+                var context = scope.ServiceProvider.GetRequiredService<MindwatchDbContext>();
+                DatabaseSeeder.Seed(context);
             }
 
             app.UseHttpsRedirection();
