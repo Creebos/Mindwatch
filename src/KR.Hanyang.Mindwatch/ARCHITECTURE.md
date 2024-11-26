@@ -19,3 +19,11 @@ This project follows the Onion Architecture (also known as Clean Architecture) t
 - **docker-compose**: Contains Docker configurations for containerizing and running the application.
 
 ## Vue 3 Frontend
+
+---
+
+# Notes on encountered Problems:
+
+- Docker setup with Vuejs changes applying instantly with vite
+- Setup with OIDC and Github as Authentication (invested 2 hours so far)
+- API to Db Connection (connectionstring network name instead of localhost lol)

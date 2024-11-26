@@ -1,4 +1,8 @@
 
+using KR.Hanyang.Mindwatch.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+using System;
+
 namespace KR.Hanyang.Mindwatch.Api
 {
     public class Program
@@ -7,20 +11,33 @@ namespace KR.Hanyang.Mindwatch.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            // My own Services
+            // Coming...
+
+            // Infrastructure stuff
+            builder.Services.AddPersistanceServices(builder.Configuration);
+
+            // Swagger
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            // Apply migrations on startup
+            using var scope = app.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<MindwatchDbContext>();
+            context.Database.Migrate();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+
+                // Seed example data
+                DatabaseSeeder.Seed(context);
             }
 
             app.UseHttpsRedirection();

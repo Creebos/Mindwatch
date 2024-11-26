@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KR.Hanyang.Mindwatch.Domain\KR.Hanyang.Mindwatch.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
