@@ -1,4 +1,4 @@
-﻿using KR.Hanyang.Mindwatch.Application.Contracts;
+﻿using KR.Hanyang.Mindwatch.Domain.Interfaces;
 using KR.Hanyang.Mindwatch.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

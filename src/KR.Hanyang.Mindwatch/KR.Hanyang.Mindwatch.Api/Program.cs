@@ -1,4 +1,5 @@
 
+using KR.Hanyang.Mindwatch.Application;
 using KR.Hanyang.Mindwatch.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,10 +12,14 @@ namespace KR.Hanyang.Mindwatch.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                });
 
-            // My own Services
-            // Coming...
+            // Application Services
+            builder.Services.AddApplicationServices();
 
             // Infrastructure stuff
             builder.Services.AddPersistanceServices(builder.Configuration);
