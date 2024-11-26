@@ -233,4 +233,235 @@ Why it matters:	Cleaner input ensures more consistent results and avoids subtle 
 	After: Progress updates are now handled by the verbose=1 option in the Logistic Regression solver (saga), eliminating the need for additional custom logic.
 Why it matters: This change reduces code complexity and leverages built-in library features, making the code easier to maintain and extend.
 
+ ```python
+#Logistic Regression Model
+import pandas as pd
+import re
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import MaxAbsScaler
+from sklearn.metrics import classification_report
+from tqdm import tqdm
+
+# 1. Load the data
+file_path = '/Users/dennisriccardo/Downloads/processed_combined_data.csv'  # Adjust the file path as needed
+data = pd.read_csv(file_path)
+
+# 2. Text preprocessing
+def preprocess_text(text):
+    text = text.lower()  # Convert to lowercase
+    text = re.sub(r'\W', ' ', text)  # Remove special characters
+    text = re.sub(r'\s+', ' ', text)  # Remove extra spaces
+    return text.strip()  # Remove leading/trailing spaces
+
+data['processed_statement'] = data['processed_statement'].dropna().apply(preprocess_text)
+
+# 3. Remove invalid or empty texts
+data = data.dropna(subset=['processed_statement'])  # Drop rows where 'processed_statement' is NaN
+data = data[data['processed_statement'].str.strip().astype(bool)]  # Keep rows with non-empty text
+
+# 4. Extract text and label data
+X = data['processed_statement']  # Input text data
+y = data['status']  # Corresponding labels/classes
+
+# 5. Split into training and testing data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 6. TF-IDF vectorization
+vectorizer = TfidfVectorizer(max_features=5000)  # Limit to 5000 most important features
+X_train_tfidf = vectorizer.fit_transform(X_train)  # Fit and transform training data
+X_test_tfidf = vectorizer.transform(X_test)  # Transform test data
+
+# 7. Scale the data (using MaxAbsScaler optimized for sparse data)
+scaler = MaxAbsScaler()
+X_train_tfidf_scaled = scaler.fit_transform(X_train_tfidf)
+X_test_tfidf_scaled = scaler.transform(X_test_tfidf)
+
+# 8. Train the model
+print("Training Logistic Regression model...")
+
+model = LogisticRegression(max_iter=1000, solver='saga', verbose=1)  # `verbose=1` shows solver progress
+model.fit(X_train_tfidf_scaled, y_train)  # Train the model once
+
+# 9. Evaluate the model
+predictions = model.predict(X_test_tfidf_scaled)  # Predict on test data
+print("\nClassification Report:")
+print(classification_report(y_test, predictions))  # Display performance metrics
+
+# 10. Optional: Save the model and vectorizer
+import joblib
+joblib.dump(model, 'emotion_model.pkl')  # Save the trained model
+joblib.dump(vectorizer, 'tfidf_vectorizer.pkl')  # Save the TF-IDF vectorizer
+```
+
+
+
+ ## Week 11
+
+**Introduction**
+The Emotion Analysis Tool is a Python-based application that uses a pre-trained Logistic Regression model and a TF-IDF vectorizer to predict emotions from text inputs. This project is part of our effort to explore sentiment analysis and text classification using machine learning. Here’s how we built and implemented the tool.
+
+**Steps to Build the Tool**
+1. Training the Model
+
+To train the Logistic Regression model, we prepared a dataset with labeled text and followed these steps:
+
+	1.	Preprocessing:
+	•	Convert text to lowercase.
+	•	Remove special characters and extra spaces to clean the data.
  
+	2.	Feature Extraction:
+	•	Use TF-IDF vectorization to transform text into numerical features.
+	•	Limit the feature space to the top 5000 most important words.
+ 
+	3.	Model Training:
+	•	Train a Logistic Regression model using the TF-IDF features.
+	•	Use the saga solver, which is efficient for sparse data.
+ 
+	4.	Saving the Model and Vectorizer:
+	•	Serialize the trained model and vectorizer using joblib to reuse them later.
+
+ Here’s the complete training script:
+ ```python
+# Logistic Regression Model for Emotion Classification
+import pandas as pd
+import re
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import MaxAbsScaler
+from sklearn.metrics import classification_report
+import joblib
+
+# 1. Load the data
+file_path = '/path/to/processed_combined_data.csv'  # Adjust the file path as needed
+data = pd.read_csv(file_path)
+
+# 2. Text preprocessing
+def preprocess_text(text):
+    text = text.lower()  # Convert to lowercase
+    text = re.sub(r'\W', ' ', text)  # Remove special characters
+    text = re.sub(r'\s+', ' ', text)  # Remove extra spaces
+    return text.strip()  # Remove leading/trailing spaces
+
+data['processed_statement'] = data['processed_statement'].dropna().apply(preprocess_text)
+
+# 3. Remove invalid or empty texts
+data = data.dropna(subset=['processed_statement'])  # Drop rows where 'processed_statement' is NaN
+data = data[data['processed_statement'].str.strip().astype(bool)]  # Keep rows with non-empty text
+
+# 4. Extract text and label data
+X = data['processed_statement']  # Input text data
+y = data['status']  # Corresponding labels/classes
+
+# 5. Split into training and testing data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 6. TF-IDF vectorization
+vectorizer = TfidfVectorizer(max_features=5000)  # Limit to 5000 most important features
+X_train_tfidf = vectorizer.fit_transform(X_train)  # Fit and transform training data
+X_test_tfidf = vectorizer.transform(X_test)  # Transform test data
+
+# 7. Scale the data (using MaxAbsScaler optimized for sparse data)
+scaler = MaxAbsScaler()
+X_train_tfidf_scaled = scaler.fit_transform(X_train_tfidf)
+X_test_tfidf_scaled = scaler.transform(X_test_tfidf)
+
+# 8. Train the model
+print("Training Logistic Regression model...")
+model = LogisticRegression(max_iter=1000, solver='saga', verbose=1)  # `verbose=1` shows solver progress
+model.fit(X_train_tfidf_scaled, y_train)  # Train the model once
+
+# 9. Evaluate the model
+predictions = model.predict(X_test_tfidf_scaled)  # Predict on test data
+print("\nClassification Report:")
+print(classification_report(y_test, predictions))  # Display performance metrics
+
+# 10. Save the model and vectorizer
+joblib.dump(model, 'emotion_model.pkl')  # Save the trained model
+joblib.dump(vectorizer, 'tfidf_vectorizer.pkl')  # Save the TF-IDF vectorizer
+print("Model and vectorizer saved successfully!")
+```
+
+2. Analyzing New Text
+
+After training, the saved model (emotion_model.pkl) and vectorizer (tfidf_vectorizer.pkl) are used to analyze new text inputs. The analysis process includes:
+
+	1.	Loading the trained model and vectorizer.
+ 
+	2.	Preprocessing the input text to match the format used during training.
+ 
+	3.	Transforming the text with the TF-IDF vectorizer.
+ 
+	4.	Using the model to predict the emotion associated with the text.
+
+Here’s the emotion analysis script:
+```python
+# Emotion Analysis Script
+# This script loads a pre-trained Logistic Regression model and TF-IDF vectorizer to analyze emotions from text inputs.
+
+import joblib
+import re
+
+# Load the trained model and vectorizer
+# Ensure that 'emotion_model.pkl' and 'tfidf_vectorizer.pkl' are in the same directory as this script
+model = joblib.load('emotion_model.pkl')  # Load the trained Logistic Regression model
+vectorizer = joblib.load('tfidf_vectorizer.pkl')  # Load the saved TF-IDF vectorizer
+
+# Preprocessing function
+# This function preprocesses input text to match the format used during training
+def preprocess_text(text):
+    text = text.lower()  # Convert text to lowercase
+    text = re.sub(r'\W', ' ', text)  # Remove non-word characters (punctuation, symbols)
+    text = re.sub(r'\s+', ' ', text)  # Replace multiple spaces with a single space
+    return text.strip()  # Remove leading and trailing spaces
+
+# Function to predict emotion
+# This function preprocesses the input, transforms it using the TF-IDF vectorizer, and predicts the emotion
+def predict_emotion(input_text):
+    # Preprocess the input text
+    processed_text = preprocess_text(input_text)
+    
+    # Transform the input text using the TF-IDF vectorizer
+    transformed_text = vectorizer.transform([processed_text])
+    
+    # Use the trained model to predict the emotion
+    prediction = model.predict(transformed_text)[0]
+    
+    # Return the predicted emotion
+    return prediction
+
+# Main script to accept user input
+# This loop allows users to input text repeatedly until they type 'exit'
+if __name__ == "__main__":
+    print("Emotion Analysis Tool")
+    print("=====================")
+    while True:
+        # Prompt the user to enter a text
+        user_input = input("\nEnter a text to analyze emotions (or type 'exit' to quit): ")
+        
+        # Exit the loop if the user types 'exit'
+        if user_input.lower() == 'exit':
+            print("Goodbye!")
+            break
+        
+        # Get the predicted emotion for the input text
+        emotion = predict_emotion(user_input)
+        
+        # Display the predicted emotion
+        print(f"The predicted emotion is: {emotion}")
+```
+**Conclusion**
+
+With this tool, you can analyze the emotions of text inputs based on a trained Logistic Regression model. The two scripts (train_model.py and analyze_emotion.py) ensure a clear separation of concerns:
+	•	Training Script: Prepares and trains the model on a labeled dataset.
+	•	Analysis Script: Loads the trained model and analyzes new text inputs.
+
+This project demonstrates the practical application of Logistic Regression for text classification, leveraging techniques like TF-IDF vectorization and preprocessing for accurate predictions.
+
+Feel free to enhance the project by adding features like:
+	•	Mapping numeric labels to descriptive emotions (e.g., 0 → “happy”).
+	•	Deploying the tool as a web application using Flask or FastAPI.
+	•	Experimenting with other classifiers like SVM or deep learning models.
+
