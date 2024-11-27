@@ -77,60 +77,60 @@ By utilizing these well-researched tools, we aim to provide an efficient, accura
 3. De Beer, L. T., van der Vaart, L., Escaffi-Schwarz, M., De Witte, H., & Schaufeli, W. B. (2024). Maslach Burnout Inventory - General Survey: A Systematic Review and Meta-Analysis of Measurement Properties. European Journal of Psychological Assessment : Official Organ of the European Association of Psychological Assessment, 40(5), 360–375. https://doi.org/10.1027/1015-5759/a000797
 4. Fliege, H., Rose, M., Arck, P., Walter, O. B., Kocalevent, R. D., Weber, C., et al. (2005). ThePerceived Stress Questionnaire (PSQ) reconsidered: validation and reference valuesfrom different clinical and healthy adult samples. Psychosom. Med. 67, 78–88. https://doi.org/10.1097/01.psy.0000151491.80178.78
 
+### Software Engineering
+
+In this week we created a base setup for our Application. It consists of 3 Docker Containers, for backend, frontend and SQL Server. We used docker compose, to be able to coordinate the 3 containers together and configure their network connectivity.
+
+For the Frontend, we wanted to make use of the fast reload feature, so changes in the source code would be applied to the running instance in dev mode immediately. This was rather tricky, since with docker files usually get copied and then compiled, since its inside a virtual machine. Luckily Docker also supports mounted volumes, which was the solution for us. We simply mounted our source code from the developper machine into the docker container, and used vite to build, watch and run our application.
+
 ## Week 08 / Week 09
 
 **Introduction**
 
->In this post, we’ll explore how to create a simple yet powerful web application that uses sentiment analysis to evaluate mental health responses. This project utilizes HTML, CSS, JavaScript, and Python’s Flask framework. The web app not only analyzes responses but displays personalized feedback through an animated progress bar and shows a department-wide summary for cumulative results.
-Here’s a breakdown of how we built this engaging web app, along with the steps we followed.
-
+> In this post, we’ll explore how to create a simple yet powerful web application that uses sentiment analysis to evaluate mental health responses. This project utilizes HTML, CSS, JavaScript, and Python’s Flask framework. The web app not only analyzes responses but displays personalized feedback through an animated progress bar and shows a department-wide summary for cumulative results.
+> Here’s a breakdown of how we built this engaging web app, along with the steps we followed.
 
 **1. Setting Up the Backend with Flask and Sentiment Analysis**
 
 Our application is powered by a Python backend, using Flask to create an API that interacts with the frontend. For sentiment analysis, we used the Hugging Face Transformers library. Specifically, we deployed the distilbert-base-uncased-finetuned-sst-2-english model, which is designed to classify text as positive or negative. Here’s how this backend works:
-	•	API Route: We created an endpoint /analyze that takes a text response, processes it through the model, and returns a sentiment (either “positive” or “negative”) along with a risk score.
-	•	Flask and CORS: Flask serves as the web framework, and flask-cors enables cross-origin resource sharing, allowing the frontend to interact smoothly with the backend.
+• API Route: We created an endpoint /analyze that takes a text response, processes it through the model, and returns a sentiment (either “positive” or “negative”) along with a risk score.
+• Flask and CORS: Flask serves as the web framework, and flask-cors enables cross-origin resource sharing, allowing the frontend to interact smoothly with the backend.
 
 After setting up the backend, we had a working API that could analyze text and provide sentiment-based feedback.
 
 **2. Designing the Frontend Layout with HTML and CSS**
 
-To make our application intuitive and visually appealing, we organized the frontend into several sections:
-	1.	Navbar: A fixed navigation bar lets users switch between the home, results, and contact pages.
-	2.	Landing Page: This introductory page gives an overview of the app and allows users to select their department and begin the test.
-	3.	Questionnaire: Each question is displayed one by one, with a prompt to analyze user responses and advance to the next question.
-	4.	Assessment Result: After answering all questions, users see a result page with a color-changing progress bar that fills up to reflect the result.
-	5.	Department Summary: The app provides a cumulative summary showing positive and negative responses for each department.
+To make our application intuitive and visually appealing, we organized the frontend into several sections: 1. Navbar: A fixed navigation bar lets users switch between the home, results, and contact pages. 2. Landing Page: This introductory page gives an overview of the app and allows users to select their department and begin the test. 3. Questionnaire: Each question is displayed one by one, with a prompt to analyze user responses and advance to the next question. 4. Assessment Result: After answering all questions, users see a result page with a color-changing progress bar that fills up to reflect the result. 5. Department Summary: The app provides a cumulative summary showing positive and negative responses for each department.
 
 Each section of our layout was styled with CSS to provide a consistent, clean, and user-friendly interface. Here are some highlights of the CSS design:
-	•	Navbar Styling: We applied dark background colors with white text, and the logo and navigation links use hover effects for a polished look.
-	•	Containers and Buttons: Using shadows, rounded corners, and subtle color transitions, we created a modern feel for the main containers and buttons.
-	•	Responsive Design: We included media queries to ensure the app looks great on smaller screens, adjusting padding and font sizes for readability.
+• Navbar Styling: We applied dark background colors with white text, and the logo and navigation links use hover effects for a polished look.
+• Containers and Buttons: Using shadows, rounded corners, and subtle color transitions, we created a modern feel for the main containers and buttons.
+• Responsive Design: We included media queries to ensure the app looks great on smaller screens, adjusting padding and font sizes for readability.
 
 **3. Creating an Animated Progress Bar**
 
 To add some interactive visual feedback, we implemented a progress bar that fills up when the assessment result is displayed. This progress bar dynamically changes color based on the analysis result—green for positive feedback and red for negative.
-	•	CSS Transition: The progress bar uses a CSS transition on the width property, which animates its filling effect over 2 seconds.
-	•	JavaScript Logic: When the result is generated, JavaScript sets the progress bar’s width to 100% with a slight delay, triggering the filling animation. We also adjust the color based on whether the assessment is positive or negative, giving users instant visual feedback.
+• CSS Transition: The progress bar uses a CSS transition on the width property, which animates its filling effect over 2 seconds.
+• JavaScript Logic: When the result is generated, JavaScript sets the progress bar’s width to 100% with a slight delay, triggering the filling animation. We also adjust the color based on whether the assessment is positive or negative, giving users instant visual feedback.
 
- **4. Displaying a Department Results Summary**
+**4. Displaying a Department Results Summary**
 
 The app also includes a department-wide results summary that visually represents the total positive and negative responses per department. Here’s how it works:
-	•	JavaScript Data Collection: For each test, the app logs the department and the result (positive or negative). This data is stored in an object where each department has a count of positive and negative responses.
-	•	Result Bars: Each department’s result is displayed as a colored bar, with green indicating positive responses and red for negative. These bars are dynamically generated in JavaScript, adjusting their width based on the department’s overall positive-to-negative ratio.
-	•	CSS Styling: The .positive and .negative classes style each result bar, and we apply the widths dynamically via JavaScript.
+• JavaScript Data Collection: For each test, the app logs the department and the result (positive or negative). This data is stored in an object where each department has a count of positive and negative responses.
+• Result Bars: Each department’s result is displayed as a colored bar, with green indicating positive responses and red for negative. These bars are dynamically generated in JavaScript, adjusting their width based on the department’s overall positive-to-negative ratio.
+• CSS Styling: The .positive and .negative classes style each result bar, and we apply the widths dynamically via JavaScript.
 
- **5. Enhancing User Experience with JavaScript**
+**5. Enhancing User Experience with JavaScript**
 
 JavaScript plays a crucial role in this project, as it enables smooth page transitions, animations, and interactivity. Some key functionalities implemented in JavaScript include:
-	Page Transitions:
- We use JavaScript to hide and show different sections, ensuring a seamless user flow as they move from the landing page to the questionnaire, then to the results.
-	Error Handling:
+Page Transitions:
+We use JavaScript to hide and show different sections, ensuring a seamless user flow as they move from the landing page to the questionnaire, then to the results.
+Error Handling:
 Alerts notify users if they try to proceed without selecting a department or providing an answer.
-	Asynchronous API Calls:
+Asynchronous API Calls:
 JavaScript sends each response to the Flask API, receives the sentiment analysis, and updates the department results based on this feedback.
 
- **Final Thoughts**
+**Final Thoughts**
 
 By combining Flask, sentiment analysis, and frontend development techniques, we built a web app that offers personalized feedback and provides an aggregated view of department-wide results. This project demonstrates how we can create an engaging user experience by incorporating animated feedback, cumulative analytics, and interactive elements.
 
@@ -140,21 +140,20 @@ Whether you’re a developer interested in building sentiment analysis tools or 
 
 **Building Our Own Custom Sentiment Analysis Model**
 
->In previous weeks, we explored pre-trained models like distilbert-base-uncased-finetuned-sst-2-english for sentiment analysis. While these models are powerful, they may not fully capture the unique nuances of mental health-related text responses. This week, we took a significant step forward by building a custom sentiment analysis model tailored specifically to our dataset.
+> In previous weeks, we explored pre-trained models like distilbert-base-uncased-finetuned-sst-2-english for sentiment analysis. While these models are powerful, they may not fully capture the unique nuances of mental health-related text responses. This week, we took a significant step forward by building a custom sentiment analysis model tailored specifically to our dataset.
 
 By doing this, we aim to:
 
-	•	Improve accuracy for specific mental health categories.
-	•	Reduce the bias present in generalized pre-trained models.
-	•	Gain better insights into how the model interprets mental health-related language.
- 
+    •	Improve accuracy for specific mental health categories.
+    •	Reduce the bias present in generalized pre-trained models.
+    •	Gain better insights into how the model interprets mental health-related language.
 
 **Why Create a Custom Model?**
 
 Pre-trained models are excellent for generic tasks like determining sentiment polarity (positive/negative). However, mental health analysis often requires more **nuance**:
 
-	Complex Categories: 		Responses may fall into categories like Anxiety, Depression, Stress, or Burnout.
-	Domain-Specific Vocabulary: 	Phrases and expressions in mental health contexts can differ significantly from those in social media or movie reviews.
+    Complex Categories: 		Responses may fall into categories like Anxiety, Depression, Stress, or Burnout.
+    Domain-Specific Vocabulary: 	Phrases and expressions in mental health contexts can differ significantly from those in social media or movie reviews.
 
 A custom model allows us to train specifically on our dataset, ensuring better alignment with our goals.
 
@@ -164,15 +163,15 @@ A custom model allows us to train specifically on our dataset, ensuring better a
 
 We started with a cleaned and processed dataset, which included:
 
-	Text Responses: User-provided answers to mental health questions.
-	Labels: Categories like Anxiety, Depression, Normal, and more.
+    Text Responses: User-provided answers to mental health questions.
+    Labels: Categories like Anxiety, Depression, Normal, and more.
 
 We split the data into:
 
-	Training Set (80%): 	For training the model.
-	Test Set (20%):		For evaluation.
+    Training Set (80%): 	For training the model.
+    Test Set (20%):		For evaluation.
 
- 2. Feature Extraction with TF-IDF
+2.  Feature Extraction with TF-IDF
 
 To convert text into numerical data, we used TF-IDF (Term Frequency-Inverse Document Frequency). This technique highlights important words in each response relative to the entire dataset.
 
@@ -188,15 +187,15 @@ X_test_tfidf = vectorizer.transform(X_test)
 
 Challenges:
 
-	1.	Class Imbalance: Some categories, like Stress and Personality Disorder, had fewer examples, leading to weaker performance.
-	2.	Overlapping Categories: Responses often contained language relevant to multiple emotions, making classification harder.
+    1.	Class Imbalance: Some categories, like Stress and Personality Disorder, had fewer examples, leading to weaker performance.
+    2.	Overlapping Categories: Responses often contained language relevant to multiple emotions, making classification harder.
 
 Future Improvements:
 
-	•	Handle Class Imbalance: Use techniques like oversampling (e.g., SMOTE) or collect more data for underrepresented classes.
-	•	Use Word Embeddings: Replace TF-IDF with advanced techniques like Word2Vec or GloVe.
-	•	Fine-Tune Transformers: Train pre-trained models like BERT on our dataset to improve contextual understanding.
-	•	Hybrid Approach: Combine machine learning with rule-based NLP techniques for better interpretability.
+    •	Handle Class Imbalance: Use techniques like oversampling (e.g., SMOTE) or collect more data for underrepresented classes.
+    •	Use Word Embeddings: Replace TF-IDF with advanced techniques like Word2Vec or GloVe.
+    •	Fine-Tune Transformers: Train pre-trained models like BERT on our dataset to improve contextual understanding.
+    •	Hybrid Approach: Combine machine learning with rule-based NLP techniques for better interpretability.
 
 **Conclusion**
 
@@ -204,36 +203,41 @@ Creating a custom sentiment analysis model was an exciting milestone in our proj
 
 Next, we’ll **deploy this custom model into our web application** and gather real-world feedback. Stay tuned as we continue advancing mental health analysis with AI!
 
+### Software Engineering
+
+In this week our Application was designed and structure of our Data created. This is of course a first version and might need some adjustments further in the development process.
+
 ## UPDATE: Week 10
 
 **What We Improved:**
 
 **Efficient Training**
-	•	Before: The model was trained in a for loop across 1000 iterations, restarting the training process every time.
-	•	After: The loop was removed, and we now train the model once with a clear stopping condition using max_iter=1000 in the solver configuration. The built-in verbose=1 parameter provides progress updates directly.
+• Before: The model was trained in a for loop across 1000 iterations, restarting the training process every time.
+• After: The loop was removed, and we now train the model once with a clear stopping condition using max_iter=1000 in the solver configuration. The built-in verbose=1 parameter provides progress updates directly.
 Why it matters: This change reduced computational overhead significantly, making training faster and cleaner.
 
 **Optimized Scaling for Sparse Data**
 
-	Before: We used StandardScaler, which expects dense matrices and isn’t suitable for the sparse data produced by TF-IDF vectorization.
-	After: We replaced it with MaxAbsScaler, a scaler designed specifically for sparse data. It ensures feature scaling without unnecessary memory overhead.
- 
+    Before: We used StandardScaler, which expects dense matrices and isn’t suitable for the sparse data produced by TF-IDF vectorization.
+    After: We replaced it with MaxAbsScaler, a scaler designed specifically for sparse data. It ensures feature scaling without unnecessary memory overhead.
+
 Why it matters: This adjustment made the pipeline more efficient and better aligned with the data structure.
 
- **Streamlined Preprocessing**
- 
-	Before: 	The preprocessing function worked but didn’t handle leading/trailing spaces consistently after cleaning.
-	After: 		We introduced a simple .strip() to remove unnecessary spaces at the beginning and end of strings after transformations.
- 
-Why it matters:	Cleaner input ensures more consistent results and avoids subtle issues that could arise from irregular spacing.
+**Streamlined Preprocessing**
+
+    Before: 	The preprocessing function worked but didn’t handle leading/trailing spaces consistently after cleaning.
+    After: 		We introduced a simple .strip() to remove unnecessary spaces at the beginning and end of strings after transformations.
+
+Why it matters: Cleaner input ensures more consistent results and avoids subtle issues that could arise from irregular spacing.
 
 **Simplified Progress Tracking**
 
-	Before: A custom progress tracking solution using tqdm was implemented in an unnecessary loop around the training process.
-	After: Progress updates are now handled by the verbose=1 option in the Logistic Regression solver (saga), eliminating the need for additional custom logic.
+    Before: A custom progress tracking solution using tqdm was implemented in an unnecessary loop around the training process.
+    After: Progress updates are now handled by the verbose=1 option in the Logistic Regression solver (saga), eliminating the need for additional custom logic.
+
 Why it matters: This change reduces code complexity and leverages built-in library features, making the code easier to maintain and extend.
 
- ```python
+```python
 #Logistic Regression Model
 import pandas as pd
 import re
@@ -250,10 +254,10 @@ data = pd.read_csv(file_path)
 
 # 2. Text preprocessing
 def preprocess_text(text):
-    text = text.lower()  # Convert to lowercase
-    text = re.sub(r'\W', ' ', text)  # Remove special characters
-    text = re.sub(r'\s+', ' ', text)  # Remove extra spaces
-    return text.strip()  # Remove leading/trailing spaces
+   text = text.lower()  # Convert to lowercase
+   text = re.sub(r'\W', ' ', text)  # Remove special characters
+   text = re.sub(r'\s+', ' ', text)  # Remove extra spaces
+   return text.strip()  # Remove leading/trailing spaces
 
 data['processed_statement'] = data['processed_statement'].dropna().apply(preprocess_text)
 
@@ -295,35 +299,35 @@ joblib.dump(model, 'emotion_model.pkl')  # Save the trained model
 joblib.dump(vectorizer, 'tfidf_vectorizer.pkl')  # Save the TF-IDF vectorizer
 ```
 
-
-
- ## Week 11
+## Week 11
 
 **Introduction**
 The Emotion Analysis Tool is a Python-based application that uses a pre-trained Logistic Regression model and a TF-IDF vectorizer to predict emotions from text inputs. This project is part of our effort to explore sentiment analysis and text classification using machine learning. Here’s how we built and implemented the tool.
 
 **Steps to Build the Tool**
+
 1. Training the Model
 
 To train the Logistic Regression model, we prepared a dataset with labeled text and followed these steps:
 
-	1.	Preprocessing:
-	•	Convert text to lowercase.
-	•	Remove special characters and extra spaces to clean the data.
- 
-	2.	Feature Extraction:
-	•	Use TF-IDF vectorization to transform text into numerical features.
-	•	Limit the feature space to the top 5000 most important words.
- 
-	3.	Model Training:
-	•	Train a Logistic Regression model using the TF-IDF features.
-	•	Use the saga solver, which is efficient for sparse data.
- 
-	4.	Saving the Model and Vectorizer:
-	•	Serialize the trained model and vectorizer using joblib to reuse them later.
+    1.	Preprocessing:
+    •	Convert text to lowercase.
+    •	Remove special characters and extra spaces to clean the data.
 
- Here’s the complete training script:
- ```python
+    2.	Feature Extraction:
+    •	Use TF-IDF vectorization to transform text into numerical features.
+    •	Limit the feature space to the top 5000 most important words.
+
+    3.	Model Training:
+    •	Train a Logistic Regression model using the TF-IDF features.
+    •	Use the saga solver, which is efficient for sparse data.
+
+    4.	Saving the Model and Vectorizer:
+    •	Serialize the trained model and vectorizer using joblib to reuse them later.
+
+Here’s the complete training script:
+
+```python
 # Logistic Regression Model for Emotion Classification
 import pandas as pd
 import re
@@ -340,10 +344,10 @@ data = pd.read_csv(file_path)
 
 # 2. Text preprocessing
 def preprocess_text(text):
-    text = text.lower()  # Convert to lowercase
-    text = re.sub(r'\W', ' ', text)  # Remove special characters
-    text = re.sub(r'\s+', ' ', text)  # Remove extra spaces
-    return text.strip()  # Remove leading/trailing spaces
+   text = text.lower()  # Convert to lowercase
+   text = re.sub(r'\W', ' ', text)  # Remove special characters
+   text = re.sub(r'\s+', ' ', text)  # Remove extra spaces
+   return text.strip()  # Remove leading/trailing spaces
 
 data['processed_statement'] = data['processed_statement'].dropna().apply(preprocess_text)
 
@@ -388,15 +392,16 @@ print("Model and vectorizer saved successfully!")
 
 After training, the saved model (emotion_model.pkl) and vectorizer (tfidf_vectorizer.pkl) are used to analyze new text inputs. The analysis process includes:
 
-	1.	Loading the trained model and vectorizer.
- 
-	2.	Preprocessing the input text to match the format used during training.
- 
-	3.	Transforming the text with the TF-IDF vectorizer.
- 
-	4.	Using the model to predict the emotion associated with the text.
+    1.	Loading the trained model and vectorizer.
+
+    2.	Preprocessing the input text to match the format used during training.
+
+    3.	Transforming the text with the TF-IDF vectorizer.
+
+    4.	Using the model to predict the emotion associated with the text.
 
 Here’s the emotion analysis script:
+
 ```python
 # Emotion Analysis Script
 # This script loads a pre-trained Logistic Regression model and TF-IDF vectorizer to analyze emotions from text inputs.
@@ -422,13 +427,13 @@ def preprocess_text(text):
 def predict_emotion(input_text):
     # Preprocess the input text
     processed_text = preprocess_text(input_text)
-    
+
     # Transform the input text using the TF-IDF vectorizer
     transformed_text = vectorizer.transform([processed_text])
-    
+
     # Use the trained model to predict the emotion
     prediction = model.predict(transformed_text)[0]
-    
+
     # Return the predicted emotion
     return prediction
 
@@ -440,28 +445,44 @@ if __name__ == "__main__":
     while True:
         # Prompt the user to enter a text
         user_input = input("\nEnter a text to analyze emotions (or type 'exit' to quit): ")
-        
+
         # Exit the loop if the user types 'exit'
         if user_input.lower() == 'exit':
             print("Goodbye!")
             break
-        
+
         # Get the predicted emotion for the input text
         emotion = predict_emotion(user_input)
-        
+
         # Display the predicted emotion
         print(f"The predicted emotion is: {emotion}")
 ```
+
 **Conclusion**
 
 With this tool, you can analyze the emotions of text inputs based on a trained Logistic Regression model. The two scripts (train_model.py and analyze_emotion.py) ensure a clear separation of concerns:
-	•	Training Script: Prepares and trains the model on a labeled dataset.
-	•	Analysis Script: Loads the trained model and analyzes new text inputs.
+• Training Script: Prepares and trains the model on a labeled dataset.
+• Analysis Script: Loads the trained model and analyzes new text inputs.
 
 This project demonstrates the practical application of Logistic Regression for text classification, leveraging techniques like TF-IDF vectorization and preprocessing for accurate predictions.
 
 Feel free to enhance the project by adding features like:
-	•	Mapping numeric labels to descriptive emotions (e.g., 0 → “happy”).
-	•	Deploying the tool as a web application using Flask or FastAPI.
-	•	Experimenting with other classifiers like SVM or deep learning models.
+• Mapping numeric labels to descriptive emotions (e.g., 0 → “happy”).
+• Deploying the tool as a web application using Flask or FastAPI.
+• Experimenting with other classifiers like SVM or deep learning models.
 
+### Software Engineering
+
+This week we finally started implementing our Backend and populating our database.
+
+As a little bit of a challenge I tried to setup Github Identity as the Identity Plattform of our Application, which unfortunately did not workout on first or second try. After investing about 2 hours, I reconsidered and focussed on the actual features of our application since the API is still pretty barren. Functionality of the Use Cases is obviously more important than Identity Plattform integration, for the success of this project. However if there is some time left, I will try again, since Authentication and Authorization is quite essential for any API.
+
+After that I started setting up EF Core with code-first which is quite simple, just create the Entities, create a DB Context and generate migrations from those.
+
+At first there was a little issue with the connectionstring and actually applying migrations via the Visual Studio Command Line (PMC). The connectionstring for the API running inside docker was with the hostname "database", since it was the name of our network connection between Db and API. When applying Migrations via the PMC, it runs the api and uses the same Connectionstring. Which obviously does not work because the Visual Studio does not operate from inside the docker container. So I had to manually adjust the Connectionstring each time I wanted to apply a migration by PMC. after that I decided to just Apply the migrations on application startup, to prevent to have to do it manually. This solution is fine for our little project, but not recommended for bigger and more impactful applications.
+
+I also had some issues with dotnet versions once. My whole application is built on .NET Core 8 and therefore I decided to exclusively use only packages for .NET Core 8 (so major version must be 8, for most Microsoft packages). I once let VS install a Package by itself (from the context menu, when a class isnt found, it recommends installing the corresponding package). Unfortunately it did install the major version 9, without my knowledge. That unfortunately actually led to an issue during startup. It cost me some time to figure it out, but with the help of ChatGPT I got it working again.
+
+Anyways I did continue then with the implementation of some seeding data, in order to populate the database with some example data for testing. At first, it was recommended to me to use the modelBuilder and create seeder data via migrations, however I did not like that approach, since it was just example data. Migrations would be applied to every environment, including Production. Therefore I built a different approach, just using the DbContext. On startup the App checks if it is Dev Environment, and if so it does create an early instance of the DbContext during startup and inserts some example data. I create a insert or update function, to prevent duplication of the same data, and also to reset the example data after every start. Adding new data manually has no impact, it will stay there like it is, which is intended, if we want to create more realistic data by hand. The seeder data was generated with AI, since its quite time consuming to implement it by hand. Luckily context was easily available, only the Entities and the relationships between the entities were required to generate it. Maybe also a little context on what this app was about so the content would fit.
+
+After that I started working on the actual API and Controllers. I divided the whole thing into 2 parts, Employee and Questionnaire.
