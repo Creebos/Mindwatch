@@ -6,5 +6,7 @@ namespace KR.Hanyang.Mindwatch.Domain.Interfaces
     {
         Task<Employee?> GetEmployeeWithDetailsByIdAsync(int id);
         Task<Team?> GetTeamWithDetailsByIdAsync(int id);
+        Task<QuestionnaireRun?> GetQuestionnaireRunWithDetailsById(int id);
+        Task<Questionnaire?> GetQuestionnaireWithDetailsByIdAsync(int id);
     }
 }

@@ -10,6 +10,7 @@ namespace KR.Hanyang.Mindwatch.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IQuestionnaireService, QuestionnaireService>();
 
             return services;
         }

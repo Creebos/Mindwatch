@@ -23,6 +23,23 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Repositories
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
 
+        public async Task<QuestionnaireRun?> GetQuestionnaireRunWithDetailsById(int id)
+        {
+            return await _context.Set<QuestionnaireRun>()
+                .Include(e => e.Questionnaire)
+                .ThenInclude(r => r.Questions)
+                .Include(e => e.Answers)
+                .FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public async Task<Questionnaire?> GetQuestionnaireWithDetailsByIdAsync(int id)
+        {
+            return await _context.Set<Questionnaire>()
+                .Include(e => e.Questions)
+                .Include(r => r.QuestionnaireRuns)
+                .FirstOrDefaultAsync(e => e.Id == id);
+        }
+
         public async Task<Team?> GetTeamWithDetailsByIdAsync(int id)
         {
             return await _context.Set<Team>()

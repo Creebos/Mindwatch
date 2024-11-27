@@ -38,7 +38,7 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
             
             modelBuilder.Entity<Answer>()
                 .HasOne(q => q.QuestionnaireRun)
-                .WithMany()
+                .WithMany(qn => qn.Answers)
                 .HasForeignKey(q => q.QuestionnaireRunId)
                 .OnDelete(DeleteBehavior.NoAction);
 
