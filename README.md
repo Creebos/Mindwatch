@@ -1,8 +1,13 @@
 # Mindwatch: Keeping tech minds in balance
 
-## 🎯 Project idea
+## 🎯 Introduction and Motivation
+In recent years, the tech industry has experienced rapid growth, accompanied by high demands on employees' mental and emotional well-being. The pressures of tight deadlines, long hours, and complex projects often lead to increased stress, anxiety, and burnout among professionals in this field. Despite growing awareness, mental health support in workplaces remains reactive rather than proactive.
 
-This project involves developing a web-based tool designed to assess the mental health of employees in the tech industry through an interactive survey. The system will utilize AI to analyze survey responses, identifying potential mental health concerns and providing insights based on patterns observed in the data. The platform aims to offer an early warning system for mental health issues among tech professionals, helping organizations take proactive steps to support their employees. The Tool will collect from work activities aswell, including repository changes, project status and deadlines aswell as other work performance data.
+To address this gap, we are developing MindWatch, a web-based tool designed to assess and monitor the mental health of employees in the tech industry. Our motivation stems from the need to create a system that not only identifies potential mental health concerns early but also empowers organizations to take informed, proactive measures to support their workforce.
+
+The platform will leverage AI to analyze survey responses, incorporating standardized mental health assessments such as PHQ-9, GAD-7, MBI, and PSQ. It will also integrate data from work-related activities, such as repository changes, project statuses, deadlines, and other performance metrics, to provide a comprehensive picture of an employee’s well-being.
+
+At the end of this project, we aim to deliver a functional and insightful tool that uses AI-driven insights to help organizations foster healthier, more sustainable working environments for their employees. Our ultimate vision is to contribute to reducing mental health challenges in the tech industry by bridging the gap between awareness and action.
 
 ## 👥 Team
 
