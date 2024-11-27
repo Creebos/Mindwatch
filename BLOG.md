@@ -79,9 +79,9 @@ By utilizing these well-researched tools, we aim to provide an efficient, accura
 
 ### Software Engineering
 
-In this week we created a base setup for our Application. It consists of 3 Docker Containers, for backend, frontend and SQL Server. We used docker compose, to be able to coordinate the 3 containers together and configure their network connectivity.
+This week, the base setup for the application was established, consisting of three Docker containers: one for the backend, one for the frontend, and one for the SQL Server. Docker Compose was used to coordinate these containers, ensuring proper network connectivity and seamless interaction between them.
 
-For the Frontend, we wanted to make use of the fast reload feature, so changes in the source code would be applied to the running instance in dev mode immediately. This was rather tricky, since with docker files usually get copied and then compiled, since its inside a virtual machine. Luckily Docker also supports mounted volumes, which was the solution for us. We simply mounted our source code from the developper machine into the docker container, and used vite to build, watch and run our application.
+For the frontend, implementing a fast reload feature presented a small challenge aimed at refining the setup. This feature allows changes in the source code to be instantly reflected in the running instance during development mode, but achieving it required more than just a straightforward configuration. It was somewhat challenging because Docker typically copies files into the container and compiles them, which can be limiting since it operates in a virtualized environment. The solution involved utilizing Docker's support for mounted volumes. By mounting the source code from the developer's machine directly into the Docker container, Vite was able to build, watch, and run the application effectively in real time.
 
 ## Week 08 / Week 09
 
@@ -205,7 +205,7 @@ Next, we’ll **deploy this custom model into our web application** and gather r
 
 ### Software Engineering
 
-In this week our Application was designed and structure of our Data created. This is of course a first version and might need some adjustments further in the development process.
+In this week our Application was designed and structure of our Data created. The design is of course a first version and might need some adjustments further in the development process.
 
 ## UPDATE: Week 10
 
@@ -473,25 +473,21 @@ Feel free to enhance the project by adding features like:
 
 ### Software Engineering
 
-This week we finally started implementing our Backend and populating our database.
+This week, progress was made on implementing the backend and populating the database for the project.
 
-As a little bit of a challenge I tried to setup Github Identity as the Identity Plattform of our Application, which unfortunately did not workout on first or second try. After investing about 2 hours, I reconsidered and focussed on the actual features of our application since the API is still pretty barren. Functionality of the Use Cases is obviously more important than Identity Plattform integration, for the success of this project. However if there is some time left, I will try again, since Authentication and Authorization is quite essential for any API.
+As an additional challenge, an attempt was made to set up GitHub Identity as the identity platform for the application. Unfortunately, it didn’t work as expected on the first or second try. After spending around two hours troubleshooting, the focus shifted to the core features of the application since the API was still quite basic at this stage. Prioritizing functionality over identity platform integration seemed essential for the success of the project. However, if time permits later, there will be another attempt at implementing authentication and authorization, as they are critical components for any API.
 
-After that I started setting up EF Core with code-first which is quite simple, just create the Entities, create a DB Context and generate migrations from those.
+The setup of Entity Framework (EF) Core with a code-first approach followed. This involved creating entities, setting up a DbContext, and generating migrations. Initially, there were some issues with the connection string and applying migrations via the Visual Studio Command Line (PMC). Since the API was running inside Docker, the connection string used "database" as the hostname, which worked within the container environment. However, PMC runs outside Docker, causing the connection string to fail. To resolve this, the connection string was manually adjusted for migrations in PMC. Eventually, migrations were configured to apply automatically at application startup, a practical solution for this project, though not advisable for larger, production-grade applications.
 
-At first there was a little issue with the connectionstring and actually applying migrations via the Visual Studio Command Line (PMC). The connectionstring for the API running inside docker was with the hostname "database", since it was the name of our network connection between Db and API. When applying Migrations via the PMC, it runs the api and uses the same Connectionstring. Which obviously does not work because the Visual Studio does not operate from inside the docker container. So I had to manually adjust the Connectionstring each time I wanted to apply a migration by PMC. after that I decided to just Apply the migrations on application startup, to prevent to have to do it manually. This solution is fine for our little project, but not recommended for bigger and more impactful applications.
+Some challenges also arose with .NET versions. The application is built on .NET Core 8, so all packages were intentionally limited to version 8. At one point, Visual Studio automatically installed a version 9 package when resolving a missing class, which caused startup issues. Identifying and fixing this compatibility problem took some time, but with the assistance of ChatGPT, the issue was resolved, and the project moved forward.
 
-I also had some issues with dotnet versions once. My whole application is built on .NET Core 8 and therefore I decided to exclusively use only packages for .NET Core 8 (so major version must be 8, for most Microsoft packages). I once let VS install a Package by itself (from the context menu, when a class isnt found, it recommends installing the corresponding package). Unfortunately it did install the major version 9, without my knowledge. That unfortunately actually led to an issue during startup. It cost me some time to figure it out, but with the help of ChatGPT I got it working again.
+Seeding data for the database was another task completed during the week. Instead of using modelBuilder and generating seed data through migrations, a different approach was adopted to avoid affecting all environments, including production. On application startup, if the environment is detected as development, an early instance of the DbContext is created, and example data is inserted or updated. This ensures no duplicate data while allowing manually added data to remain untouched. The seed data, generated using AI, saved significant time and aligned well with the app's context, given the entities and their relationships.
 
-Anyways I did continue then with the implementation of some seeding data, in order to populate the database with some example data for testing. At first, it was recommended to me to use the modelBuilder and create seeder data via migrations, however I did not like that approach, since it was just example data. Migrations would be applied to every environment, including Production. Therefore I built a different approach, just using the DbContext. On startup the App checks if it is Dev Environment, and if so it does create an early instance of the DbContext during startup and inserts some example data. I create a insert or update function, to prevent duplication of the same data, and also to reset the example data after every start. Adding new data manually has no impact, it will stay there like it is, which is intended, if we want to create more realistic data by hand. The seeder data was generated with AI, since its quite time consuming to implement it by hand. Luckily context was easily available, only the Entities and the relationships between the entities were required to generate it. Maybe also a little context on what this app was about so the content would fit.
+Work also progressed on the API and controllers, beginning with the employee and questionnaire modules. Without a fully designed frontend, the data requirements were anticipated, and corresponding API endpoints and service calls were created. Onion architecture principles guided the structure, with occasional consultations with ChatGPT to refine implementation. Many service functions were generated with AI assistance, which saved time, though adjustments were often necessary to align with project needs. Basic validations were implemented to ensure clean updates, limited only to the relevant entity. Swagger was used for initial testing, allowing retrieval, modification, and re-verification of data.
 
-After that I started working on the actual API and Controllers. I divided the whole thing into 2 parts, Employee and Questionnaire and started implementing the Employee part. Since we did not have a fully designed frontend yet, I needed to anticipate and design the data that that frontend requires and create corresponding API Endpoints / Service calls. Here I was following Onion architecture and had to consult ChatGPT multiple times in order to try and build it correctly. I also generated most of the Service function, with the help of chatgpt. I was required to give clear and very specific instructions, in order for it to work. The code was quite useful tho and saved me some time typing. I had to do a few changes tho, because Chatgpt did not fulfull all of my instructions as desired. The same way I implemented the Questionnaire Part. I did implement some validation for the inserted / updated entities aswell, in order to keep it clean. I specifically also wanted that only the entity it was about gets updated, not any of the related entities. I also did some lowkey testing with swagger, simply call some infos, modify it and call it again. With that the API was more or less ready to feature basic interaction for the frontend and was able to handle Employee management, and Questionnaire management as well as providing answers.
+The backend is now capable of handling employee and questionnaire management, as well as providing responses for the frontend. However, several tasks remain:
 
-At this point there is still lots of things to do for the backend:
-
-- interface to AI Model & predicting / analysing the answers
-- implementing Authentication with Github Account
-- implementing Authorization with internal role based system
-- Theoretical interface for Commit, Attendance and Employee data (from external sources)
-
-I will implement those features in the correspoing order, but first its time to setup a frontend.
+Developing an interface for the AI model to analyze and predict survey responses
+Implementing authentication using GitHub accounts
+Setting up role-based authorization for internal systems
+Creating interfaces for data from external sources, including commits, attendance, and employee records
