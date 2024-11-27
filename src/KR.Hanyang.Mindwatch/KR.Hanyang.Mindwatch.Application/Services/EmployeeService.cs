@@ -20,45 +20,57 @@ namespace KR.Hanyang.Mindwatch.Application.Services
         public async Task<OperationResult<IEnumerable<Employee>>> GetAllEmployees()
         {
             _logger.LogInformation("Fetching all employees.");
+
             var employees = await _repository.FindAllAsync<Employee>();
+
             return OperationResult<IEnumerable<Employee>>.Success(employees);
         }
 
         public async Task<OperationResult<IEnumerable<Team>>> GetAllTeams()
         {
             _logger.LogInformation("Fetching all teams.");
+
             var teams = await _repository.FindAllAsync<Team>();
+
             return OperationResult<IEnumerable<Team>>.Success(teams);
         }
 
         public async Task<OperationResult<Employee>> GetEmployeeById(int id)
         {
             _logger.LogInformation("Fetching employee with details by ID: {EmployeeId}", id);
+
             var employee = await _repository.GetEmployeeWithDetailsByIdAsync(id);
             if (employee == null)
             {
                 _logger.LogWarning("Employee not found with ID: {EmployeeId}", id);
+
                 return OperationResult<Employee>.NotFound();
             }
+
             return OperationResult<Employee>.Success(employee);
         }
 
         public async Task<OperationResult<IEnumerable<Team>>> GetSupervisedTeamsByEmployeeId(int id)
         {
             _logger.LogInformation("Fetching supervised teams for employee ID: {EmployeeId}", id);
+
             var teams = await _repository.FindByPredicateAsync<Team>(t => t.SupervisorEmployeeId == id);
+
             return OperationResult<IEnumerable<Team>>.Success(teams);
         }
 
         public async Task<OperationResult<Team>> GetTeamById(int id)
         {
             _logger.LogInformation("Fetching team with details by ID: {TeamId}", id);
+
             var team = await _repository.GetTeamWithDetailsByIdAsync(id);
             if (team == null)
             {
                 _logger.LogWarning("Team not found with ID: {TeamId}", id);
+
                 return OperationResult<Team>.NotFound();
             }
+
             return OperationResult<Team>.Success(team);
         }
 

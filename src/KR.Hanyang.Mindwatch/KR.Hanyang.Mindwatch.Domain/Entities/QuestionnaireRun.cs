@@ -17,5 +17,6 @@ namespace KR.Hanyang.Mindwatch.Domain.Entities
         public DateTime CreatedAt { get; set; }
         public DateTime OpenDateTime { get; set; }
         public DateTime CloseDateTime { get; set; }
+        public ICollection<Answer>? Answers { get; set; }
     }
 }
