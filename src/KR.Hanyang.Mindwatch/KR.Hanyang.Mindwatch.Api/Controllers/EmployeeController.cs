@@ -1,5 +1,7 @@
-﻿using KR.Hanyang.Mindwatch.Application.Contracts;
+﻿using KR.Hanyang.Mindwatch.Api.Helpers;
+using KR.Hanyang.Mindwatch.Application.Contracts;
 using KR.Hanyang.Mindwatch.Domain.Entities;
+using KR.Hanyang.Mindwatch.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KR.Hanyang.Mindwatch.Api.Controllers
@@ -8,95 +10,83 @@ namespace KR.Hanyang.Mindwatch.Api.Controllers
     [Route("employees")]
     public class EmployeeController : ControllerBase
     {
-        private readonly IMindwatchRepository _repository;
+        private readonly IEmployeeService _service;
         private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(ILogger<EmployeeController> logger, IMindwatchRepository repository)
+        public EmployeeController(ILogger<EmployeeController> logger, IEmployeeService service)
         {
             _logger = logger;
-            _repository = repository;
+            _service = service;
         }
 
-        // Get All Employees
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
-            var employees = await _repository.FindAllAsync<Employee>();
-            return Ok(employees);
+            _logger.LogInformation("Fetching all employees.");
+
+            var result = await _service.GetAllEmployees();
+
+            return this.ToActionResult(result);
         }
 
-        // Get Employee by ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(int id)
         {
-            var employee = await _repository.FindByIdAsync<Employee>(id);
-            if (employee == null)
-                return NotFound();
-            return Ok(employee);
+            _logger.LogInformation("Fetching employee by ID: {EmployeeId}", id);
+
+            var result = await _service.GetEmployeeById(id);
+
+            return this.ToActionResult(result);
         }
 
-        // Insert or Update Employee
         [HttpPost]
         public async Task<IActionResult> InsertOrUpdateEmployee([FromBody] Employee employee)
         {
-            if (employee.Id == 0)
-            {
-                await _repository.InsertAsync(employee);
-            }
-            else
-            {
-                await _repository.UpdateAsync(employee);
-            }
-            return Ok(employee);
+            _logger.LogInformation("Inserting or updating employee.");
+
+            var result = await _service.UpdateOrInsertEmployee(employee);
+
+            return this.ToActionResult(result);
         }
 
-        // Delete Employee by ID
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployee(int id)
+        [HttpGet("{id}/supervised-teams")]
+        public async Task<IActionResult> GetSupervisedTeamsByEmployeeId(int id)
         {
-            var employee = await _repository.FindByIdAsync<Employee>(id);
-            if (employee == null)
-                return NotFound();
+            _logger.LogInformation("Fetching supervised teams for employee ID: {EmployeeId}", id);
 
-            await _repository.DeleteAsync(employee);
-            return NoContent();
+            var result = await _service.GetSupervisedTeamsByEmployeeId(id);
+
+            return this.ToActionResult(result);
         }
 
-        // Get All Attendances
-        [HttpGet("{id}/attendances")]
-        public async Task<IActionResult> GetAllAttendances(int id)
+        [HttpGet("/teams")]
+        public async Task<IActionResult> GetAllTeams()
         {
-            var attendances = await _repository.FindByPredicateAsync<Attendance>(q => q.EmployeeId == id);
-            return Ok(attendances);
+            _logger.LogInformation("Fetching all teams.");
+
+            var result = await _service.GetAllTeams();
+
+            return this.ToActionResult(result);
         }
 
-        // Update or Insert Attendance for an Employee
-        [HttpPost("{id}/attendances")]
-        public async Task<IActionResult> InsertOrUpdateAttendance(int id, [FromBody] Attendance attendance)
+        [HttpGet("/teams/{id}")]
+        public async Task<IActionResult> GetTeamById(int id)
         {
-            attendance.EmployeeId = id;
+            _logger.LogInformation("Fetching team by ID: {TeamId}", id);
 
-            if (attendance.Id == 0)
-            {
-                await _repository.InsertAsync(attendance);
-            }
-            else
-            {
-                await _repository.UpdateAsync(attendance);
-            }
-            return Ok(attendance);
+            var result = await _service.GetTeamById(id);
+
+            return this.ToActionResult(result);
         }
 
-        // Delete Attendance by ID
-        [HttpDelete("attendances/{attendanceId}")]
-        public async Task<IActionResult> DeleteAttendance(int attendanceId)
+        [HttpPost("/teams")]
+        public async Task<IActionResult> InsertOrUpdateTeam([FromBody] Team team)
         {
-            var attendance = await _repository.FindByIdAsync<Attendance>(attendanceId);
-            if (attendance == null)
-                return NotFound();
+            _logger.LogInformation("Inserting or updating team.");
 
-            await _repository.DeleteAsync(attendance);
-            return NoContent();
+            var result = await _service.UpdateOrInsertTeam(team);
+
+            return this.ToActionResult(result);
         }
     }
 }

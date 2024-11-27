@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace KR.Hanyang.Mindwatch.Domain.Entities
 {
-    public class Attendance
+    public class Commit
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public Employee? Employee { get; set; }
-        public DateTime DurationStart { get; set; }
-        public DateTime DurationEnd { get; set; }
+        public DateTime CommitDateTime { get; set; }
+        public int CommitSize { get; set; }
+        public required string CommitType { get; set; }
     }
 }

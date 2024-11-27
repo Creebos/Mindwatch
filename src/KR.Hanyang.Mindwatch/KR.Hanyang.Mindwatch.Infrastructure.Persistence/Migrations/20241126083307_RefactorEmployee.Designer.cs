@@ -4,6 +4,7 @@ using KR.Hanyang.Mindwatch.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(MindwatchDbContext))]
-    partial class MindwatchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241126083307_RefactorEmployee")]
+    partial class RefactorEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,7 +136,7 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeamId")
+                    b.Property<int>("TeamId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -289,7 +292,8 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                     b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Team", "Team")
                         .WithMany("Employees")
                         .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Team");
                 });

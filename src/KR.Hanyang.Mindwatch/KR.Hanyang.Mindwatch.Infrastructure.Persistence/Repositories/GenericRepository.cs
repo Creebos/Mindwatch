@@ -1,8 +1,7 @@
-﻿
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using KR.Hanyang.Mindwatch.Application.Contracts;
+using KR.Hanyang.Mindwatch.Domain.Interfaces;
 
 namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Repositories
 {
@@ -20,7 +19,7 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Repositories
             return await GetDbSet<T>().ToListAsync();
         }
 
-        public async Task<T> FindByIdAsync<T>(object id) where T : class
+        public async Task<T?> FindByIdAsync<T>(object id) where T : class
         {
             return await GetDbSet<T>().FindAsync(id);
         }
