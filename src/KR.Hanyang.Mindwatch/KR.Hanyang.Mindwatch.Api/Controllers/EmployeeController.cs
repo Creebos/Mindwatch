@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KR.Hanyang.Mindwatch.Api.Controllers
 {
     [ApiController]
-    [Route("employees")]
+    [Route("api/employees")]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _service;
