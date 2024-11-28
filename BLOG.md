@@ -1,5 +1,9 @@
 # Project Blog
 
+In today’s fast-paced tech industry, employee well-being is more critical than ever. Our project focuses on creating a comprehensive web-based platform designed to assess and support the mental health of employees. By leveraging AI-driven analysis of survey responses and performance data, we aim to provide actionable insights into employee well-being.
+
+Join us on this journey as we harness the power of technology to prioritize mental health and empower organizations to build a healthier, happier workforce.
+
 ## Week 07
 
 **1. PHQ-9 (Patient Health Questionnaire)**
@@ -85,7 +89,7 @@ For the frontend, implementing a fast reload feature presented a small challenge
 
 ## Week 08 / Week 09
 
-**Introduction**
+**Introduction (Building a Prototype)**
 
 > In this post, we’ll explore how to create a simple yet powerful web application that uses sentiment analysis to evaluate mental health responses. This project utilizes HTML, CSS, JavaScript, and Python’s Flask framework. The web app not only analyzes responses but displays personalized feedback through an animated progress bar and shows a department-wide summary for cumulative results.
 > Here’s a breakdown of how we built this engaging web app, along with the steps we followed.
