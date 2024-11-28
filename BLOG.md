@@ -1,5 +1,9 @@
 # Project Blog
 
+In today’s fast-paced tech industry, employee well-being is more critical than ever. Our project focuses on creating a comprehensive web-based platform designed to assess and support the mental health of employees. By leveraging AI-driven analysis of survey responses and performance data, we aim to provide actionable insights into employee well-being.
+
+Join us on this journey as we harness the power of technology to prioritize mental health and empower organizations to build a healthier, happier workforce.
+
 ## Week 07
 
 **1. PHQ-9 (Patient Health Questionnaire)**
