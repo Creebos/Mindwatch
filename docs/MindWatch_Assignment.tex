@@ -480,13 +480,283 @@
 
         \subsection{Overall Architecture}
 
-        \subsection{Directory Organization}
-            % list of the modules below as folder struc
-
-        \subsection{Domain Classes}
-        \subsection{DB Interface: Entity Framework}
-        % and so on ...
+            \subsubsection{Architecture Design}
             
+                The application is designed as a modular system with clear relationships between its components. The main components and their interactions are as follows:
+                
+                \begin{itemize}
+                    \item \textbf{Mindwatch API:} Serves as the central hub, developed with \textit{ASP.NET Core 8} using a RESTful API. It connects to the SQL Server database and coordinates data flow between the frontend, AI Model API, and external services (Organization API and Attendance API).
+                    
+                    \item \textbf{Mindwatch Frontend:} Built with \textit{Vue.js} and \textit{TypeScript}, the frontend communicates directly with the Mindwatch API to fetch and display employee wellbeing data and AI-driven predictions.
+                
+                    \item \textbf{AI Model API:} Processes data from surveys and external APIs (Attendance and Organization) to predict stress, burnout risks, and other mental health indicators. It provides predictions back to the Mindwatch API.
+                
+                    \item \textbf{Database:} A \textit{SQL Server 2022} database stores all survey results, employee data, and prediction outputs. The Mindwatch API uses \textit{Entity Framework Core} (code-first) for data communication.
+                
+                    \item \textbf{External APIs:} 
+                    \begin{itemize}
+                        \item \textbf{Organization API:} Supplies organizational hierarchy data for team-based analysis.
+                        \item \textbf{Attendance API:} Provides work-hour and attendance data for stress correlation.
+                    \end{itemize}
+                \end{itemize}
+                
+                \noindent All components are containerized using \textit{Docker}, with separate containers for the database, API, frontend, and AI model. This architecture ensures seamless communication between services and supports scalability and modularity.
+                
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=1\linewidth]{DiagramArchitecture.drawio.png}
+                    \caption{Architecture of the Mindwatch Application stack}
+                    \label{}
+                \end{figure}
+
+            \subsubsection{Entity Relationship Diagram}
+
+                The entity-relationship (ER) diagram outlines the database structure and how the entities are connected, forming the foundation for the application. The relationships between the main entities are as follows:
+                
+                The \textbf{Employee} entity is at the center of the system, representing individual employees. Each employee can belong to one \textbf{Team} (optional) and is linked to various data points, including attendance records, code commits, incidents, and mental health analyses (\textbf{PredictionAnalysis}). These connections allow the system to collect comprehensive information about an employee’s work and wellbeing.
+                
+                \textbf{Teams} group employees together, enabling team-based analysis of stress or burnout predictions. A team can include multiple employees, but an employee can belong to at most one team.
+                
+                The \textbf{Questionnaire} entity represents surveys that gather mental health data. Each questionnaire contains multiple \textbf{Questions} and can be assigned to employees through a \textbf{QuestionnaireRun}. A \textbf{QuestionnaireRun} is an instance of a questionnaire being distributed, and it tracks responses submitted by employees. Each run has an associated \textbf{QuestionnaireRunStatus} to indicate its progress or completion.
+                
+                \textbf{Answers} link employee responses to specific questions in a questionnaire run. An answer is tied to a specific \textbf{Question} and belongs to a particular \textbf{QuestionnaireRun}, ensuring the data remains organized and traceable.
+                
+                Additional data sources, such as \textbf{Attendance}, \textbf{Commits}, and \textbf{Incidents}, are linked directly to employees:
+                - \textbf{Attendance} records track work hours and presence.
+                - \textbf{Commits} capture contributions to repositories.
+                - \textbf{Incidents} log any work-related events or issues.
+                
+                Finally, \textbf{PredictionAnalysis} stores the results of AI-driven mental health predictions, directly tied to individual employees. These predictions rely on the aggregated data from questionnaires, attendance, commits, and incidents to provide insights into potential stress or burnout risks.
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=1\linewidth]{DiagramEntityRelationship.drawio.png}
+                    \caption{Enter Caption}
+                    \label{fig:enter-label}
+                \end{figure}
+
+
+        \subsection{Directory Organization}
+            
+            \subsection{Project Structure}
+
+                \subsection{Directory Organization}
+
+                    The project structure is divided into general resources, the backend API following the Onion Architecture, and the Vue.js frontend. Below is the detailed breakdown.
+                    
+                    \subsubsection{General Structure}
+                    
+   \section{Directory Organization}
+
+        \begin{table}
+            \centering
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{cc}
+                \hline
+                \textbf{Directory} & \textbf{Module} \\
+                \hline
+                \texttt{./docs} & Project Documents\\
+                \texttt{./src/AI-Model} & AI Model and Scripts \\
+                \texttt{./src/KR.Hanyang.Mindwatch} & Application bundle \\
+                \texttt{./src/../..Mindwatch.Api} & Backend API Project \\
+                \texttt{./src/../..Mindwatch.Application} & Application Layer \\
+                \texttt{./src/../..Mindwatch.Domain} & Domain Layer \\
+                \texttt{./src/../..Mindwatch.Frontend} & Frontend Project \\
+                \texttt{./src/../..Infrastructure.Persistance} & Persistance Layer \\
+                \texttt{./src/Prototype} & Web App Prototype \\
+            \end{tabular}
+            \caption{Directory and Modules Table}
+            \label{tab:my_label}
+        \end{table}
+                
+
+        \subsection{Project Documents}
+            This directory stores all project-related documentation, such as design plans, API specifications, and user manuals. Documentation ensures clear communication within the team and provides reference materials for future maintenance.
+        
+        \subsection{AI Model and Scripts}
+            
+            This folder contains the AI models and scripts responsible for processing and predicting employee mental health insights, such as stress or burnout risks. These models are essential for implementing the application's predictive capabilities.
+            
+        \subsection{Application bundle}
+        
+            The root directory of the main application bundles all core components together. It contains subdirectories adhering to Onion Architecture principles, with layers for Domain, Application, Infrastructure, and the API.
+        \subsection{Backend API Project}
+
+            This module implements the backend API using ASP.NET Core 8. It serves as the entry point for client interactions, exposing RESTful endpoints documented with Swagger (OpenAPI). It communicates with other layers (Application and Domain) to maintain the separation of concerns.
+            
+        \subsection{Application Layer}
+        
+            This layer encapsulates business logic, such as handling survey workflows or analyzing mental health data. It defines service contracts and application-specific rules, isolating them from external dependencies.
+            
+        \subsection{Domain Layer}
+
+            The core of the Onion Architecture, this layer contains business entities and rules. By isolating the domain logic here, the application maintains flexibility and testability, unaffected by changes in infrastructure or presentation.
+            
+        \subsection{Frontend Project}
+                    
+            The frontend, developed with Vue.js and TypeScript, provides a user-friendly interface for employees and HR managers. It interacts with the backend API to fetch data and display dashboards, surveys, and AI insights.
+            
+        \subsection{Persistance Layer}
+
+            This layer handles data access, using Entity Framework Core to manage database operations. It includes migrations, repositories, and database configurations to ensure clean separation from the application logic.
+            
+        \subsection{Web App Prototype}
+        
+            A sandbox directory for experimenting with or demonstrating early concepts of the application.
+
     \section{Use Cases}
+        
+        \subsection{Use Case 1: Create and Manage Surveys}
+        
+        \textbf{Description:} HR Managers can create and manage mental health surveys tailored to specific teams or departments. Surveys are distributed periodically to employees, ensuring consistent data collection.
+        
+        \textbf{Actors:} HR Manager
+        
+        \textbf{Preconditions:}
+        \begin{itemize}
+            \item The HR Manager must be authenticated via the company's Identity Platform.
+            \item Relevant teams or departments must exist in the system.
+        \end{itemize}
+        
+        \textbf{Flow:}
+        \begin{enumerate}
+            \item The HR Manager logs into the platform.
+            \item The HR Manager navigates to the "Survey Management" dashboard.
+            \item A new survey is created by specifying questions, target teams, and scheduling parameters.
+            \item The system saves the survey configuration and schedules periodic reminders.
+        \end{enumerate}
+        
+        \textbf{Postconditions:}
+        \begin{itemize}
+            \item The survey is stored in the database and linked to the specified teams or departments.
+            \item The system schedules survey notifications for employees.
+        \end{itemize}
+        
+        \textbf{Exception:}
+        \begin{itemize}
+            \item If required fields are not provided, the system notifies the HR Manager of the error.
+        \end{itemize}
+        
+        \subsection{Use Case 2: Fill Out Survey}
+        
+        \textbf{Description:} Employees complete assigned surveys through the platform. Survey responses are securely processed and stored for further analysis.
+        
+        \textbf{Actors:} Employee
+        
+        \textbf{Preconditions:}
+        \begin{itemize}
+            \item The employee must have an active account in the system.
+            \item A survey must be assigned to the employee.
+        \end{itemize}
+        
+        \textbf{Flow:}
+        \begin{enumerate}
+            \item The employee logs into the platform.
+            \item The employee views pending surveys on the dashboard.
+            \item The employee fills out and submits the survey.
+            \item The system validates and encrypts the survey responses before storing them.
+        \end{enumerate}
+        
+        \textbf{Postconditions:}
+        \begin{itemize}
+            \item The survey response is saved in the database.
+            \item The employee's completion status is updated.
+        \end{itemize}
+        
+        \textbf{Exception:}
+        \begin{itemize}
+            \item If the survey is not submitted before the deadline, the system sends reminders.
+        \end{itemize}
+        
+        \subsection{Use Case 3: Evaluate Mental Health Risks}
+        
+        \textbf{Description:} The AI Model evaluates survey responses and other data to predict mental health risks such as stress or burnout.
+        
+        \textbf{Actors:} AI System, HR Manager
+        
+        \textbf{Preconditions:}
+        \begin{itemize}
+            \item Survey responses and external data (e.g., attendance, team hierarchy) must be available.
+            \item The AI Model must be trained and integrated with the backend.
+        \end{itemize}
+        
+        \textbf{Flow:}
+        \begin{enumerate}
+            \item The system collects survey responses and additional data.
+            \item The AI Model processes the data and calculates risk scores.
+            \item The system updates the database with predictions.
+            \item The HR Manager views the AI-driven insights on the dashboard.
+        \end{enumerate}
+        
+        \textbf{Postconditions:}
+        \begin{itemize}
+            \item Risk scores are available for review by HR Managers.
+        \end{itemize}
+        
+        \textbf{Exception:}
+        \begin{itemize}
+            \item If data is missing or incomplete, the system notifies the relevant parties to address the issue.
+        \end{itemize}
+        
+        \subsection{Use Case 4: Escalate to Psychologist}
+        
+        \textbf{Description:} High-risk cases are escalated to psychologists for professional intervention.
+        
+        \textbf{Actors:} HR Manager, Psychologist
+        
+        \textbf{Preconditions:}
+        \begin{itemize}
+            \item A high-risk case must be identified by the AI Model or flagged by an HR Manager.
+            \item Psychologist accounts must exist in the system.
+        \end{itemize}
+        
+        \textbf{Flow:}
+        \begin{enumerate}
+            \item The HR Manager flags a high-risk case for escalation.
+            \item The system generates a detailed report and sends a notification to the assigned psychologist.
+            \item The psychologist reviews the case and schedules follow-up actions.
+        \end{enumerate}
+        
+        \textbf{Postconditions:}
+        \begin{itemize}
+            \item The high-risk case is tracked in the system for resolution.
+        \end{itemize}
+        
+        \textbf{Exception:}
+        \begin{itemize}
+            \item If no psychologist is assigned, the system alerts the HR Manager to assign one.
+        \end{itemize}
+        
+        \subsection{Use Case 5: Generate Reports}
+        
+        \textbf{Description:} HR Managers can request and view detailed reports of employee mental health trends and predictions.
+        
+        \textbf{Actors:} HR Manager
+        
+        \textbf{Preconditions:}
+        \begin{itemize}
+            \item The HR Manager must be authenticated and authorized.
+        \end{itemize}
+        
+        \textbf{Flow:}
+        \begin{enumerate}
+            \item The HR Manager navigates to the "Reports" section of the dashboard.
+            \item A report is requested based on parameters such as department, date range, or risk level.
+            \item The system queries the database and generates the report.
+            \item The HR Manager views or downloads the report.
+        \end{enumerate}
+        
+        \textbf{Postconditions:}
+        \begin{itemize}
+            \item The report is available for review, providing actionable insights.
+        \end{itemize}
+        
+        \textbf{Exception:}
+        \begin{itemize}
+            \item If no data matches the selected parameters, the system notifies the HR Manager.
+        \end{itemize}
+        
+
+    
 
 \end{document}

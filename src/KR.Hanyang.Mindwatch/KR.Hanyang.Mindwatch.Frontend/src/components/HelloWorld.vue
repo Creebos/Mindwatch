@@ -6,7 +6,7 @@ export default {
     };
   },
   mounted() {
-    fetch("https://localhost:51443/weatherforecast")
+    fetch("https://localhost:8081/weatherforecast")
       .then((response) => response.json())
       .then((data) => {
         this.weatherForecasts = data;

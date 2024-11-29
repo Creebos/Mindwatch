@@ -6,4 +6,5 @@ The Application has a backend with ASP.NET Core 8 with RESTful API, I use OpenAP
 
 The Applications Frontend is made with Vue js, with Typescript. 
 
-The whole Application is run on Docker, I have 3 docker containers, for the SQL Databse Server 2022, the .NET Core API and the Frontend. 
+The whole Application is run on Docker, I have 4 docker containers, for the SQL Databse Server 2022, the .NET Core API and the Frontend aswell as a docker container for the AI Model. 
+
