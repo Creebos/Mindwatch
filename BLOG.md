@@ -495,3 +495,131 @@ Developing an interface for the AI model to analyze and predict survey responses
 Implementing authentication using GitHub accounts
 Setting up role-based authorization for internal systems
 Creating interfaces for data from external sources, including commits, attendance, and employee records
+
+## Week 12
+
+**AI-Models**
+
+**1. TF-IDF Vectorizer**
+
+Purpose:
+
+The TF-IDF (Term Frequency-Inverse Document Frequency) vectorizer transforms text data into numerical representations. This transformation is essential because machine learning models operate on numerical data, not raw text.
+
+How It Works:
+
+	•	Term Frequency (TF): Measures how often a word appears in a document.
+	•	Inverse Document Frequency (IDF): Evaluates how unique a word is across a set of documents.
+	•	TF-IDF Value: Combines TF and IDF to assign weights to words, down-weighting common but less meaningful words (e.g., “the,” “and”) and highlighting important terms.
+
+How the Model Was Created:
+
+	•	We collected a corpus of text responses from the dataset
+	•	The TF-IDF vectorizer was trained using this text corpus to transform text responses into numerical matrices.
+	•	The trained vectorizer was saved as tfidf_vectorizer.pkl for future use in processing new input.
+
+Code for Creation:
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+import joblib
+
+# Example dataset of text responses
+text_data = [
+    "I feel stressed and overwhelmed at work.",
+    "My motivation is high, and I feel great about my tasks.",
+    "I am struggling to handle the pressure of deadlines."
+]
+
+# Initialize the TF-IDF vectorizer
+tfidf_vectorizer = TfidfVectorizer(max_features=1000, stop_words='english')
+
+# Train the vectorizer
+tfidf_matrix = tfidf_vectorizer.fit_transform(text_data)
+
+# Save the trained vectorizer
+joblib.dump(tfidf_vectorizer, 'tfidf_vectorizer.pkl')
+```
+
+**2. Optimized Text Classification Model**
+
+Purpose:
+
+The text classification model analyzes numerical data (transformed by the TF-IDF vectorizer) and categorizes it into emotions or states, such as Stress, Depression, or Normal. This model automates the emotional analysis of text responses.
+
+How It Works:
+
+	•	The model uses a machine learning algorithm (e.g., Support Vector Machine or Random Forest) trained on a labeled dataset.
+	•	The dataset consists of text samples with corresponding emotion labels.
+	•	The model learns patterns in the text data to predict emotions for new inputs.
+
+How the Model Was Created:
+
+	•	A labeled dataset of text responses and their respective emotions was prepared.
+	•	The dataset was split into training and test sets.
+	•	The model was trained, validated, and optimized for the best predictive accuracy.
+	•	The final optimized model was saved as optimized_text_classification_model.pkl.
+
+Code for Creation:
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+import joblib
+
+# Example labeled dataset
+text_data = ["I feel stressed and overwhelmed at work.", 
+             "My motivation is high.", 
+             "I am struggling to handle the pressure."]
+labels = ["Stress", "Normal", "Stress"]
+
+# Transform text data using the TF-IDF vectorizer
+tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
+tfidf_matrix = tfidf_vectorizer.transform(text_data)
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(tfidf_matrix, labels, test_size=0.2, random_state=42)
+
+# Train the classifier
+classifier = RandomForestClassifier()
+classifier.fit(X_train, y_train)
+
+# Evaluate the model
+y_pred = classifier.predict(X_test)
+print(classification_report(y_test, y_pred))
+
+# Save the trained model
+joblib.dump(classifier, 'optimized_text_classification_model.pkl')
+```
+
+**How the Two Models Work Together**
+
+	1.	TF-IDF Vectorizer:
+	•	Converts raw text responses into numerical matrices that machine learning models can process.
+	2.	Text Classification Model:
+	•	Analyzes the numerical data and predicts the corresponding emotion or state.
+
+Example Workflow:
+
+```python
+# Load the models
+tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
+classifier = joblib.load('optimized_text_classification_model.pkl')
+
+# New text input
+new_text = ["I am feeling anxious about my deadlines."]
+transformed_text = tfidf_vectorizer.transform(new_text)
+
+# Predict the emotion
+prediction = classifier.predict(transformed_text)
+print(f"Predicted Emotion: {prediction[0]}")
+```
+
+**Conclusion**
+
+The combination of the TF-IDF Vectorizer and the Text Classification Model forms the backbone of our text analysis system. This system enables:
+	•	Automatic classification of text responses into emotional categories.
+	•	Efficient processing of large volumes of text with high accuracy.
+
+These two models are pivotal to our employee survey platform and represent a step forward in data-driven decision-making for HR analytics.
