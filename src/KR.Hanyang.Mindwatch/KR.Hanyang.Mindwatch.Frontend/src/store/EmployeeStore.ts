@@ -13,6 +13,7 @@ export const useEmployeeStore = defineStore("employee", {
       try {
         const employees = await EmployeeAPI.getAllEmployees();
         this.employees = employees;
+        console.log(this.employees);
       } catch (error) {
         console.error("Error fetching employees:", error);
         throw error;
