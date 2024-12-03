@@ -1,0 +1,25 @@
+/* Reset Styles */
+body, h1, h2, h3, p, ul, ol, li, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Global Styles */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  h1 {
+    color: #444;
+  }
+  
+  .dashboard {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  

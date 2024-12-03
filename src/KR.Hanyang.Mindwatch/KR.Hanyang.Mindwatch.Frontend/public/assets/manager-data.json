@@ -1,0 +1,13 @@
+{
+    "teamSurveys": [
+      { "id": 1, "title": "Team Collaboration", "averageScore": 78, "status": "Completed" },
+      { "id": 2, "title": "Workplace Safety", "averageScore": 92, "status": "In Progress" },
+      { "id": 3, "title": "Job Satisfaction", "averageScore": 85, "status": "Pending" }
+    ],
+    "trends": {
+      "collaboration": 75,
+      "satisfaction": 85,
+      "stressLevels": 65
+    }
+  }
+  

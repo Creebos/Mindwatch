@@ -1,0 +1,15 @@
+{
+    "aggregates": {
+      "overallSatisfaction": 82,
+      "averageStressLevel": 68,
+      "completedSurveys": 120,
+      "pendingSurveys": 30
+    },
+    "departmentTrends": {
+      "sales": 85,
+      "engineering": 78,
+      "hr": 90,
+      "marketing": 88
+    }
+  }
+  
