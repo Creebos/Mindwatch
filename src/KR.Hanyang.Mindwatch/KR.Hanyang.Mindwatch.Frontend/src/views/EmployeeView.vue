@@ -22,24 +22,14 @@
           <v-card-text>
             <v-row class="mt-4" align="center" justify="center">
               <v-col cols="12" md="10">
-                <v-progress-linear
-                  value="70"
-                  color="success"
-                  class="mb-6"
-                  height="20"
-                >
+                <v-progress-linear value="70" color="success" class="mb-6" height="20">
                   <template #default>
                     <strong>Survey Completion: 70%</strong>
                   </template>
                 </v-progress-linear>
               </v-col>
               <v-col cols="12" md="10">
-                <v-progress-linear
-                  value="50"
-                  color="info"
-                  class="mb-6"
-                  height="20"
-                >
+                <v-progress-linear value="50" color="info" class="mb-6" height="20">
                   <template #default>
                     <strong>Stress Level: Moderate</strong>
                   </template>
@@ -61,7 +51,7 @@
 </template>
 
 <script>
-import BarChart from "@/components/BarChart.vue";
+import BarChart from "../components/BarChart.vue";
 
 export default {
   name: "EmployeeView",

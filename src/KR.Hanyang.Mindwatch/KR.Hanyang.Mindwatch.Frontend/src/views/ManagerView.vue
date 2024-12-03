@@ -9,24 +9,14 @@
           <v-card-text>
             <v-row class="mt-4" align="center" justify="center">
               <v-col cols="12" md="10">
-                <v-progress-linear
-                  value="90"
-                  color="success"
-                  class="mb-6"
-                  height="20"
-                >
+                <v-progress-linear value="90" color="success" class="mb-6" height="20">
                   <template #default>
                     <strong>Performance: 90%</strong>
                   </template>
                 </v-progress-linear>
               </v-col>
               <v-col cols="12" md="10">
-                <v-progress-linear
-                  value="40"
-                  color="error"
-                  class="mb-6"
-                  height="20"
-                >
+                <v-progress-linear value="40" color="error" class="mb-6" height="20">
                   <template #default>
                     <strong>Burnout Risk: High</strong>
                   </template>
@@ -65,7 +55,7 @@
 </template>
 
 <script>
-import BarChart from "@/components/BarChart.vue";
+import BarChart from "../components/BarChart.vue";
 
 export default {
   name: "ManagerView",
