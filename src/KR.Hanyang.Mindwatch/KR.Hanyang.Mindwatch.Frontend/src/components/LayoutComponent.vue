@@ -9,16 +9,16 @@
 </template>
 
 <script>
-import HeaderComponent from './HeaderComponent.vue'
-import FooterComponent from './FooterComponent.vue'
+import FooterComponent from "./FooterComponent.vue";
+import HeaderComponent from "./HeaderComponent.vue";
 
 export default {
-  name: 'LayoutComponent',
+  name: "LayoutComponent",
   components: {
     HeaderComponent,
-    FooterComponent
-  }
-}
+    FooterComponent,
+  },
+};
 </script>
 
 <style scoped>

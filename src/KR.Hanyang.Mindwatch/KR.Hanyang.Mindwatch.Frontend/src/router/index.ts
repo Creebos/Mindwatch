@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import EmployeeView from "../views/EmployeeView.vue";
+import HomeView from "../views/HomeView.vue";
 import HRManagerView from "../views/HRManagerView.vue";
 import ManagerView from "../views/ManagerView.vue";
 import SurveyForm from "../views/SurveyForm.vue"; // Import the SurveyForm view
@@ -14,7 +14,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL || "/"),
   routes,
 });
 

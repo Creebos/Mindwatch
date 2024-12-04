@@ -14,16 +14,15 @@
         <router-link to="/hr">HR Manager Dashboard</router-link>
       </li>
       <li>
-  <router-link to="/survey">Survey Form</router-link>
-</li>
-
+        <router-link to="/survey">Survey Form</router-link>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'AppNavbar',
+  name: "AppNavbar",
 };
 </script>
 

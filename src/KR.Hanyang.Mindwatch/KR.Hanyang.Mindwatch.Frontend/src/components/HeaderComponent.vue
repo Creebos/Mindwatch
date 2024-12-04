@@ -1,7 +1,7 @@
 <template>
   <header class="app-header">
     <div class="logo">
-      <img src="@/assets/logo.png" alt="Logo" />
+      <img src="../assets/logo.png" alt="Logo" />
       <h1>Mindwatch</h1>
     </div>
     <nav class="nav-menu">
@@ -14,19 +14,19 @@
 
 <script>
 export default {
-  name: 'HeaderComponent',
-  data () {
+  name: "HeaderComponent",
+  data() {
     return {
       navLinks: [
-        { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
-        { name: 'Employee View', path: '/employee' },
-        { name: 'Manager View', path: '/manager' },
-        { name: 'HR Manager View', path: '/hrmanager' }
-      ]
-    }
-  }
-}
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+        { name: "Employee View", path: "/employee" },
+        { name: "Manager View", path: "/manager" },
+        { name: "HR Manager View", path: "/hrmanager" },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped>

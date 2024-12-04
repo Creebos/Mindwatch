@@ -8,7 +8,8 @@
       <v-btn to="/employee" text>Employee</v-btn>
       <v-btn to="/hr-manager" text>HR Manager</v-btn>
       <v-btn to="/manager" text>Manager</v-btn>
-      <v-btn to="/surveyform" text>Survey Form</v-btn> <!-- Add Survey Form link -->
+      <v-btn to="/surveyform" text>Survey Form</v-btn>
+      <!-- Add Survey Form link -->
       <v-btn text @click="logout" v-if="user">Logout</v-btn>
     </v-app-bar>
 
@@ -19,9 +20,7 @@
 
     <!-- Footer -->
     <v-footer app color="primary" dark>
-      <v-col class="text-center white--text">
-        &copy; 2024 MindWatch, All Rights Reserved.
-      </v-col>
+      <v-col class="text-center white--text"> &copy; 2024 MindWatch, All Rights Reserved. </v-col>
     </v-footer>
   </v-app>
 </template>
