@@ -1,25 +1,25 @@
-import { parse } from "flatted";
 import { Employee } from "../models/Employee";
+import { Team } from "../models/Team";
 import apiClient from "./http";
 
 export const EmployeeAPI = {
   async getAllEmployees(): Promise<Employee[]> {
     const response = await apiClient.get("/employees");
-    return parse(response.data) as Employee[];
+    return response.data.$values as Employee[];
   },
 
   async getEmployeeById(id: number): Promise<Employee> {
     const response = await apiClient.get(`/employees/${id}`);
-    return parse(response.data) as Employee;
+    return response.data as Employee;
   },
 
   async createEmployee(employee: Employee): Promise<Employee> {
     const response = await apiClient.post("/employees", employee);
-    return parse(response.data) as Employee;
+    return response.data as Employee;
   },
 
-  async getSupervisedTeamsByEmployeeId(id: number): Promise<any[]> {
+  async getSupervisedTeamsByEmployeeId(id: number): Promise<Team[]> {
     const response = await apiClient.get(`/employees/${id}/supervised-teams`);
-    return parse(response.data);
+    return response.data as Team[];
   },
 };

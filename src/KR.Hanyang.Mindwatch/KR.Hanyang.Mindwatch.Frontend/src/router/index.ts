@@ -4,13 +4,15 @@ import HomeView from "../views/HomeView.vue";
 import HRManagerView from "../views/HRManagerView.vue";
 import ManagerView from "../views/ManagerView.vue";
 import SurveyForm from "../views/SurveyForm.vue"; // Import the SurveyForm view
+import TestView from "../views/TestView.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomeView },
   { path: "/employee", name: "Employee", component: EmployeeView },
   { path: "/hr-manager", name: "HRManager", component: HRManagerView },
   { path: "/manager", name: "Manager", component: ManagerView },
-  { path: "/surveyform", name: "SurveyForm", component: SurveyForm }, // Add the SurveyForm route
+  { path: "/surveyform", name: "SurveyForm", component: SurveyForm },
+  { path: "/testview", name: "SurveyForm", component: TestView },
 ];
 
 const router = createRouter({
