@@ -22,16 +22,16 @@
           <v-card-text>
             <v-row class="mt-4" align="center" justify="center">
               <v-col cols="12" md="10">
-                <v-progress-linear value="70" color="success" class="mb-6" height="20">
+                <v-progress-linear :value="surveyCompletion" color="success" class="mb-6" height="20">
                   <template #default>
-                    <strong>Survey Completion: 70%</strong>
+                    <strong>Survey Completion: {{ surveyCompletion }}%</strong>
                   </template>
                 </v-progress-linear>
               </v-col>
               <v-col cols="12" md="10">
-                <v-progress-linear value="50" color="info" class="mb-6" height="20">
+                <v-progress-linear :value="stressLevel" color="info" class="mb-6" height="20">
                   <template #default>
-                    <strong>Stress Level: Moderate</strong>
+                    <strong>Stress Level: {{ stressLevelDescription }}</strong>
                   </template>
                 </v-progress-linear>
               </v-col>
@@ -52,6 +52,7 @@
 
 <script>
 import BarChart from "../components/BarChart.vue";
+import { QuestionnaireApi } from "../api/QuestionnaireApi"; // Import the API
 
 export default {
   name: "EmployeeView",
@@ -60,29 +61,61 @@ export default {
   },
   data() {
     return {
-      chartLabels: ["January", "February", "March"],
-      chartData: [12, 19, 3],
+      chartLabels: [],
+      chartData: [],
+      surveyCompletion: 0,
+      stressLevel: 0,
+      stressLevelDescription: "Unknown",
     };
   },
   methods: {
-    startSurvey() {
-      this.$router.push("/surveyform");
+    async fetchMetrics() {
+      try {
+        const metrics = await QuestionnaireApi.getMetrics(); // Replace with actual API method
+        this.surveyCompletion = metrics.completion || 0;
+        this.stressLevel = metrics.stressLevel || 0;
+        this.stressLevelDescription =
+          metrics.stressLevel < 40
+            ? "Low"
+            : metrics.stressLevel < 70
+            ? "Moderate"
+            : "High";
+      } catch (error) {
+        console.error("Error fetching metrics:", error);
+      }
     },
+    async fetchChartData() {
+      try {
+        const chartData = await QuestionnaireApi.getChartData(); // Replace with actual API method
+        this.chartLabels = chartData.labels || [];
+        this.chartData = chartData.values || [];
+      } catch (error) {
+        console.error("Error fetching chart data:", error);
+      }
+    },
+    async startSurvey() {
+      try {
+        await QuestionnaireApi.startSurvey(); // Optional: Record the start
+        this.$router.push("/surveyform");
+      } catch (error) {
+        console.error("Error starting survey:", error);
+      }
+    },
+  },
+  mounted() {
+    this.fetchMetrics();
+    this.fetchChartData();
   },
 };
 </script>
 
 <style scoped>
-/* Add padding and spacing to the container */
 .v-container {
   padding: 16px;
 }
-
-/* Ensure cards have enough spacing */
 .v-card {
   border-radius: 8px;
 }
-
 .v-progress-linear {
   font-size: 16px;
   font-weight: bold;

@@ -1,37 +1,88 @@
 <template>
   <div class="survey-form">
-    <h2>Health Assessment Survey</h2>
+    <h2 v-if="isHR">Create a New Survey</h2>
+    <h2 v-else>Health Assessment Survey</h2>
+
     <form @submit.prevent="submitForm">
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" v-model="name" required />
+      <!-- Employee View: Fill out survey -->
+      <div v-if="!isHR" v-for="(question, index) in questions" :key="index">
+        <label :for="'question-' + index">{{ question.text }}</label>
+        <textarea
+          :id="'question-' + index"
+          v-model="answers[index]"
+          required
+        ></textarea>
       </div>
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required />
+
+      <!-- HR Manager View: Create new survey -->
+      <div v-else>
+        <div v-for="(question, index) in newQuestions" :key="index">
+          <label :for="'new-question-' + index">Question {{ index + 1 }}</label>
+          <input
+            type="text"
+            :id="'new-question-' + index"
+            v-model="newQuestions[index].text"
+            placeholder="Enter question text"
+            required
+          />
+        </div>
+        <button type="button" @click="addNewQuestion">Add Question</button>
       </div>
-      <div>
-        <label for="response">Your Response:</label>
-        <textarea id="response" v-model="response" required></textarea>
-      </div>
-      <button type="submit">Submit</button>
+
+      <button type="submit">{{ isHR ? "Create Survey" : "Submit Survey" }}</button>
     </form>
   </div>
 </template>
 
 <script>
+import { QuestionnaireApi } from "../api/QuestionnaireApi";
+
 export default {
   data() {
     return {
-      name: "",
-      email: "",
-      response: "",
+      isHR: false, // Replace with actual role check (e.g., via authService)
+      questions: [], // For employees
+      answers: [], // For employees
+      newQuestions: [], // For HR managers
     };
   },
   methods: {
-    submitForm() {
-      console.log("Form submitted:", this.name, this.email, this.response);
+    async fetchQuestions() {
+      if (!this.isHR) {
+        // Fetch survey questions for employees
+        try {
+          const response = await QuestionnaireApi.getSurveyQuestions();
+          this.questions = response.questions;
+          this.answers = Array(response.questions.length).fill("");
+        } catch (error) {
+          console.error("Error fetching questions:", error);
+        }
+      }
     },
+    addNewQuestion() {
+      this.newQuestions.push({ text: "" });
+    },
+    async submitForm() {
+      try {
+        if (this.isHR) {
+          // Create a new survey
+          await QuestionnaireApi.createSurvey(this.newQuestions);
+          alert("Survey created successfully!");
+        } else {
+          // Submit survey responses
+          const payload = {
+            answers: this.answers,
+          };
+          await QuestionnaireApi.submitSurvey(payload);
+          alert("Survey submitted successfully!");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
+    },
+  },
+  mounted() {
+    this.fetchQuestions(); // Fetch questions if not HR
   },
 };
 </script>
