@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import { EmployeeAPI } from "@/services/EmployeeAPI"; // Adjust the path if needed
-import { QuestionnaireAPI } from "@/services/QuestionnaireAPI"; // Adjust the path if needed
+import { EmployeeAPI } from "../api/EmployeeApi"; // Adjust the path if needed
+import { QuestionnaireAPI } from "../api/QuestionnaireApi"; // Adjust the path if needed
 
 export default {
   data() {
