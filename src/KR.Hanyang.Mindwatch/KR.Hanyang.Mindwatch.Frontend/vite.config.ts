@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [vue(), vuetify({ styles: true })],
   build: {
     rollupOptions: {
+      // Vuetify doesnt export its styles lib correctly, so import doesnt work. This handles the problem
       external: ["vuetify/lib/styles"],
     },
   },
