@@ -361,3 +361,62 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+.npmrc
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript cache and output
+*.tsbuildinfo
+dist/
+build/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.iml
+
+# Testing files
+coverage/
+.nyc_output/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Debugging files
+*.log
+*.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+
+# Compiled JavaScript files (if using `tsc` without output directory setup)
+*.js.map
+*.js
