@@ -11,8 +11,8 @@ const routes = [
   { path: "/employee", name: "Employee", component: EmployeeView },
   { path: "/hr-manager", name: "HRManager", component: HRManagerView },
   { path: "/manager", name: "Manager", component: ManagerView },
-  { path: "/surveyform", name: "SurveyForm", component: SurveyForm },
-  { path: "/testview", name: "SurveyForm", component: TestView },
+  { path: "/surveyform/:id", name: "SurveyForm", component: SurveyForm }, // Corrected route
+  { path: "/testview", name: "TestView", component: TestView },
 ];
 
 const router = createRouter({
