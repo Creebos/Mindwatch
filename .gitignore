@@ -391,11 +391,6 @@ out/
 .DS_Store
 Thumbs.db
 
-# IDE and editor files
-.vscode/
-.idea/
-*.iml
-
 # Testing files
 coverage/
 .nyc_output/
