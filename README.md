@@ -19,11 +19,6 @@ This project involves developing a web-based tool designed to assess the mental 
 
 https://www.youtube.com/watch?v=IurT4dr59Qg
 
-
-## Jira-Board
-
-https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
-
 ## Blog
 
 https://github.com/Creebos/Mindwatch/blob/master/BLOG.md
@@ -72,3 +67,8 @@ The data is sourced from diverse platforms. Each entry is tagged with a specific
 ## Documentation
 
 Any documents, diagrams and other files can be found in /docs
+
+
+## Jira-Board
+
+https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
