@@ -1,0 +1,4 @@
+flask
+joblib
+matplotlib
+nltk
