@@ -14,6 +14,12 @@ This project involves developing a web-based tool designed to assess the mental 
 | **Daniel Brody**    | ZHAW School of Management and Law    | daniel.brody00@gmail.com  |
 | **Yves Meyer**      | ZHAW School of Management and Law    | meyeryve@students.zhaw.ch |
 
+
+## Youtube
+
+https://www.youtube.com/watch?v=IurT4dr59Qg
+
+
 ## Jira-Board
 
 https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
@@ -54,7 +60,6 @@ The dataset consists of statements tagged with one of the following seven mental
 - Stress
 - Bi-Polar
 - Personality Disorder
-
 
 **Data Collection**
 
