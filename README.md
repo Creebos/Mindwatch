@@ -26,7 +26,7 @@ https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
 
 ## Blog
 
-Our blog can be found in a seperate file: ./BLOG.md
+https://github.com/Creebos/Mindwatch/blob/master/BLOG.md
 
 ## Dataset
 
