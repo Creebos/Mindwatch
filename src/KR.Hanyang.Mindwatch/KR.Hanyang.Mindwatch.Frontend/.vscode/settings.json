@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    ".vscode/": true,
+	"obj/": true,
+    "dist/": true,
+    "node_modules/": true,
+    "*.esproj": true,
+    "*.esproj.user": true,
+    "*.tsbuildinfo": true
+  }
+}
