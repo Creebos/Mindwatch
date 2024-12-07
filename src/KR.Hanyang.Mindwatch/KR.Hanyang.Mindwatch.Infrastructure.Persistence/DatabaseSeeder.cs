@@ -1,5 +1,7 @@
 ﻿using KR.Hanyang.Mindwatch.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
 {
@@ -10,85 +12,76 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
             context.Database.EnsureCreated();
 
             // Employees
-            var employees = new[]
+            var employees = new List<Employee>
             {
-                new Employee { Id = 1, Name = "Johnson", FirstName = "Michael", ShortName = "MJ", PhoneNumber = "5551234567", Email = "mjohnson@mindwatch.com", Role = EmployeeRole.Manager },
-                new Employee { Id = 2, Name = "Clark", FirstName = "Sarah", ShortName = "SC", PhoneNumber = "5559876543", Email = "sclark@mindwatch.com", Role = EmployeeRole.Manager },
-                new Employee { Id = 3, Name = "Doe", FirstName = "John", ShortName = "JD", PhoneNumber = "5551122334", Email = "jdoe@mindwatch.com", Role = EmployeeRole.Employee },
-                new Employee { Id = 4, Name = "Smith", FirstName = "Anna", ShortName = "AS", PhoneNumber = "5557788990", Email = "asmith@mindwatch.com", Role = EmployeeRole.Employee }
+                new Employee { Id = 1, Name = "Smith", FirstName = "John", ShortName = "JSmith", Email = "john.smith@company.com", PhoneNumber = "1234567890", GithubId = "johnsmith" },
+                new Employee { Id = 2, Name = "Doe", FirstName = "Jane", ShortName = "JDoe", Email = "jane.doe@company.com", PhoneNumber = "0987654321", GithubId = "janedoe" }
             };
 
             InsertOrUpdateEntities(context, context.Employees, employees, e => e.Id);
 
-            // Teams
-            var teams = new[]
-            {
-                new Team { Id = 1, Name = "AI Development Team", SupervisorEmployeeId = 1 },
-                new Team { Id = 2, Name = "Tech Support Team", SupervisorEmployeeId = 2 }
-            };
-
-            InsertOrUpdateEntities(context, context.Teams, teams, t => t.Id);
-
             // Questionnaires
-            var questionnaires = new[]
+            var questionnaires = new List<Questionnaire>
             {
-                new Questionnaire { Id = 1, Description = "Weekly Stress Assessment" },
-                new Questionnaire { Id = 2, Description = "Monthly Team Feedback" }
+                new Questionnaire { Id = 1, Title = "Workplace Wellbeing", Description = "Survey about workplace satisfaction and stress levels", Notes = "Confidential" },
+                new Questionnaire { Id = 2, Title = "Tech Team Feedback", Description = "Feedback for improving productivity", Notes = "Internal Use Only" }
             };
 
             InsertOrUpdateEntities(context, context.Questionnaires, questionnaires, q => q.Id);
 
-            // QuestionnaireRuns
-            var questionnaireRuns = new[]
-            {
-                new QuestionnaireRun { Id = 1, QuestionnaireId = 1, CreatedAt = DateTime.UtcNow.AddDays(-15), OpenDateTime = DateTime.UtcNow.AddDays(-14), CloseDateTime = DateTime.UtcNow.AddDays(-10), EmployeeId = 3, QuestionnaireRunStatus = QuestionnaireRunStatus.Done },
-                new QuestionnaireRun { Id = 2, QuestionnaireId = 2, CreatedAt = DateTime.UtcNow.AddDays(-10), OpenDateTime = DateTime.UtcNow.AddDays(-9), CloseDateTime = DateTime.UtcNow.AddDays(-5), EmployeeId = 4, QuestionnaireRunStatus = QuestionnaireRunStatus.Done }
-            };
-
-            InsertOrUpdateEntities(context, context.QuestionnaireRuns, questionnaireRuns, qr => qr.Id);
-
             // Questions
-            var questions = new[]
+            var questions = new List<Question>
             {
-                new Question { Id = 1, QuestionnaireId = 1, QuestionText = "Rate your stress level this week (1-5).", SortOrder = 1 },
-                new Question { Id = 2, QuestionnaireId = 1, QuestionText = "Do you feel supported by your team this week?", SortOrder = 2 },
-                new Question { Id = 3, QuestionnaireId = 2, QuestionText = "What can your manager do better?", SortOrder = 1 }
+                new Question { Id = 1, QuestionnaireId = 1, QuestionText = "How satisfied are you with your job?", SortOrder = 1 },
+                new Question { Id = 2, QuestionnaireId = 1, QuestionText = "Do you feel stressed at work?", SortOrder = 2 },
+                new Question { Id = 3, QuestionnaireId = 2, QuestionText = "How can we improve team communication?", SortOrder = 1 }
             };
 
             InsertOrUpdateEntities(context, context.Questions, questions, q => q.Id);
 
-            // Answers
-            var answers = new[]
+            // Questionnaire Runs
+            var questionnaireRuns = new List<QuestionnaireRun>
             {
-                new Answer { Id = 1, QuestionId = 1, QuestionnaireRunId = 1, AnswerText = "4" },
-                new Answer { Id = 2, QuestionId = 2, QuestionnaireRunId = 1, AnswerText = "Yes, my team is great." },
-                new Answer { Id = 3, QuestionId = 3, QuestionnaireRunId = 2, AnswerText = "Provide clearer goals for the month." }
+                new QuestionnaireRun
+                {
+                    Id = 1,
+                    QuestionnaireId = 1,
+                    QuestionnaireRunStatus = QuestionnaireRunStatus.Open,
+                    CreatedAt = DateTime.UtcNow.AddDays(-7),
+                    OpenDateTime = DateTime.UtcNow.AddDays(-5),
+                    CloseDateTime = DateTime.UtcNow.AddDays(2)
+                },
+                new QuestionnaireRun
+                {
+                    Id = 2,
+                    QuestionnaireId = 2,
+                    QuestionnaireRunStatus = QuestionnaireRunStatus.Done,
+                    CreatedAt = DateTime.UtcNow.AddDays(-14),
+                    OpenDateTime = DateTime.UtcNow.AddDays(-12),
+                    CloseDateTime = DateTime.UtcNow.AddDays(-10)
+                }
+            };
+
+            InsertOrUpdateEntities(context, context.QuestionnaireRuns, questionnaireRuns, qr => qr.Id);
+
+            // Answers
+            var answers = new List<Answer>
+            {
+                new Answer { Id = 1, QuestionId = 1, QuestionnaireRunId = 1, AnswerText = "Very satisfied" },
+                new Answer { Id = 2, QuestionId = 2, QuestionnaireRunId = 1, AnswerText = "Sometimes" },
+                new Answer { Id = 3, QuestionId = 3, QuestionnaireRunId = 2, AnswerText = "More frequent team meetings" }
             };
 
             InsertOrUpdateEntities(context, context.Answers, answers, a => a.Id);
 
-            // Attendances
-            var attendances = Enumerable.Range(1, 20).Select(i => new Attendance
+            // Incidents
+            var incidents = new List<Incident>
             {
-                Id = i,
-                EmployeeId = i % 2 == 0 ? 3 : 4,
-                DurationStart = DateTime.UtcNow.AddDays(-i - 15),
-                DurationEnd = DateTime.UtcNow.AddDays(-i - 15).AddHours(8)
-            }).ToArray();
+                new Incident { Id = 1, Title = "System Outage", Description = "The database server went down.", AuthorEmail = "john.smith@company.com" },
+                new Incident { Id = 2, Title = "Late Deliverable", Description = "The latest sprint deliverable was delayed.", AuthorEmail = "jane.doe@company.com" }
+            };
 
-            InsertOrUpdateEntities(context, context.Attendances, attendances, a => a.Id);
-
-            // Commits
-            var commits = Enumerable.Range(1, 20).Select(i => new Commit
-            {
-                Id = i,
-                EmployeeId = i % 2 == 0 ? 3 : 4,
-                CommitDateTime = DateTime.UtcNow.AddDays(-i),
-                CommitSize = i * 10,
-                CommitType = i % 3 == 0 ? "Refactor" : i % 2 == 0 ? "Feature" : "Bugfix"
-            }).ToArray();
-
-            InsertOrUpdateEntities(context, context.Commits, commits, c => c.Id);
+            InsertOrUpdateEntities(context, context.Incidents, incidents, i => i.Id);
         }
 
         private static void InsertOrUpdateEntities<T>(
@@ -99,7 +92,6 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
         {
             string tableName = dbSet.EntityType.GetTableName();
 
-            // Open manual connection, because Identity Insert is only for current connection
             context.Database.OpenConnection();
             try
             {
@@ -112,12 +104,10 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
 
                     if (existingEntity == null)
                     {
-                        // Insert if not found
                         dbSet.Add(entity);
                     }
                     else
                     {
-                        // Update existing entity
                         context.Entry(existingEntity).CurrentValues.SetValues(entity);
                     }
                 }

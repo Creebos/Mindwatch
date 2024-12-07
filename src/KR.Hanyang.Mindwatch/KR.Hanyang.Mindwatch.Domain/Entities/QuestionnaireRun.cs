@@ -11,8 +11,6 @@ namespace KR.Hanyang.Mindwatch.Domain.Entities
         public int Id { get; set; }
         public int QuestionnaireId { get; set; }
         public Questionnaire? Questionnaire { get; set; }
-        public int EmployeeId { get; set; }
-        public Employee? Employee { get; set; }
         public QuestionnaireRunStatus QuestionnaireRunStatus { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime OpenDateTime { get; set; }
