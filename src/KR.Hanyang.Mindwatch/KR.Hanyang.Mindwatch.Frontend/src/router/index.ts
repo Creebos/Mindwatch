@@ -11,7 +11,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/questionnaires/:id/fill",
+    path: "/questionnaires/fill/:id",
     component: FillQuestionnaire,
     props: true,
   },

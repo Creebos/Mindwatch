@@ -57,8 +57,16 @@
       </div>
     </div>
 
-    <QuestionCreateEdit :questionnaire-id="questionnaire?.id" :question="selectedQuestion" ref="questionDialog" />
-    <QuestionnaireRunCreate ref="runDialog" />
+    <div>
+      <QuestionCreateEdit
+        :questionnaire-id="questionnaire?.id || 0"
+        :question="selectedQuestion"
+        ref="questionDialog"
+      />
+    </div>
+    <div>
+      <QuestionnaireRunCreate :questionnaire-id="questionnaire?.id || 0" ref="runDialog" />
+    </div>
   </div>
 </template>
 
