@@ -5,7 +5,7 @@ import apiClient from "./http";
 export const EmployeeAPI = {
   async getAllEmployees(): Promise<Employee[]> {
     const response = await apiClient.get("/employees");
-    return response.data.$values as Employee[];
+    return response.data as Employee[];
   },
 
   async getEmployeeById(id: number): Promise<Employee> {

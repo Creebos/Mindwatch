@@ -41,7 +41,7 @@ export default defineComponent({
     const fetchQuestions = async () => {
       try {
         const response = await QuestionnaireAPI.getQuestionnaireRunById(questionnaireId);
-        questions.value = ((response.questionnaire.questions as any).$values || []) as Question[];
+        questions.value = (response.questionnaire.questions || []) as Question[];
       } catch (error) {
         console.error("Failed to fetch questions:", error);
       }

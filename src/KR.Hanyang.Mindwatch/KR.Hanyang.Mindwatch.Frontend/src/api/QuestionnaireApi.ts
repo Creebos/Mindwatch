@@ -7,7 +7,7 @@ import apiClient from "./http";
 export const QuestionnaireAPI = {
   async getAllQuestionnaires(): Promise<Questionnaire[]> {
     const response = await apiClient.get("/questionnaires");
-    return response.data.$values as Questionnaire[];
+    return response.data as Questionnaire[];
   },
 
   async getQuestionnaireById(id: number): Promise<Questionnaire> {

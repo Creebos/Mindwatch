@@ -75,7 +75,7 @@ export default defineComponent({
 
       try {
         const employeeData = await EmployeeAPI.getEmployeeById(employee.id);
-        this.questionnaireRuns = (employeeData.questionnaireRuns as any).$values || [];
+        this.questionnaireRuns = employeeData.questionnaireRuns || [];
 
         // Fetch detailed questionnaire data for each QuestionnaireRun
         for (const run of this.questionnaireRuns) {
