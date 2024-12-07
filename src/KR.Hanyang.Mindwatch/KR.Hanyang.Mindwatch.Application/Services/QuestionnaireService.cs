@@ -70,7 +70,9 @@ namespace KR.Hanyang.Mindwatch.Application.Services
                 return OperationResult<Answer>.Invalid(validationErrors);
             }
 
-            if (answer.Id == 0)
+            Answer? currentAnswer = (await _repository.FindByPredicateAsync<Answer>(f => f.QuestionnaireRunId == answer.QuestionnaireRunId && f.QuestionId == answer.QuestionId)).FirstOrDefault();
+
+            if (currentAnswer == null)
             {
                 await _repository.InsertAsync(answer);
                 _logger.LogInformation("Inserted new answer.");
@@ -79,13 +81,6 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             }
             else
             {
-                var currentAnswer = await _repository.FindByIdAsync<Answer>(answer.Id);
-                if (currentAnswer == null)
-                {
-                    _logger.LogWarning("Answer not found with ID: {AnswerId}", answer.Id);
-                    return OperationResult<Answer>.NotFound();
-                }
-
                 currentAnswer.AnswerText = answer.AnswerText;
 
                 await _repository.UpdateAsync(currentAnswer);
@@ -141,7 +136,9 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             _logger.LogInformation("Updating or inserting questionnaire.");
 
             var validationErrors = new List<string>();
+            if (string.IsNullOrEmpty(questionnaire.Title)) validationErrors.Add("Title is required.");
             if (string.IsNullOrEmpty(questionnaire.Description)) validationErrors.Add("Description is required.");
+            if (string.IsNullOrEmpty(questionnaire.Notes)) validationErrors.Add("Notes is required.");
 
             if (validationErrors.Count > 0)
             {
@@ -165,7 +162,9 @@ namespace KR.Hanyang.Mindwatch.Application.Services
                     return OperationResult<Questionnaire>.NotFound();
                 }
 
+                currentQuestionnaire.Title = questionnaire.Title;
                 currentQuestionnaire.Description = questionnaire.Description;
+                currentQuestionnaire.Notes = questionnaire.Notes;
 
                 await _repository.UpdateAsync(currentQuestionnaire);
                 _logger.LogInformation("Updated existing questionnaire.");

@@ -6,15 +6,19 @@
     <!-- Notes and Description Section -->
     <div class="row mb-4">
       <!-- Notes -->
-      <div class="col-md-6">
+      <div class="col-md-5">
         <h5 class="text-secondary">Notes</h5>
         <p>{{ questionnaire?.notes }}</p>
       </div>
 
       <!-- Description -->
-      <div class="col-md-6">
+      <div class="col-md-5">
         <h5 class="text-secondary">Description</h5>
         <p>{{ questionnaire?.description }}</p>
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-success" @click="openQuestionnaireDialog"><i class="bi bi-plus-circle"></i> Edit</button>
       </div>
     </div>
 
@@ -57,16 +61,9 @@
       </div>
     </div>
 
-    <div>
-      <QuestionCreateEdit
-        :questionnaire-id="questionnaire?.id || 0"
-        :question="selectedQuestion"
-        ref="questionDialog"
-      />
-    </div>
-    <div>
-      <QuestionnaireRunCreate :questionnaire-id="questionnaire?.id || 0" ref="runDialog" />
-    </div>
+    <QuestionCreateEdit :questionnaire-id="questionnaireId" :question="selectedQuestion" ref="questionDialog" />
+    <QuestionnaireRunCreate :questionnaire-id="questionnaireId" ref="runDialog" />
+    <QuestionnaireCreateEdit :questionnaire-id="questionnaireId" ref="questionnaireModal" />
   </div>
 </template>
 
@@ -76,6 +73,7 @@ import { computed, defineComponent, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { QuestionnaireAPI } from "../api/QuestionnaireApi";
 import QuestionCreateEdit from "../components/QuestionCreateEdit.vue";
+import QuestionnaireCreateEdit from "../components/QuestionnaireCreateEdit.vue";
 import QuestionnaireRunCreate from "../components/QuestionnaireRunCreate.vue";
 import { Question, Questionnaire, QuestionnaireRunStatus } from "../models/models";
 
@@ -84,6 +82,7 @@ export default defineComponent({
   components: {
     QuestionCreateEdit,
     QuestionnaireRunCreate,
+    QuestionnaireCreateEdit,
   },
   setup() {
     const route = useRoute();
@@ -116,12 +115,18 @@ export default defineComponent({
       modal.show();
     };
 
+    const openQuestionnaireDialog = () => {
+      const modal = new bootstrap.Modal(document.getElementById("questionnaireModal") as HTMLElement);
+      modal.show();
+    };
+
     onMounted(() => {
       fetchQuestionnaire();
 
       // Add event listeners for modal close
       const questionDialog = document.getElementById("questionDialog");
       const runDialog = document.getElementById("runDialog");
+      const questionnaireDialog = document.getElementById("questionnaireModal");
 
       if (questionDialog) {
         questionDialog.addEventListener("hidden.bs.modal", () => {
@@ -134,14 +139,22 @@ export default defineComponent({
           location.reload(); // Reload the page
         });
       }
+
+      if (questionnaireDialog) {
+        questionnaireDialog.addEventListener("hidden.bs.modal", () => {
+          location.reload(); // Reload the page
+        });
+      }
     });
 
     return {
+      questionnaireId,
       questionnaire,
       sortedQuestions,
       selectedQuestion,
       navigateToRun,
       openRunDialog,
+      openQuestionnaireDialog,
       openQuestionDialog,
       QuestionnaireRunStatus,
     };

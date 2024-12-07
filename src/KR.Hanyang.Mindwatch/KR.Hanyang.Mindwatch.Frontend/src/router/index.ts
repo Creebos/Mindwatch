@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import FillQuestionnaire from "../pages/FillQuestionnaire.vue";
 import QuestionnaireDetail from "../pages/QuestionnaireDetail.vue";
+import QuestionnaireRunDetail from "../pages/QuestionnaireRunDetail.vue";
 import Questionnaires from "../pages/Questionnaires.vue";
 
 const routes = [
@@ -8,6 +9,11 @@ const routes = [
   {
     path: "/questionnaires/:id",
     component: QuestionnaireDetail,
+    props: true,
+  },
+  {
+    path: "/questionnaires/:idold/run/:id",
+    component: QuestionnaireRunDetail,
     props: true,
   },
   {

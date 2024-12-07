@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div class="card shadow p-4" style="max-width: 600px; width: 100%">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card shadow p-4" style="max-width: 600px; width: 100%; margin-top: 32px">
       <!-- Display the Questionnaire Infos -->
       <div v-if="starting">
         <h1 class="text-center text-primary">{{ questionnaire?.questionnaire?.title }}</h1>
