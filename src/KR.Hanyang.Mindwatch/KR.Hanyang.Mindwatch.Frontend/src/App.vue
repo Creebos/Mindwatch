@@ -1,17 +1,29 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
+  <div class="app d-flex flex-column min-vh-100">
+    <Header />
 
-  <router-view />
+    <!-- Main Content -->
+    <main class="flex-grow-1">
+      <router-view />
+    </main>
+
+    <Footer />
+  </div>
 </template>
+
+<script>
+import Footer from "./components/Footer.vue";
+import Header from "./components/Header.vue";
+
+export default {
+  components: {
+    Header,
+    Footer,
+  },
+};
+</script>
 
 <style scoped>
 .logo {

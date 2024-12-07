@@ -11,5 +11,5 @@ namespace KR.Hanyang.Mindwatch.Domain.Entities
         Open = 1,
         InProgress = 2,
         Done = 3
-    }
+    }   
 }

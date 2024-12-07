@@ -22,7 +22,7 @@ namespace KR.Hanyang.Mindwatch.Application.Services
         {
             _logger.LogInformation("Fetching all questionnaires.");
 
-            var questionnaires = await _repository.FindAllAsync<Questionnaire>();
+            var questionnaires = await _repository.GetAllQuestionnaires();
 
             return OperationResult<IEnumerable<Questionnaire>>.Success(questionnaires);
         }

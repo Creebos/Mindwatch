@@ -13,6 +13,14 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
+        public async Task<IEnumerable<Questionnaire>> GetAllQuestionnaires()
+        {
+            return await _context.Set<Questionnaire>()
+                .Include(e => e.Questions)
+                .Include(e => e.QuestionnaireRuns)
+                .ToListAsync();
+        }
+
         public async Task<QuestionnaireRun?> GetQuestionnaireRunWithDetailsById(int id)
         {
             return await _context.Set<QuestionnaireRun>()

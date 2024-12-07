@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
-import EmployeeDetail from "../pages/EmployeeDetail.vue";
-import EmployeeHome from "../pages/EmployeeHome.vue";
-import QuestionnaireRun from "../pages/QuestionnaireRun.vue";
+import FillQuestionnaire from "../pages/FillQuestionnaire.vue";
+import QuestionnaireDetail from "../pages/QuestionnaireDetail.vue";
+import Questionnaires from "../pages/Questionnaires.vue";
 
 const routes = [
-  { path: "/home", name: "Employee Home", component: EmployeeHome },
-  { path: "/employees", name: "Employee Overview", component: EmployeeDetail },
+  { path: "/questionnaires", component: Questionnaires },
   {
-    path: "/questionnaire-run/:id",
-    component: QuestionnaireRun,
+    path: "/questionnaires/:id",
+    component: QuestionnaireDetail,
+    props: true,
+  },
+  {
+    path: "/questionnaires/:id/fill",
+    component: FillQuestionnaire,
     props: true,
   },
 ];
