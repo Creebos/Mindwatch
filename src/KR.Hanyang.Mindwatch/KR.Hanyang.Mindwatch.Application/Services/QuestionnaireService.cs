@@ -180,7 +180,6 @@ namespace KR.Hanyang.Mindwatch.Application.Services
 
             var validationErrors = new List<string>();
             if (questionnaireRun.QuestionnaireId <= 0) validationErrors.Add("Valid Questionnaire ID is required.");
-            if (questionnaireRun.EmployeeId <= 0) validationErrors.Add("Valid Employee ID is required.");
 
             if (validationErrors.Count > 0)
             {

@@ -30,7 +30,6 @@
   - Includes Questionnaire
     - Includes Questions
   - Includes Answers
-  - Includes Result
 
 - GET QuestionnaireRunResult (by QuestionnaireRunId)
 

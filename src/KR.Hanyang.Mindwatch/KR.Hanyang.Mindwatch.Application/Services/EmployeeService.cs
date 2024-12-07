@@ -30,7 +30,7 @@ namespace KR.Hanyang.Mindwatch.Application.Services
         {
             _logger.LogInformation("Fetching employee with details by ID: {EmployeeId}", id);
 
-            var employee = await _repository.GetEmployeeWithDetailsByIdAsync(id);
+            var employee = await _repository.FindByIdAsync<Employee>(id);
             if (employee == null)
             {
                 _logger.LogWarning("Employee not found with ID: {EmployeeId}", id);

@@ -4,7 +4,6 @@ namespace KR.Hanyang.Mindwatch.Domain.Interfaces
 {
     public interface IMindwatchRepository : IGenericRepository
     {
-        Task<Employee?> GetEmployeeWithDetailsByIdAsync(int id);
         Task<QuestionnaireRun?> GetQuestionnaireRunWithDetailsById(int id);
         Task<Questionnaire?> GetQuestionnaireWithDetailsByIdAsync(int id);
     }
