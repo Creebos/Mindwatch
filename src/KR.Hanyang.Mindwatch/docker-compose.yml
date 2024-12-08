@@ -1,5 +1,3 @@
-name: Mindwatch Project
-
 services:
   # Web Backend API
   kr.hanyang.mindwatch.api:
@@ -44,6 +42,15 @@ services:
       - /app/node_modules
     depends_on:
       - kr.hanyang.mindwatch.api
+
+  # Ml Service
+  kr.hanyang.mindwatch.mlservice:
+    container_name: Mindwatch-MlService
+    build:
+      context: Kr.Hanyang.Mindwatch.MlService
+      dockerfile: Dockerfile
+    ports:
+      - "5174:5174"
 
 networks:
   database:
