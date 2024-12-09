@@ -10,9 +10,11 @@ services:
       - "8081:8081"
       - "8080:8080"
     depends_on:
+      - kr.hanyang.mindwatch.mlservice
       - database
     networks:
       - database
+      - mlservice
 
   # SQL Server 2022
   database:
@@ -51,9 +53,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5174:5174"
+    networks:
+      - mlservice
 
 networks:
   database:
+    driver: bridge
+  mlservice:
     driver: bridge
 
 volumes:

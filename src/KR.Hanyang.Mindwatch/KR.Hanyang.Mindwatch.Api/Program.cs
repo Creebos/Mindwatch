@@ -1,6 +1,7 @@
 
 using KR.Hanyang.Mindwatch.Application;
 using KR.Hanyang.Mindwatch.Infrastructure.Persistence;
+using KR.Hanyang.Mindwatch.Infrastructure.MlService;
 using Microsoft.EntityFrameworkCore;
 
 namespace KR.Hanyang.Mindwatch.Api
@@ -20,6 +21,7 @@ namespace KR.Hanyang.Mindwatch.Api
 
             // Application Services
             builder.Services.AddApplicationServices();
+            builder.Services.AddMlServices(builder.Configuration);
 
             // Infrastructure stuff
             builder.Services.AddPersistanceServices(builder.Configuration);

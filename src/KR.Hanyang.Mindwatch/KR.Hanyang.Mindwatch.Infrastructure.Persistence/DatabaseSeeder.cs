@@ -67,9 +67,9 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence
             // Answers
             var answers = new List<Answer>
             {
-                new Answer { Id = 1, QuestionId = 1, QuestionnaireRunId = 1, AnswerText = "Very satisfied" },
-                new Answer { Id = 2, QuestionId = 2, QuestionnaireRunId = 1, AnswerText = "Sometimes" },
-                new Answer { Id = 3, QuestionId = 3, QuestionnaireRunId = 2, AnswerText = "More frequent team meetings" }
+                new Answer { Id = 1, QuestionId = 1, QuestionnaireRunId = 1, AnswerText = "Very satisfied", Prediction = "Depression" },
+                new Answer { Id = 2, QuestionId = 2, QuestionnaireRunId = 1, AnswerText = "Sometimes", Prediction = "Depression" },
+                new Answer { Id = 3, QuestionId = 3, QuestionnaireRunId = 2, AnswerText = "More frequent team meetings", Prediction = "Depression" }
             };
 
             InsertOrUpdateEntities(context, context.Answers, answers, a => a.Id);

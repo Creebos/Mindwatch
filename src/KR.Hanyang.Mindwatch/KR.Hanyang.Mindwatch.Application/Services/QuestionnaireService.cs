@@ -2,6 +2,7 @@
 using KR.Hanyang.Mindwatch.Application.Results;
 using KR.Hanyang.Mindwatch.Domain.Entities;
 using KR.Hanyang.Mindwatch.Domain.Interfaces;
+using KR.Hanyang.Mindwatch.Domain.MlService;
 using Microsoft.Extensions.Logging;
 using System.Security;
 
@@ -11,11 +12,13 @@ namespace KR.Hanyang.Mindwatch.Application.Services
     {
         private readonly ILogger<QuestionnaireService> _logger;
         private readonly IMindwatchRepository _repository;
+        private readonly IMlService _mlService;
 
-        public QuestionnaireService(ILogger<QuestionnaireService> logger, IMindwatchRepository repository)
+        public QuestionnaireService(ILogger<QuestionnaireService> logger, IMindwatchRepository repository, IMlService mlService)
         {
             _logger = logger;
             _repository = repository;
+            _mlService = mlService;
         }
 
         public async Task<OperationResult<IEnumerable<Questionnaire>>> GetAllQuestionnaires()
@@ -71,9 +74,12 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             }
 
             Answer? currentAnswer = (await _repository.FindByPredicateAsync<Answer>(f => f.QuestionnaireRunId == answer.QuestionnaireRunId && f.QuestionId == answer.QuestionId)).FirstOrDefault();
+            MlServiceOutput prediction = await _mlService.PredictAsync(new MlServiceInput { Text = answer.AnswerText ?? "" });
 
             if (currentAnswer == null)
             {
+                answer.Prediction = prediction.Prediction;
+
                 await _repository.InsertAsync(answer);
                 _logger.LogInformation("Inserted new answer.");
 
@@ -81,7 +87,8 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             }
             else
             {
-                currentAnswer.AnswerText = answer.AnswerText;
+                currentAnswer.AnswerText = answer.AnswerText ?? "";
+                currentAnswer.Prediction = prediction.Prediction;
 
                 await _repository.UpdateAsync(currentAnswer);
                 _logger.LogInformation("Updated existing answer.");

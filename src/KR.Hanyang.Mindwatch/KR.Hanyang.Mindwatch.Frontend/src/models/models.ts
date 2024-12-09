@@ -5,6 +5,7 @@ export interface Answer {
   questionnaireRunId: number;
   questionnaireRun?: QuestionnaireRun;
   answerText: string;
+  prediction: string;
 }
 
 export interface Employee {
