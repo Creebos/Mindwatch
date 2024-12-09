@@ -1,0 +1,7 @@
+{
+  "name": "Mindwatch",
+  "dockerComposeFile": ["../src/KR.Hanyang.Mindwatch/docker-compose.yml"],
+  "service": "mindwatch-compose",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [8081, 5173]
+}
