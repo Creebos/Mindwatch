@@ -26,20 +26,11 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             return OperationResult<IEnumerable<Employee>>.Success(employees);
         }
 
-        public async Task<OperationResult<IEnumerable<Team>>> GetAllTeams()
-        {
-            _logger.LogInformation("Fetching all teams.");
-
-            var teams = await _repository.FindAllAsync<Team>();
-
-            return OperationResult<IEnumerable<Team>>.Success(teams);
-        }
-
         public async Task<OperationResult<Employee>> GetEmployeeById(int id)
         {
             _logger.LogInformation("Fetching employee with details by ID: {EmployeeId}", id);
 
-            var employee = await _repository.GetEmployeeWithDetailsByIdAsync(id);
+            var employee = await _repository.FindByIdAsync<Employee>(id);
             if (employee == null)
             {
                 _logger.LogWarning("Employee not found with ID: {EmployeeId}", id);
@@ -48,30 +39,6 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             }
 
             return OperationResult<Employee>.Success(employee);
-        }
-
-        public async Task<OperationResult<IEnumerable<Team>>> GetSupervisedTeamsByEmployeeId(int id)
-        {
-            _logger.LogInformation("Fetching supervised teams for employee ID: {EmployeeId}", id);
-
-            var teams = await _repository.FindByPredicateAsync<Team>(t => t.SupervisorEmployeeId == id);
-
-            return OperationResult<IEnumerable<Team>>.Success(teams);
-        }
-
-        public async Task<OperationResult<Team>> GetTeamById(int id)
-        {
-            _logger.LogInformation("Fetching team with details by ID: {TeamId}", id);
-
-            var team = await _repository.GetTeamWithDetailsByIdAsync(id);
-            if (team == null)
-            {
-                _logger.LogWarning("Team not found with ID: {TeamId}", id);
-
-                return OperationResult<Team>.NotFound();
-            }
-
-            return OperationResult<Team>.Success(team);
         }
 
         public async Task<OperationResult<Employee>> UpdateOrInsertEmployee(Employee employee)
@@ -84,7 +51,6 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             if (string.IsNullOrEmpty(employee.ShortName)) validationErrors.Add("Short Name is required.");
             if (string.IsNullOrEmpty(employee.Email)) validationErrors.Add("Email is required.");
             if (string.IsNullOrEmpty(employee.PhoneNumber)) validationErrors.Add("Phone Number is required.");
-            if (employee.Role == 0) validationErrors.Add("Role is required.");
 
             if (validationErrors.Count > 0)
             {
@@ -115,56 +81,11 @@ namespace KR.Hanyang.Mindwatch.Application.Services
                 existingEmployee.ShortName = employee.ShortName;
                 existingEmployee.Email = employee.Email;
                 existingEmployee.PhoneNumber = employee.PhoneNumber;
-                existingEmployee.Role = employee.Role;
-                existingEmployee.TeamId = employee.TeamId;
 
                 await _repository.UpdateAsync(existingEmployee);
                 _logger.LogInformation("Updated existing employee: {EmployeeId}", employee.Id);
 
                 return OperationResult<Employee>.Success(existingEmployee);
-            }
-        }
-
-        public async Task<OperationResult<Team>> UpdateOrInsertTeam(Team team)
-        {
-            _logger.LogInformation("Updating or inserting team: {TeamId}", team.Id);
-
-            var validationErrors = new List<string>();
-
-            if (string.IsNullOrEmpty(team.Name)) validationErrors.Add("Team Name is required.");
-            if (team.SupervisorEmployeeId == 0) validationErrors.Add("Supervisor Employee ID is required.");
-
-            if (validationErrors.Count > 0)
-            {
-                _logger.LogWarning("Validation failed for team: {TeamId}", team.Id);
-                return OperationResult<Team>.Invalid(validationErrors);
-            }
-
-            if (team.Id == 0)
-            {
-                await _repository.InsertAsync(team);
-                _logger.LogInformation("Inserted new team: {TeamId}", team.Id);
-
-                return OperationResult<Team>.Success(team);
-            }
-            else
-            {
-                // Fetch the existing team from the database
-                var existingTeam = await _repository.FindByIdAsync<Team>(team.Id);
-                if (existingTeam == null)
-                {
-                    _logger.LogWarning("Team not found with ID: {TeamId}", team.Id);
-                    return OperationResult<Team>.NotFound();
-                }
-
-                // Update only specific fields; ignore collections
-                existingTeam.Name = team.Name;
-                existingTeam.SupervisorEmployeeId = team.SupervisorEmployeeId;
-
-                await _repository.UpdateAsync(existingTeam);
-                _logger.LogInformation("Updated existing team: {TeamId}", team.Id);
-
-                return OperationResult<Team>.Success(existingTeam);
             }
         }
     }

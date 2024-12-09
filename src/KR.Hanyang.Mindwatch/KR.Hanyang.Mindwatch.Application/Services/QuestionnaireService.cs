@@ -2,6 +2,7 @@
 using KR.Hanyang.Mindwatch.Application.Results;
 using KR.Hanyang.Mindwatch.Domain.Entities;
 using KR.Hanyang.Mindwatch.Domain.Interfaces;
+using KR.Hanyang.Mindwatch.Domain.MlService;
 using Microsoft.Extensions.Logging;
 using System.Security;
 
@@ -11,18 +12,20 @@ namespace KR.Hanyang.Mindwatch.Application.Services
     {
         private readonly ILogger<QuestionnaireService> _logger;
         private readonly IMindwatchRepository _repository;
+        private readonly IMlService _mlService;
 
-        public QuestionnaireService(ILogger<QuestionnaireService> logger, IMindwatchRepository repository)
+        public QuestionnaireService(ILogger<QuestionnaireService> logger, IMindwatchRepository repository, IMlService mlService)
         {
             _logger = logger;
             _repository = repository;
+            _mlService = mlService;
         }
 
         public async Task<OperationResult<IEnumerable<Questionnaire>>> GetAllQuestionnaires()
         {
             _logger.LogInformation("Fetching all questionnaires.");
 
-            var questionnaires = await _repository.FindAllAsync<Questionnaire>();
+            var questionnaires = await _repository.GetAllQuestionnaires();
 
             return OperationResult<IEnumerable<Questionnaire>>.Success(questionnaires);
         }
@@ -70,8 +73,13 @@ namespace KR.Hanyang.Mindwatch.Application.Services
                 return OperationResult<Answer>.Invalid(validationErrors);
             }
 
-            if (answer.Id == 0)
+            Answer? currentAnswer = (await _repository.FindByPredicateAsync<Answer>(f => f.QuestionnaireRunId == answer.QuestionnaireRunId && f.QuestionId == answer.QuestionId)).FirstOrDefault();
+            MlServiceOutput prediction = await _mlService.PredictAsync(new MlServiceInput { Text = answer.AnswerText ?? "" });
+
+            if (currentAnswer == null)
             {
+                answer.Prediction = prediction.Prediction;
+
                 await _repository.InsertAsync(answer);
                 _logger.LogInformation("Inserted new answer.");
 
@@ -79,14 +87,8 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             }
             else
             {
-                var currentAnswer = await _repository.FindByIdAsync<Answer>(answer.Id);
-                if (currentAnswer == null)
-                {
-                    _logger.LogWarning("Answer not found with ID: {AnswerId}", answer.Id);
-                    return OperationResult<Answer>.NotFound();
-                }
-
-                currentAnswer.AnswerText = answer.AnswerText;
+                currentAnswer.AnswerText = answer.AnswerText ?? "";
+                currentAnswer.Prediction = prediction.Prediction;
 
                 await _repository.UpdateAsync(currentAnswer);
                 _logger.LogInformation("Updated existing answer.");
@@ -141,7 +143,9 @@ namespace KR.Hanyang.Mindwatch.Application.Services
             _logger.LogInformation("Updating or inserting questionnaire.");
 
             var validationErrors = new List<string>();
+            if (string.IsNullOrEmpty(questionnaire.Title)) validationErrors.Add("Title is required.");
             if (string.IsNullOrEmpty(questionnaire.Description)) validationErrors.Add("Description is required.");
+            if (string.IsNullOrEmpty(questionnaire.Notes)) validationErrors.Add("Notes is required.");
 
             if (validationErrors.Count > 0)
             {
@@ -165,7 +169,9 @@ namespace KR.Hanyang.Mindwatch.Application.Services
                     return OperationResult<Questionnaire>.NotFound();
                 }
 
+                currentQuestionnaire.Title = questionnaire.Title;
                 currentQuestionnaire.Description = questionnaire.Description;
+                currentQuestionnaire.Notes = questionnaire.Notes;
 
                 await _repository.UpdateAsync(currentQuestionnaire);
                 _logger.LogInformation("Updated existing questionnaire.");
@@ -180,7 +186,6 @@ namespace KR.Hanyang.Mindwatch.Application.Services
 
             var validationErrors = new List<string>();
             if (questionnaireRun.QuestionnaireId <= 0) validationErrors.Add("Valid Questionnaire ID is required.");
-            if (questionnaireRun.EmployeeId <= 0) validationErrors.Add("Valid Employee ID is required.");
 
             if (validationErrors.Count > 0)
             {

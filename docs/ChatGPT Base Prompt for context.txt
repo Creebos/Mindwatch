@@ -4,7 +4,7 @@ I am currently doing a Project for my university, where I implement a Web Applic
 
 The Application has a backend with ASP.NET Core 8 with RESTful API, I use OpenAPI Swagger. The architecture is onion architecture and I am trying to fulfill the common .NET Core Microservice Principles. My Backend stores its data in a SQL Database, the Communication is done with Entity Framework Core, code-first principle. 
 
-The Applications Frontend is made with Vue js, with Typescript. 
+The Applications Frontend is made with Vue js, with Typescript. Its design is made with bootstrap 
 
 The whole Application is run on Docker, I have 4 docker containers, for the SQL Databse Server 2022, the .NET Core API and the Frontend aswell as a docker container for the AI Model. 
 

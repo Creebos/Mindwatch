@@ -1,5 +1,4 @@
-import { Employee } from "../models/Employee";
-import { Team } from "../models/Team";
+import { Employee } from "../models/models";
 import apiClient from "./http";
 
 export const EmployeeAPI = {
@@ -16,10 +15,5 @@ export const EmployeeAPI = {
   async createEmployee(employee: Employee): Promise<Employee> {
     const response = await apiClient.post("/employees", employee);
     return response.data as Employee;
-  },
-
-  async getSupervisedTeamsByEmployeeId(id: number): Promise<Team[]> {
-    const response = await apiClient.get(`/employees/${id}/supervised-teams`);
-    return response.data as Team[];
   },
 };

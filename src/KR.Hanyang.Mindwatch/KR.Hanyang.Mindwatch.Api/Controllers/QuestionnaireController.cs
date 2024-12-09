@@ -58,6 +58,18 @@ namespace KR.Hanyang.Mindwatch.Api.Controllers
             return this.ToActionResult(result);
         }
 
+        [HttpGet("questionnaire-runs/{id}/result")]
+        public async Task<IActionResult> GetQuestionnaireRunResultById(int id)
+        {
+            _logger.LogInformation("Fetching questionnaire run by ID: {Id}", id);
+
+            var result = await _service.GetQuestionaireRunById(id);
+
+            return Ok(new { result.ResultValue, ResultText = "Die Analyse war super erfolgreich." });
+
+            //return this.ToActionResult(result);
+        }
+
         [HttpPost("questionnaire-runs")]
         public async Task<IActionResult> InsertOrUpdateQuestionnaireRun([FromBody] QuestionnaireRun questionnaireRun)
         {

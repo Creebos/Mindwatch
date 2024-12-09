@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWatch - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">MindWatch</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/survey">Survey</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+    </nav>
+
+    <!-- Results Header -->
+    <header class="survey-header">
+        <h1>Survey Results by Department</h1>
+        <p>Analyze department-specific insights and trends below.</p>
+    </header>
+
+    <!-- Results Container -->
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        {% for department, results in grouped_results.items() %}
+        <div style="background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #1E3A8A; font-size: 1.5rem; margin-bottom: 10px;">{{ department }}</h2>
+            <p style="color: #777; font-size: 0.9rem; margin-bottom: 20px;">Department Performance Overview</p>
+            
+            <!-- Chart Section -->
+            <div style="text-align: center; margin: 0 auto; max-width: 600px;">
+                <canvas id="chart-{{ loop.index }}"></canvas>
+            </div>
+
+            <!-- Insights Section -->
+            <div style="margin-top: 20px; background-color: #f9f9f9; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <h3 style="color: #333; font-size: 1.2rem; margin-bottom: 10px;">Insights:</h3>
+                <p style="font-size: 1rem; color: #555; line-height: 1.5;">
+                    {% if results.Suicidal > 0 %}
+                        There are serious mental health concerns in this department. Immediate intervention is recommended.
+                    {% elif results.Stress > 50 %}
+                        High levels of stress are reported. Encourage breaks and provide mental health support resources.
+                    {% elif results.Anxiety > 40 %}
+                        Anxiety symptoms are prevalent. Consider offering workshops on stress management.
+                    {% elif results.Depression > 30 %}
+                        Signs of depression are noted. Promoting open communication and resources could help.
+                    {% elif results['Bi-Polar'] > 20 %}
+                        Indications of bipolar tendencies. Professional guidance could provide valuable insights.
+                    {% elif results['Personality Disorder'] > 20 %}
+                        Personality challenges detected. Counseling services may be helpful.
+                    {% else %}
+                        Overall, the department shows stable mental health conditions. Continue fostering a supportive environment.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 MindWatch | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Übergabe der JSON-Daten aus dem Backend an JavaScript
+        const groupedResults = JSON.parse('{{ grouped_results | tojson | safe }}');
+
+        Object.entries(groupedResults).forEach(([department, results], index) => {
+            const ctx = document.getElementById(`chart-${index + 1}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Normal', 'Depression', 'Suicidal', 'Anxiety', 'Stress', 'Bi-Polar', 'Personality Disorder'],
+                    datasets: [{
+                        label: 'Emotional States',
+                        data: [
+                            results.Normal || 0,
+                            results.Depression || 0,
+                            results.Suicidal || 0,
+                            results.Anxiety || 0,
+                            results.Stress || 0,
+                            results['Bi-Polar'] || 0,
+                            results['Personality Disorder'] || 0
+                        ],
+                        backgroundColor: ['#4CAF50', '#FF9800', '#F44336', '#03A9F4', '#FF9800', '#9C27B0', '#3F51B5']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    },
+                    plugins: {
+                        legend: { position: 'top' }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

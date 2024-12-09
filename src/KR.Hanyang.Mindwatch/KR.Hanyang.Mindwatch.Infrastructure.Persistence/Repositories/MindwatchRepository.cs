@@ -13,14 +13,12 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public async Task<Employee?> GetEmployeeWithDetailsByIdAsync(int id)
+        public async Task<IEnumerable<Questionnaire>> GetAllQuestionnaires()
         {
-            return await _context.Set<Employee>()
-                .Include(e => e.Team)
-                .Include(e => e.Attendances)
+            return await _context.Set<Questionnaire>()
+                .Include(e => e.Questions)
                 .Include(e => e.QuestionnaireRuns)
-                .Include(e => e.Commits)
-                .FirstOrDefaultAsync(e => e.Id == id);
+                .ToListAsync();
         }
 
         public async Task<QuestionnaireRun?> GetQuestionnaireRunWithDetailsById(int id)
@@ -38,14 +36,6 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Repositories
                 .Include(e => e.Questions)
                 .Include(r => r.QuestionnaireRuns)
                 .FirstOrDefaultAsync(e => e.Id == id);
-        }
-
-        public async Task<Team?> GetTeamWithDetailsByIdAsync(int id)
-        {
-            return await _context.Set<Team>()
-                .Include(t => t.SupervisorEmployee)
-                .Include(t => t.Employees)
-                .FirstOrDefaultAsync(t => t.Id == id);
         }
     }
 }

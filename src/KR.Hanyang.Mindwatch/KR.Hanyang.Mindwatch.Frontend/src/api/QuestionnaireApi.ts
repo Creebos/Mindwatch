@@ -1,7 +1,4 @@
-import { Answer } from "../models/Answer";
-import { Question } from "../models/Question";
-import { Questionnaire } from "../models/Questionnaire";
-import { QuestionnaireRun } from "../models/QuestionnaireRun";
+import { Answer, Question, Questionnaire, QuestionnaireRun } from "../models/models";
 import apiClient from "./http";
 
 export const QuestionnaireAPI = {
@@ -25,7 +22,7 @@ export const QuestionnaireAPI = {
     return response.data as QuestionnaireRun;
   },
 
-  async createQuestionnaireRun(run: QuestionnaireRun): Promise<QuestionnaireRun> {
+  async createOrUpdateQuestionnaireRun(run: QuestionnaireRun): Promise<QuestionnaireRun> {
     const response = await apiClient.post("/questionnaires/questionnaire-runs", run);
     return response.data as QuestionnaireRun;
   },
@@ -35,7 +32,7 @@ export const QuestionnaireAPI = {
     return response.data as Answer;
   },
 
-  async addQuestion(question: Question): Promise<Question> {
+  async CreateOrUpdateQuestion(question: Question): Promise<Question> {
     const response = await apiClient.post("/questionnaires/questions", question);
     return response.data as Question;
   },

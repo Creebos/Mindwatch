@@ -48,45 +48,5 @@ namespace KR.Hanyang.Mindwatch.Api.Controllers
 
             return this.ToActionResult(result);
         }
-
-        [HttpGet("{id}/supervised-teams")]
-        public async Task<IActionResult> GetSupervisedTeamsByEmployeeId(int id)
-        {
-            _logger.LogInformation("Fetching supervised teams for employee ID: {EmployeeId}", id);
-
-            var result = await _service.GetSupervisedTeamsByEmployeeId(id);
-
-            return this.ToActionResult(result);
-        }
-
-        [HttpGet("/teams")]
-        public async Task<IActionResult> GetAllTeams()
-        {
-            _logger.LogInformation("Fetching all teams.");
-
-            var result = await _service.GetAllTeams();
-
-            return this.ToActionResult(result);
-        }
-
-        [HttpGet("/teams/{id}")]
-        public async Task<IActionResult> GetTeamById(int id)
-        {
-            _logger.LogInformation("Fetching team by ID: {TeamId}", id);
-
-            var result = await _service.GetTeamById(id);
-
-            return this.ToActionResult(result);
-        }
-
-        [HttpPost("/teams")]
-        public async Task<IActionResult> InsertOrUpdateTeam([FromBody] Team team)
-        {
-            _logger.LogInformation("Inserting or updating team.");
-
-            var result = await _service.UpdateOrInsertTeam(team);
-
-            return this.ToActionResult(result);
-        }
     }
 }

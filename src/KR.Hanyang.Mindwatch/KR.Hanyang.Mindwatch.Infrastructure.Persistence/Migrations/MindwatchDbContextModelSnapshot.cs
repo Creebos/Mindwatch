@@ -34,6 +34,10 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Prediction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
@@ -47,58 +51,6 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                     b.HasIndex("QuestionnaireRunId");
 
                     b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Attendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DurationEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DurationStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Attendances");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Commit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CommitDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CommitSize")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CommitType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Commits");
                 });
 
             modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Employee", b =>
@@ -117,6 +69,10 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("GithubId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -125,22 +81,38 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ShortName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeamId")
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Incident", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AuthorEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("Employees");
+                    b.ToTable("Incidents");
                 });
 
             modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Question", b =>
@@ -180,6 +152,14 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Questionnaires");
@@ -199,9 +179,6 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("OpenDateTime")
                         .HasColumnType("datetime2");
 
@@ -214,33 +191,9 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
                     b.HasIndex("QuestionnaireId");
 
                     b.ToTable("QuestionnaireRuns");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Team", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SupervisorEmployeeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SupervisorEmployeeId");
-
-                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Answer", b =>
@@ -262,38 +215,6 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
                     b.Navigation("QuestionnaireRun");
                 });
 
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Attendance", b =>
-                {
-                    b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Employee", "Employee")
-                        .WithMany("Attendances")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Commit", b =>
-                {
-                    b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Employee", "Employee")
-                        .WithMany("Commits")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Employee", b =>
-                {
-                    b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Team", "Team")
-                        .WithMany("Employees")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Team");
-                });
-
             modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Question", b =>
                 {
                     b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Questionnaire", "Questionnaire")
@@ -307,43 +228,13 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.QuestionnaireRun", b =>
                 {
-                    b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Employee", "Employee")
-                        .WithMany("QuestionnaireRuns")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Questionnaire", "Questionnaire")
                         .WithMany("QuestionnaireRuns")
                         .HasForeignKey("QuestionnaireId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Employee");
-
                     b.Navigation("Questionnaire");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Team", b =>
-                {
-                    b.HasOne("KR.Hanyang.Mindwatch.Domain.Entities.Employee", "SupervisorEmployee")
-                        .WithMany("SupervisedTeams")
-                        .HasForeignKey("SupervisorEmployeeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("SupervisorEmployee");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Employee", b =>
-                {
-                    b.Navigation("Attendances");
-
-                    b.Navigation("Commits");
-
-                    b.Navigation("QuestionnaireRuns");
-
-                    b.Navigation("SupervisedTeams");
                 });
 
             modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Questionnaire", b =>
@@ -356,11 +247,6 @@ namespace KR.Hanyang.Mindwatch.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.QuestionnaireRun", b =>
                 {
                     b.Navigation("Answers");
-                });
-
-            modelBuilder.Entity("KR.Hanyang.Mindwatch.Domain.Entities.Team", b =>
-                {
-                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

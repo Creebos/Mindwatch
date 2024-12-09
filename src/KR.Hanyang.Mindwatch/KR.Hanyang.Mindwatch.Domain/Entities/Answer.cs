@@ -14,5 +14,6 @@ namespace KR.Hanyang.Mindwatch.Domain.Entities
         public int QuestionnaireRunId { get; set; }
         public QuestionnaireRun? QuestionnaireRun { get; set; }
         public required string AnswerText { get; set; }
+        public required string Prediction {  get; set; }
     }
 }
