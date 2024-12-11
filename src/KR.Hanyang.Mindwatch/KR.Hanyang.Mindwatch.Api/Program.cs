@@ -21,10 +21,10 @@ namespace KR.Hanyang.Mindwatch.Api
 
             // Application Services
             builder.Services.AddApplicationServices();
-            builder.Services.AddMlServices(builder.Configuration);
 
             // Infrastructure stuff
             builder.Services.AddPersistanceServices(builder.Configuration);
+            builder.Services.AddMlServices(builder.Configuration);
 
             // Swagger
             builder.Services.AddEndpointsApiExplorer();
