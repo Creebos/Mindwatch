@@ -20,10 +20,17 @@ At the end of this project, we aim to deliver a functional and insightful tool t
 | **Daniel Brody**    | ZHAW School of Management and Law    | daniel.brody00@gmail.com  |
 | **Yves Meyer**      | ZHAW School of Management and Law    | meyeryve@students.zhaw.ch |
 
-
 ## Youtube
 
 https://www.youtube.com/watch?v=IurT4dr59Qg
+
+## Code Explaining Videos
+
+We made 3 videos explaining our application structure and code. Each of those can be found in the /docs folder.
+
+Architecture and Docker: /docs/Video-1-ArchitectureAndDocker.mp4
+Backend: /docs/Video-2-Backend.mp4
+Frontend: /docs/Video-3-Frontend.mp4
 
 ## Blog
 
@@ -74,7 +81,21 @@ The data is sourced from diverse platforms. Each entry is tagged with a specific
 
 Any documents, diagrams and other files can be found in /docs
 
-
 ## Jira-Board
 
 https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
+
+## How to run
+
+1. Install Docker Desktop
+2. Navigate to /src/KR.Hanyang.Mindwatch
+3. open Terminal / shell
+4. Type in "docker compose up"
+5. The compose project and all container should be building and starting
+
+## Ports and URLs:
+
+- Backend Swagger (Https): https://localhost:8081/swagger/index.html
+- Backend Swagger (Http): http://localhost:8080/swagger/index.html
+- Frontend: http://localhost:5173/questionnaires
+- MLService: http://localhost:5174/predict
