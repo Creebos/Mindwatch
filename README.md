@@ -84,3 +84,18 @@ Any documents, diagrams and other files can be found in /docs
 ## Jira-Board
 
 https://mindwatch.atlassian.net/jira/core/projects/MIN1234/board
+
+## How to run
+
+1. Install Docker Desktop
+2. Navigate to /src/KR.Hanyang.Mindwatch
+3. open Terminal / shell
+4. Type in "docker compose up"
+5. The compose project and all container should be building and starting
+
+## Ports and URLs:
+
+- Backend Swagger (Https): https://localhost:8081/swagger/index.html
+- Backend Swagger (Http): http://localhost:8080/swagger/index.html
+- Frontend: http://localhost:5173/questionnaires
+- MLService: http://localhost:5174/predict
