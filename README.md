@@ -20,10 +20,17 @@ At the end of this project, we aim to deliver a functional and insightful tool t
 | **Daniel Brody**    | ZHAW School of Management and Law    | daniel.brody00@gmail.com  |
 | **Yves Meyer**      | ZHAW School of Management and Law    | meyeryve@students.zhaw.ch |
 
-
 ## Youtube
 
 https://www.youtube.com/watch?v=IurT4dr59Qg
+
+## Code Explaining Videos
+
+We made 3 videos explaining our application structure and code. Each of those can be found in the /docs folder.
+
+Architecture and Docker: /docs/Video-1-ArchitectureAndDocker.mp4
+Backend: /docs/Video-2-Backend.mp4
+Frontend: /docs/Video-3-Frontend.mp4
 
 ## Blog
 
@@ -73,7 +80,6 @@ The data is sourced from diverse platforms. Each entry is tagged with a specific
 ## Documentation
 
 Any documents, diagrams and other files can be found in /docs
-
 
 ## Jira-Board
 
